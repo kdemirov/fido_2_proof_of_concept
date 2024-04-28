@@ -1,0 +1,49 @@
+POST http://localhost:8080/api/discussion/add
+Content-Type: application/x-www-form-urlencoded
+
+name=Kjazim&personId=lala
+
+> {%
+client.test("Request executed successfully", function() {
+    client.global.set("discussionId", response.body["id"]);
+});
+%}
+###
+
+POST http://localhost:8080/api/discussion/comments/add
+Content-Type: application/x-www-form-urlencoded
+
+discussionId={{discussionId}}&personId=Test&body=# Hello
+
+> {%
+client.test("Request executed successfully", function() {
+    client.global.set("commentId", response.body["id"]);
+});
+%}
+###
+
+POST http://localhost:8080/api/discussion/comments/edit
+Content-Type: application/x-www-form-urlencoded
+
+discussionId={{discussionId}}&commentId={{commentId}}&newBody=# Edit
+
+###
+
+DELETE http://localhost:8080/api/discussion/comments/delete
+Content-Type: application/x-www-form-urlencoded
+
+discussionId={{discussionId}}&commentId={{commentId}}
+
+###
+
+POST http://localhost:8080/api/discussion/add-member
+Content-Type: application/x-www-form-urlencoded
+
+discussionId={{discussionId}}&personId=Kjazim
+
+###
+
+DELETE http://localhost:8080/api/discussion/delete-member
+Content-Type: application/x-www-form-urlencoded
+
+discussionId={{discussionId}}&personId=Kjazim
