@@ -1,7 +1,10 @@
 package com.iwmnetwork.aqtos.internship.identify.api.commands;
 
-public abstract class AbstractCommand {
+import lombok.NoArgsConstructor;
 
-    public AbstractCommand() {
-    }
+/**
+ * Abstract Command.
+ */
+@NoArgsConstructor
+public abstract class AbstractCommand {
 }
