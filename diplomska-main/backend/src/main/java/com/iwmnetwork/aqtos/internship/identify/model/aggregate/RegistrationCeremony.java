@@ -83,7 +83,7 @@ public class RegistrationCeremony {
     }
 
     /**
-     * Verify that received credential#response is instance of {@link AuthenticatorAttestationResponse}
+     * Verify that the received credential#response is instance of {@link AuthenticatorAttestationResponse}
      * step 3-5 from <a href="https://www.w3.org/TR/webauthn/#sctn-registering-a-new-credential">...</a>
      *
      * @param cmd command for verifying that the received response is {@link AuthenticatorAttestationResponse}
@@ -265,7 +265,7 @@ public class RegistrationCeremony {
     }
 
     /**
-     * Verify that received Relying Party hashed id is the same as our Relying Party id
+     * Verify that received Relying Party hashed id is the same as our Relying Party id hash
      * step 13 from <a href="https://www.w3.org/TR/webauthn/#sctn-registering-a-new-credential">...</a>
      *
      * @param command command for verifying the rpId hash from auth data in attestation response
@@ -300,7 +300,7 @@ public class RegistrationCeremony {
      * step 14 from <a href="https://www.w3.org/TR/webauthn/#sctn-verifying-assertion">...</a>
      * more on <a href="https://www.w3.org/TR/webauthn/#authenticator-data">...</a>
      *
-     * @param cmd command for verifying if user is present in auth data flags see getFlags() for more information.
+     * @param cmd command for verifying if user is present in auth data flags
      */
     @CommandHandler
     public void handle(VerifyThatUserPresentInAuthDataIsSetCommand cmd) {
@@ -325,7 +325,7 @@ public class RegistrationCeremony {
      * step 15 from <a href="https://www.w3.org/TR/webauthn/#sctn-verifying-assertion">...</a>
      * more on <a href="https://www.w3.org/TR/webauthn/#authenticator-data">...</a>
      *
-     * @param cmd command for verifying if user is present in auth data flags see getFlags() for more information.
+     * @param cmd command for verifying if user is present in auth data flags
      */
     @CommandHandler
     public void handle(VerifyThatUserVerifiedInAuthDataIsSetCommand cmd) {
@@ -345,7 +345,7 @@ public class RegistrationCeremony {
     }
 
     /**
-     * Verifying that the alg parameter received from credential public key in authData matches our supported alg
+     * Verify that the alg parameter received from credential public key in authData matches our supported alg
      * step 16 from <a href="https://www.w3.org/TR/webauthn/#sctn-registering-a-new-credential">...</a>
      *
      * @param cmd command for verifying the received alg parameter from credential public key

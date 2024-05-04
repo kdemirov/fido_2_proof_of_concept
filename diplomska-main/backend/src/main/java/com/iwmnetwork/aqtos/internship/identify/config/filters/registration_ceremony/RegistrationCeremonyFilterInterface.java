@@ -15,7 +15,7 @@ import java.io.IOException;
 public interface RegistrationCeremonyFilterInterface {
 
     /**
-     * Logic for doFilter internal for all filter that are needed for verification
+     * Logic for doFilter internal for all filters that are needed for verification
      * the registration ceremony.
      *
      * @param request     given request
@@ -38,7 +38,7 @@ public interface RegistrationCeremonyFilterInterface {
     }
 
     /**
-     * Definition of filter logic method where every one of the filter sends the appropriate
+     * Definition of filter logic method where every one of the filters sends the appropriate
      * command for verifying the registration ceremony.
      *
      * @param request     given request
