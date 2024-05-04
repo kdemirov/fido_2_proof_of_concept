@@ -1,5 +1,7 @@
 package com.iwmnetwork.aqtos.internship.identify.repository;
 
+import com.iwmnetwork.aqtos.internship.identify.model.aggregate.RegistrationCeremony;
+import com.iwmnetwork.aqtos.internship.identify.model.dto.PublicKeyCredentialCreationResponse;
 import com.iwmnetwork.aqtos.internship.identify.model.dto.RegistrationCeremonyInMemory;
 import com.iwmnetwork.aqtos.internship.identify.model.identifiers.RegistrationCeremonyId;
 import com.iwmnetwork.aqtos.internship.identify.repository.webauthn.authenticator_model.AttestedCredentialData;
@@ -155,6 +157,28 @@ public class RegistrationCeremonyInMemoryRepository {
     }
 
     /**
+     * Saves decoded {@link PublicKeyCredentialCreationResponse} for the registration ceremony with the
+     * given id.
+     *
+     * @param id       given registration ceremony id
+     * @param response decoded {@link PublicKeyCredentialCreationResponse}
+     */
+    public void setPublicKeyCredentialResponse(RegistrationCeremonyId id, PublicKeyCredentialCreationResponse response) {
+        if (MEMORY.containsKey(id)) {
+            MEMORY.computeIfPresent(id, (key, val) -> {
+                val.setCredentialResponse(response);
+                return val;
+            });
+        } else {
+            MEMORY.computeIfAbsent(id, k -> {
+                RegistrationCeremonyInMemory memory = new RegistrationCeremonyInMemory();
+                memory.setCredentialResponse(response);
+                return memory;
+            });
+        }
+    }
+
+    /**
      * Finds {@link CollectedClientData} by given registration ceremony id.
      *
      * @param id given registration ceremony id.
@@ -212,5 +236,16 @@ public class RegistrationCeremonyInMemoryRepository {
      */
     public byte[] getClientDataHash(RegistrationCeremonyId id) {
         return MEMORY.get(id).getClientDataHash();
+    }
+
+    /**
+     * Finds {@link PublicKeyCredentialCreationResponse}
+     * by given registration ceremony id.
+     *
+     * @param id given registration ceremony id
+     * @return {@link PublicKeyCredentialCreationResponse}
+     */
+    public PublicKeyCredentialCreationResponse getCredentialCreationResponse(RegistrationCeremonyId id) {
+        return MEMORY.get(id).getCredentialResponse();
     }
 }

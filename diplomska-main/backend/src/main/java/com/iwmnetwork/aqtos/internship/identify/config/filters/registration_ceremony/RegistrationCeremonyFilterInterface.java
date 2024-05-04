@@ -30,7 +30,7 @@ public interface RegistrationCeremonyFilterInterface {
             try {
                 filterLogic(request, response, filterChain);
             } catch (Exception o_O) {
-                throw new Fido2Exception(o_O);
+                response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
             }
         } else {
             filterChain.doFilter(request, response);

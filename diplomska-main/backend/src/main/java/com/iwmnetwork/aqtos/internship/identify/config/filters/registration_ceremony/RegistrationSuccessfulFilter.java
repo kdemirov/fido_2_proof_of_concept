@@ -3,6 +3,8 @@ package com.iwmnetwork.aqtos.internship.identify.config.filters.registration_cer
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.iwmnetwork.aqtos.internship.identify.bootstrap.Constants;
 import com.iwmnetwork.aqtos.internship.identify.model.dto.PublicKeyCredentialCreationResponse;
+import com.iwmnetwork.aqtos.internship.identify.model.identifiers.RegistrationCeremonyId;
+import com.iwmnetwork.aqtos.internship.identify.repository.RegistrationCeremonyInMemoryRepository;
 import com.iwmnetwork.aqtos.internship.identify.repository.webauthn.exceptions.VerificationFailedException;
 import com.iwmnetwork.aqtos.internship.identify.service.impl.RegistrationCeremonyImpl;
 import lombok.RequiredArgsConstructor;
@@ -29,6 +31,7 @@ public class RegistrationSuccessfulFilter extends OncePerRequestFilter
         implements RegistrationCeremonyFilterInterface {
 
     private final RegistrationCeremonyImpl registrationCeremony;
+    private final RegistrationCeremonyInMemoryRepository repository;
 
     @Override
     public void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
@@ -39,7 +42,8 @@ public class RegistrationSuccessfulFilter extends OncePerRequestFilter
     @Override
     public void filterLogic(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
-        PublicKeyCredentialCreationResponse res = (PublicKeyCredentialCreationResponse) request.getAttribute("creationResponse");
+        RegistrationCeremonyId registrationCeremonyId = (RegistrationCeremonyId) request.getAttribute(Constants.REGISTRATION_CEREMONY_ID_KEY);
+        PublicKeyCredentialCreationResponse res = repository.getCredentialCreationResponse(registrationCeremonyId);
 
         boolean registrationSuccessful = registrationCeremony.registrationSuccessful(res);
 

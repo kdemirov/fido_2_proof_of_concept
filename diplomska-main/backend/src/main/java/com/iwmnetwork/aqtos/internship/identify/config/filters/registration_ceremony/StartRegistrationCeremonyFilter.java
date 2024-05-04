@@ -6,6 +6,7 @@ import com.iwmnetwork.aqtos.internship.identify.model.dto.PublicKeyCredentialCre
 import com.iwmnetwork.aqtos.internship.identify.bootstrap.Constants;
 import com.iwmnetwork.aqtos.internship.identify.model.exceptions.Fido2Exception;
 import com.iwmnetwork.aqtos.internship.identify.model.identifiers.RegistrationCeremonyId;
+import com.iwmnetwork.aqtos.internship.identify.repository.RegistrationCeremonyInMemoryRepository;
 import com.iwmnetwork.aqtos.internship.identify.service.DefaultIdentifyService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.annotation.Order;
@@ -31,6 +32,7 @@ public class StartRegistrationCeremonyFilter extends OncePerRequestFilter
 
     private final DefaultIdentifyService defaultIdentifyService;
     private final ObjectMapper objectMapper;
+    private final RegistrationCeremonyInMemoryRepository repository;
 
     @Override
     public void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
@@ -54,8 +56,8 @@ public class StartRegistrationCeremonyFilter extends OncePerRequestFilter
             );
             defaultIdentifyService.dispatch(cmd);
             request.setAttribute(Constants.REGISTRATION_CEREMONY_ID_KEY, cmd.getRegistrationCeremonyId());
-            request.setAttribute("clientDataHash", cmd.getClientDataHash());
-            request.setAttribute("creationResponse", publicKeyCredentialCreationResponse);
+            repository.setPublicKeyCredentialResponse(cmd.getRegistrationCeremonyId(),
+                    publicKeyCredentialCreationResponse);
             filterChain.doFilter(request, response);
         } catch (Exception o_O) {
             throw new Fido2Exception(o_O);

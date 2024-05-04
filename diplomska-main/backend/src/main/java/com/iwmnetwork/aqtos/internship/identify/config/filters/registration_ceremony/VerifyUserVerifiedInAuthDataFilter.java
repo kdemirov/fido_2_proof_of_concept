@@ -40,5 +40,6 @@ public class VerifyUserVerifiedInAuthDataFilter extends OncePerRequestFilter
                 registrationCeremonyId
         );
         defaultIdentifyService.dispatch(cmd);
+        filterChain.doFilter(request, response);
     }
 }

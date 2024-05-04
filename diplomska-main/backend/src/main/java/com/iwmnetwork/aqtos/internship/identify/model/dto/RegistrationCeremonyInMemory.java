@@ -21,4 +21,5 @@ public class RegistrationCeremonyInMemory {
     private PublicKeyCredentialCreationOptions options;
     private String jsonText;
     private byte[] clientDataHash;
+    private PublicKeyCredentialCreationResponse credentialResponse;
 }
