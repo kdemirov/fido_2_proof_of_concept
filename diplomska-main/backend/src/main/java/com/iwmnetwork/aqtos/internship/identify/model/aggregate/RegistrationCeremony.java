@@ -16,6 +16,7 @@ import com.iwmnetwork.aqtos.internship.identify.repository.webauthn.enumerations
 import com.iwmnetwork.aqtos.internship.identify.repository.webauthn.exceptions.VerificationFailedException;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.apache.catalina.core.ApplicationFilterChain;
 import org.axonframework.commandhandling.CommandHandler;
 import org.axonframework.modelling.command.AggregateIdentifier;
 import org.axonframework.modelling.command.AggregateLifecycle;
@@ -141,7 +142,7 @@ public class RegistrationCeremony {
     }
 
     /**
-     * Verify from {@link CollectedClientData}#type that equals to webauthn.create
+     * Verify {@link CollectedClientData}#type that equals to webauthn.create
      * step 7 from <a href="https://www.w3.org/TR/webauthn/#sctn-registering-a-new-credential">...</a>
      *
      * @param cmd command for verifying value of deserialized client data type is webauth.create
@@ -164,7 +165,7 @@ public class RegistrationCeremony {
     }
 
     /**
-     * Verify from {@link CollectedClientData}#challenge that equals to the one we send in
+     * Verify {@link CollectedClientData}#challenge that equals to the one we send in
      * {@link PublicKeyCredentialCreationOptions}
      * step 8 from <a href="https://www.w3.org/TR/webauthn/#sctn-registering-a-new-credential">...</a>
      *
@@ -188,7 +189,7 @@ public class RegistrationCeremony {
     }
 
     /**
-     * Verify from {@link CollectedClientData}#origin that equals to our relying party defined origin
+     * Verify {@link CollectedClientData}#origin that equals to our relying party defined origin
      * step 9 from <a href="https://www.w3.org/TR/webauthn/#sctn-registering-a-new-credential">...</a>
      *
      * @param cmd command for verifying the received origin as our.
