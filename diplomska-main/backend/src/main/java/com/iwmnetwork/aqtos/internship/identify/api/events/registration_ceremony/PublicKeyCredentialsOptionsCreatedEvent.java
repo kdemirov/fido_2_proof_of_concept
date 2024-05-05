@@ -1,6 +1,7 @@
 package com.iwmnetwork.aqtos.internship.identify.api.events.registration_ceremony;
 
 import com.iwmnetwork.aqtos.internship.identify.api.commands.registration_ceremony.CreatePublicKeyCredentialsOptionsCommand;
+import com.iwmnetwork.aqtos.internship.identify.api.events.AbstractCeremonyEvent;
 import com.iwmnetwork.aqtos.internship.identify.api.events.AbstractEvent;
 import com.iwmnetwork.aqtos.internship.identify.bootstrap.Constants;
 import com.iwmnetwork.aqtos.internship.identify.model.identifiers.RegistrationCeremonyId;
@@ -17,7 +18,7 @@ import java.util.UUID;
  * PublicKeyCredentialsOptionsCreated event.
  */
 @Getter
-public class PublicKeyCredentialsOptionsCreatedEvent extends AbstractRegistrationCeremonyEvent {
+public class PublicKeyCredentialsOptionsCreatedEvent extends AbstractCeremonyEvent {
 
     private final PublicKeyCredentialCreationOptions publicKeyCredentialCreationOptions;
 

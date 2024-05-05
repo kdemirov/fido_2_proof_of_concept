@@ -10,9 +10,10 @@ import com.iwmnetwork.aqtos.internship.identify.repository.RegistrationCeremonyI
 import com.iwmnetwork.aqtos.internship.identify.repository.webauthn.authenticator_model.AttestedCredentialData;
 import com.iwmnetwork.aqtos.internship.identify.repository.webauthn.authenticator_model.AuthenticatorAttestationResponse;
 import com.iwmnetwork.aqtos.internship.identify.repository.webauthn.authenticator_model.PublicKeyCredentialCreationOptions;
-import com.iwmnetwork.aqtos.internship.identify.repository.webauthn.crypto.RelyingPartyVerifying;
+import com.iwmnetwork.aqtos.internship.identify.repository.webauthn.crypto.RelyingPartyUtils;
 import com.iwmnetwork.aqtos.internship.identify.repository.webauthn.exceptions.VerificationFailedException;
 import com.iwmnetwork.aqtos.internship.identify.service.DefaultIdentifyService;
+import com.iwmnetwork.aqtos.internship.identify.service.RegistrationCeremonyService;
 import com.iwmnetwork.aqtos.internship.identify.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -50,7 +51,7 @@ public class RegistrationCeremonyImpl implements RegistrationCeremonyService {
                 .getAuthenticatorAttestationResponse(registrationCeremonyId);
         byte[] credentialId = attestedCredentialData.getCredentialId();
         byte[] publicKey = attestedCredentialData.getCredentialPublicKey();
-        int signCount = RelyingPartyVerifying.getSignCount(response.getAuthData());
+        int signCount = RelyingPartyUtils.getSignCount(response.getAuthData());
         User user = userService.findByUsername(cmd.getUsername()).orElseThrow(VerificationFailedException::new);
         if (fidoUserRepository.existsByCredentialId(credentialId)) {
             return false;

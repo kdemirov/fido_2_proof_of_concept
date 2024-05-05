@@ -1,22 +1,19 @@
 package com.iwmnetwork.aqtos.internship.identify.model.aggregate;
 
 import com.iwmnetwork.aqtos.internship.identify.api.commands.registration_ceremony.*;
+import com.iwmnetwork.aqtos.internship.identify.api.events.*;
 import com.iwmnetwork.aqtos.internship.identify.api.events.registration_ceremony.*;
 import com.iwmnetwork.aqtos.internship.identify.bootstrap.Constants;
 import com.iwmnetwork.aqtos.internship.identify.model.exceptions.Fido2Exception;
 import com.iwmnetwork.aqtos.internship.identify.model.identifiers.RegistrationCeremonyId;
 import com.iwmnetwork.aqtos.internship.identify.repository.RegistrationCeremonyInMemoryRepository;
 import com.iwmnetwork.aqtos.internship.identify.repository.webauthn.authenticator_model.*;
-import com.iwmnetwork.aqtos.internship.identify.repository.webauthn.crypto.CBORDecoder;
-import com.iwmnetwork.aqtos.internship.identify.repository.webauthn.crypto.JsonParser;
-import com.iwmnetwork.aqtos.internship.identify.repository.webauthn.crypto.SHA256;
-import com.iwmnetwork.aqtos.internship.identify.repository.webauthn.crypto.Utf8Decoder;
+import com.iwmnetwork.aqtos.internship.identify.repository.webauthn.crypto.*;
 import com.iwmnetwork.aqtos.internship.identify.repository.webauthn.enumerations.AttestationConveyancePreference;
 import com.iwmnetwork.aqtos.internship.identify.repository.webauthn.enumerations.UserVerificationRequirements;
 import com.iwmnetwork.aqtos.internship.identify.repository.webauthn.exceptions.VerificationFailedException;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.apache.catalina.core.ApplicationFilterChain;
 import org.axonframework.commandhandling.CommandHandler;
 import org.axonframework.modelling.command.AggregateIdentifier;
 import org.axonframework.modelling.command.AggregateLifecycle;
@@ -28,7 +25,6 @@ import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.security.SignatureException;
 import java.security.cert.CertificateException;
-import java.util.Arrays;
 import java.util.UUID;
 
 /**
@@ -78,7 +74,7 @@ public class RegistrationCeremony {
     }
 
     public String on(PublicKeyCredentialsOptionsCreatedEvent e) {
-        this.id = e.getRegistrationCeremonyId();
+        this.id = (RegistrationCeremonyId) e.getCeremonyId();
         repository.setOptions(this.id, e.getPublicKeyCredentialCreationOptions());
         return id.getId();
     }
@@ -90,10 +86,10 @@ public class RegistrationCeremony {
      * @param cmd command for verifying that the received response is {@link AuthenticatorAttestationResponse}
      */
     @CommandHandler
-    public void handle(FidoRegistrationStartCommand cmd) {
+    public void handle(FidoStartCommand cmd) {
         try {
             DecodedAttestationResponseEvent event = new DecodedAttestationResponseEvent(
-                    cmd.getRegistrationCeremonyId(),
+                    cmd.getCeremonyId(),
                     CBORDecoder.decodeAttStmt(cmd.getAttestationObject()),
                     cmd.getClientDataHash()
             );
@@ -105,9 +101,9 @@ public class RegistrationCeremony {
     }
 
     public void on(DecodedAttestationResponseEvent event) {
-        if (event.getRegistrationCeremonyId().equals(id)) {
+        if (event.getCeremonyId().equals(id)) {
             repository.setAuthenticatorAttestationResponse(
-                    event.getRegistrationCeremonyId(), event.getAttestationResponse());
+                    id, event.getAttestationResponse());
             try {
                 repository.setJsonText(id, Utf8Decoder
                         .bytesToUtf8String(JsonParser.JsonToByteArray(event.getClientDataJson())));
@@ -127,7 +123,7 @@ public class RegistrationCeremony {
     public void handle(DecodeJsonClientDataCommand cmd) {
         try {
             CollectedClientData clientData = JsonParser.getClientData(cmd.getClientDataJson());
-            ClientDataDecodedEvent event = new ClientDataDecodedEvent(cmd.getRegistrationCeremonyId(), clientData);
+            ClientDataDecodedEvent event = new ClientDataDecodedEvent(cmd.getCeremonyId(), clientData);
             AggregateLifecycle.apply(event);
             this.on(event);
         } catch (JSONException o_O) {
@@ -136,7 +132,7 @@ public class RegistrationCeremony {
     }
 
     public void on(ClientDataDecodedEvent event) {
-        if (event.getRegistrationCeremonyId().equals(id)) {
+        if (event.getCeremonyId().equals(id)) {
             repository.setClientCollectedData(id, event.getClientData());
         }
     }
@@ -148,17 +144,17 @@ public class RegistrationCeremony {
      * @param cmd command for verifying value of deserialized client data type is webauth.create
      */
     @CommandHandler
-    public void handle(RegistrationVerifyClientDataTypeCommand cmd) {
+    public void handle(VerifyClientDataTypeCommand cmd) {
         CollectedClientData clientData = repository.getClientData(id);
         boolean verified = clientData.getType().equals(TYPE);
-        RegistrationClientDataTypeVerifiedEvent event = new RegistrationClientDataTypeVerifiedEvent(
-                cmd.getRegistrationCeremonyId(),
+        ClientDataTypeVerifiedEvent event = new ClientDataTypeVerifiedEvent(
+                cmd.getCeremonyId(),
                 verified);
         AggregateLifecycle.apply(event);
         this.on(event);
     }
 
-    public void on(RegistrationClientDataTypeVerifiedEvent event) {
+    public void on(ClientDataTypeVerifiedEvent event) {
         if (!event.isVerified()) {
             throw new VerificationFailedException();
         }
@@ -172,17 +168,17 @@ public class RegistrationCeremony {
      * @param cmd command for verifying the challenge we issued is the same as the one we received
      */
     @CommandHandler
-    public void handle(RegistrationVerifyChallengeCommand cmd) {
+    public void handle(VerifyChallengeCommand cmd) {
         CollectedClientData clientData = repository.getClientData(id);
         PublicKeyCredentialCreationOptions options = repository.getCredentialOptions(id);
         boolean verified = options.getChallenge().equals(clientData.getChallenge());
-        RegistrationChallengeVerifiedEvent event = new RegistrationChallengeVerifiedEvent(cmd.getRegistrationCeremonyId(),
+        ChallengeVerifiedEvent event = new ChallengeVerifiedEvent(cmd.getCeremonyId(),
                 verified);
         AggregateLifecycle.apply(event);
         this.on(event);
     }
 
-    public void on(RegistrationChallengeVerifiedEvent event) {
+    public void on(ChallengeVerifiedEvent event) {
         if (!event.isVerified()) {
             throw new VerificationFailedException();
         }
@@ -195,18 +191,18 @@ public class RegistrationCeremony {
      * @param cmd command for verifying the received origin as our.
      */
     @CommandHandler
-    public void handle(RegistrationVerifyRpIdCommand cmd) {
+    public void handle(VerifyRpIdCommand cmd) {
         CollectedClientData clientData = repository.getClientData(id);
         boolean verified = clientData.getOrigin().equals(RP_ID_CROSS_ORIGIN);
-        RegistrationRpIdVerifiedEvent event = new RegistrationRpIdVerifiedEvent(
-                cmd.getRegistrationCeremonyId(),
+        RpIdVerifiedEvent event = new RpIdVerifiedEvent(
+                cmd.getCeremonyId(),
                 verified
         );
         AggregateLifecycle.apply(event);
         this.on(event);
     }
 
-    public void on(RegistrationRpIdVerifiedEvent event) {
+    public void on(RpIdVerifiedEvent event) {
         if (!event.isVerified()) {
             throw new VerificationFailedException();
         }
@@ -223,7 +219,7 @@ public class RegistrationCeremony {
         try {
             String jsonText = repository.getJsonText(id);
             ComputedHashOverClientDataJsonEvent event = new ComputedHashOverClientDataJsonEvent(
-                    cmd.getRegistrationCeremonyId(),
+                    cmd.getCeremonyId(),
                     SHA256.hashClientData(jsonText.getBytes())
             );
             AggregateLifecycle.apply(event);
@@ -234,7 +230,7 @@ public class RegistrationCeremony {
     }
 
     public void on(ComputedHashOverClientDataJsonEvent event) {
-        if (id.equals(event.getRegistrationCeremonyId())) {
+        if (id.equals(event.getCeremonyId())) {
             repository.setClientDataHash(id, event.getClientDataHash());
         }
     }
@@ -252,7 +248,7 @@ public class RegistrationCeremony {
         AttestedCredentialData attestedCredentialData = AttestationResponseReader
                 .decodeAttestedCredentialData(attestationResponse.getAuthData());
         CborDecodingPerformedOnResponseObjectEvent event = new CborDecodingPerformedOnResponseObjectEvent(
-                cmd.getRegistrationCeremonyId(),
+                cmd.getCeremonyId(),
                 attestedCredentialData
         );
         AggregateLifecycle.apply(event);
@@ -260,7 +256,7 @@ public class RegistrationCeremony {
     }
 
     public void on(CborDecodingPerformedOnResponseObjectEvent event) {
-        if (id.equals(event.getRegistrationCeremonyId())) {
+        if (id.equals(event.getCeremonyId())) {
             repository.setAttestedCredentialData(id, event.getAttestedCredentialData());
         }
     }
@@ -274,20 +270,14 @@ public class RegistrationCeremony {
     @CommandHandler
     public void handle(VerifyRpIdHashInAuthDataCommand command) {
         AuthenticatorAttestationResponse attestationResponse = repository.getAuthenticatorAttestationResponse(id);
-        byte[] rpIdHash = Arrays.copyOfRange(attestationResponse.getAuthData(), 0, 32);
-        boolean verified;
-        byte[] rpIdBytes = RP_ID.getBytes();
-        try {
-            verified = SHA256.verify(rpIdHash, rpIdBytes);
-            RpIdHashInAuthDataVerifiedEvent event = new RpIdHashInAuthDataVerifiedEvent(
-                    command.getRegistrationCeremonyId(),
-                    verified
-            );
-            AggregateLifecycle.apply(event);
-            this.on(event);
-        } catch (NoSuchAlgorithmException e) {
-            throw new Fido2Exception(e);
-        }
+        boolean verified = RelyingPartyUtils.verifyRrIdHash(attestationResponse.getAuthData(),
+                Constants.rpId.getBytes());
+        RpIdHashInAuthDataVerifiedEvent event = new RpIdHashInAuthDataVerifiedEvent(
+                command.getCeremonyId(),
+                verified
+        );
+        AggregateLifecycle.apply(event);
+        this.on(event);
     }
 
     public void on(RpIdHashInAuthDataVerifiedEvent event) {
@@ -298,17 +288,18 @@ public class RegistrationCeremony {
 
     /**
      * Verify if user is present in received authData from flags exactly if the first bit is set
-     * step 14 from <a href="https://www.w3.org/TR/webauthn/#sctn-verifying-assertion">...</a>
+     * step 14 from <a href="https://www.w3.org/TR/webauthn/#sctn-registering-a-new-credential">...</a>
      * more on <a href="https://www.w3.org/TR/webauthn/#authenticator-data">...</a>
      *
      * @param cmd command for verifying if user is present in auth data flags
      */
     @CommandHandler
     public void handle(VerifyThatUserPresentInAuthDataIsSetCommand cmd) {
-        byte userPresent = getFlags();
-        boolean verified = (byte) (userPresent & 1) == 1;
+        AuthenticatorAttestationResponse response = repository
+                .getAuthenticatorAttestationResponse((RegistrationCeremonyId) cmd.getCeremonyId());
+        boolean verified = RelyingPartyUtils.verifyUserPresent(response.getAuthData());
         UserPresentInAuthDataVerifiedEvent event = new UserPresentInAuthDataVerifiedEvent(
-                cmd.getRegistrationCeremonyId(),
+                cmd.getCeremonyId(),
                 verified
         );
         AggregateLifecycle.apply(event);
@@ -323,17 +314,18 @@ public class RegistrationCeremony {
 
     /**
      * Verify if user verified flag in received authData is set from flags exactly if the second bit is set
-     * step 15 from <a href="https://www.w3.org/TR/webauthn/#sctn-verifying-assertion">...</a>
+     * step 15 from <a href="https://www.w3.org/TR/webauthn/#sctn-registering-a-new-credential">...</a>
      * more on <a href="https://www.w3.org/TR/webauthn/#authenticator-data">...</a>
      *
      * @param cmd command for verifying if user is present in auth data flags
      */
     @CommandHandler
     public void handle(VerifyThatUserVerifiedInAuthDataIsSetCommand cmd) {
-        byte userVerified = getFlags();
-        boolean verified = (byte) ((userVerified >> 2) & 1) == 1;
+        AuthenticatorAttestationResponse response =
+                repository.getAuthenticatorAttestationResponse((RegistrationCeremonyId) cmd.getCeremonyId());
+        boolean verified = RelyingPartyUtils.verifyUserVerified(response.getAuthData());
         UserVerifiedInAuthDataIsSetEvent event = new UserVerifiedInAuthDataIsSetEvent(
-                cmd.getRegistrationCeremonyId(),
+                cmd.getCeremonyId(),
                 verified);
         AggregateLifecycle.apply(event);
         this.on(event);
@@ -359,7 +351,7 @@ public class RegistrationCeremony {
                 .decodePublicKey(attestedCredentialData.getCredentialPublicKey());
         boolean verified = pk.getAlg() == options.getPubKeyCredParams().getAlg();
         AlgParameterInAuthDataVerifiedEvent event = new AlgParameterInAuthDataVerifiedEvent(
-                cmd.getRegistrationCeremonyId(), verified
+                cmd.getCeremonyId(), verified
         );
         AggregateLifecycle.apply(event);
         this.on(event);
@@ -385,7 +377,7 @@ public class RegistrationCeremony {
             byte[] clientDataHash = repository.getClientDataHash(id);
             verified = SHA256.verifySignature(attestationResponse, clientDataHash);
             AttStmtSignatureVerifiedEvent event = new AttStmtSignatureVerifiedEvent(
-                    cmd.getRegistrationCeremonyId(),
+                    cmd.getCeremonyId(),
                     verified
             );
             AggregateLifecycle.apply(event);
@@ -402,17 +394,5 @@ public class RegistrationCeremony {
         if (!event.isVerified()) {
             throw new VerificationFailedException();
         }
-    }
-
-    /**
-     * Getting flags from authenticator data
-     * |rpIdHash|flags|signCount|attestedCredentialData|extensions
-     * |32 bytes|1 byte|4 bytes|variable optional|variable optional
-     *
-     * @return the bit in position 32 which is flags
-     */
-    private byte getFlags() {
-        AuthenticatorAttestationResponse attestationResponse = repository.getAuthenticatorAttestationResponse(id);
-        return attestationResponse.getAuthData()[32];
     }
 }

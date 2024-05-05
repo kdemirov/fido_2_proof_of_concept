@@ -1,10 +1,10 @@
 package com.iwmnetwork.aqtos.internship.identify.web;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.iwmnetwork.aqtos.identify.demo.model.aggregate.User;
-import com.iwmnetwork.aqtos.identify.demo.model.dto.UserDetailsDto;
-import com.iwmnetwork.aqtos.identify.demo.model.identifiers.UserId;
-import com.iwmnetwork.aqtos.identify.demo.service.UserService;
+import com.iwmnetwork.aqtos.internship.identify.model.aggregate.User;
+import com.iwmnetwork.aqtos.internship.identify.model.dto.UserDetailsDto;
+import com.iwmnetwork.aqtos.internship.identify.model.identifiers.UserId;
+import com.iwmnetwork.aqtos.internship.identify.service.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

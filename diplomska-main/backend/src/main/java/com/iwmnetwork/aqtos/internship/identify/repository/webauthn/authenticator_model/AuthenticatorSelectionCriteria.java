@@ -10,9 +10,11 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
+import javax.persistence.Embeddable;
+
 @AllArgsConstructor
 @NoArgsConstructor
+@Embeddable
 public class AuthenticatorSelectionCriteria {
     private String userVerification;
 }

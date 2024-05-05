@@ -8,7 +8,6 @@ import static org.springframework.core.Ordered.LOWEST_PRECEDENCE;
 public class Constants {
     public final static int COSEAlgorithmIdentifier = -7;
     public final static String rpId = "localhost";
-    public final static String SECRET = "F1D02AuTh3NtiCaT0R";
     public static final long EXPIRATION_TIME = 864_000_000;
     public static final String HEADER = "Authorization";
     public static final String TOKEN_PREFIX = "Bearer ";
@@ -16,7 +15,9 @@ public class Constants {
     public static final String TYPE_OF_AUTHENTICATION = "Type";
     public static final String FIDO_AUTHENTICATION_TYPE = "Fido";
     public static final String REGISTRATION_CEREMONY_ID_KEY = "registrationCeremonyId";
+    public static final String AUTHENTICATION_CEREMONY_ID_KEY = "authenticationCeremonyId";
     public static final String REGISTRATION_CEREMONY_URL = "/api/identity/registration_finish";
+    public static final String AUTHENTICATION_CEREMONY_URL = "/api/identity/login_finish";
 
     //order of filter starts from 16 because there are already defined filters from spring such as
     // the spring security filter chain for more information debug ApplicationFilterChain#doFilterInternal

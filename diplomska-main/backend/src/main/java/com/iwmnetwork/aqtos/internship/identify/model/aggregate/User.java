@@ -3,7 +3,9 @@ package com.iwmnetwork.aqtos.internship.identify.model.aggregate;
 
 import com.iwmnetwork.aqtos.internship.identify.api.commands.FidoUserRegistrationFinishCommand;
 import com.iwmnetwork.aqtos.internship.identify.api.commands.RegisterCommand;
+import com.iwmnetwork.aqtos.internship.identify.api.commands.UpdateFidoUserSignCountCommand;
 import com.iwmnetwork.aqtos.internship.identify.api.events.FidoUserRegisteredEvent;
+import com.iwmnetwork.aqtos.internship.identify.api.events.FidoUserSignCountUpdatedEvent;
 import com.iwmnetwork.aqtos.internship.identify.api.events.UserRegisteredEvent;
 import com.iwmnetwork.aqtos.internship.identify.model.FidoUser;
 import com.iwmnetwork.aqtos.internship.identify.model.enumerations.Role;
@@ -12,6 +14,7 @@ import com.iwmnetwork.aqtos.internship.identify.model.identifiers.UserId;
 import lombok.Getter;
 import org.axonframework.commandhandling.CommandHandler;
 import org.axonframework.modelling.command.AggregateIdentifier;
+import org.axonframework.modelling.command.AggregateLifecycle;
 import org.axonframework.spring.stereotype.Aggregate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -36,11 +39,6 @@ public class User {
     @Enumerated(EnumType.STRING)
     private Role role;
 
-    @Autowired
-    @Transient
-    private PasswordEncoder passwordEncoder = new BCryptPasswordEncoder(10);
-
-
     public User(String username, String password, String name, String surname, Role role) {
         this.username = username;
         this.password = password;
@@ -53,13 +51,12 @@ public class User {
 
     @CommandHandler
     public User(RegisterCommand cmd) {
-        String encryptedPassword = this.passwordEncoder.encode(cmd.getPassword());
         UserRegisteredEvent event = new UserRegisteredEvent(
                 new UserId(),
                 cmd.getName(),
                 cmd.getSurname(),
                 cmd.getUsername(),
-                encryptedPassword
+                cmd.getPassword()
         );
         this.on(event);
     }
@@ -80,8 +77,10 @@ public class User {
                 new FidoUserId(),
                 cmd.getUsername(),
                 cmd.getPublicKey(),
-                cmd.getCredentialId()
+                cmd.getCredentialId(),
+                cmd.getSignCount()
         );
+        AggregateLifecycle.apply(event);
         this.on(event);
     }
 
@@ -89,8 +88,18 @@ public class User {
         this.fidoUser = new FidoUser(
                 event.getFidoUserId(),
                 event.getCredentialId(),
-                event.getPublicKey()
+                event.getPublicKey(),
+                event.getSignCount()
         );
+    }
+
+    @CommandHandler
+    public void handle(UpdateFidoUserSignCountCommand cmd) {
+        FidoUserSignCountUpdatedEvent event = new FidoUserSignCountUpdatedEvent(
+                cmd.getFidoUserId(),
+                cmd.getStoredCount()
+        );
+        AggregateLifecycle.apply(event);
     }
 
     public User() {
