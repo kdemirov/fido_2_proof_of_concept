@@ -1,7 +1,6 @@
 package com.iwmnetwork.aqtos.internship.identify.config.filters.authentication_ceremony;
 
 import com.iwmnetwork.aqtos.internship.identify.api.commands.authentication_ceremony.AuthenticationVerifyChallengeCommand;
-import com.iwmnetwork.aqtos.internship.identify.api.commands.registration_ceremony.VerifyChallengeCommand;
 import com.iwmnetwork.aqtos.internship.identify.bootstrap.Constants;
 import com.iwmnetwork.aqtos.internship.identify.config.filters.interfaces.CeremonyFilterInterface;
 import com.iwmnetwork.aqtos.internship.identify.model.identifiers.AuthenticationCeremonyId;

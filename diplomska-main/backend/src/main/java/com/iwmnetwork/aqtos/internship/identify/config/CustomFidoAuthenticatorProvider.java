@@ -8,6 +8,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
+/**
+ * Fido authentication provider.
+ */
 @Component
 public class CustomFidoAuthenticatorProvider implements AuthenticationProvider {
 

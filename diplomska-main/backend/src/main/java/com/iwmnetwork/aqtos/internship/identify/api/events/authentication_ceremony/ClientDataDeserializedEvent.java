@@ -1,7 +1,6 @@
 package com.iwmnetwork.aqtos.internship.identify.api.events.authentication_ceremony;
 
 import com.iwmnetwork.aqtos.internship.identify.api.events.AbstractCeremonyEvent;
-import com.iwmnetwork.aqtos.internship.identify.model.identifiers.AuthenticationCeremonyId;
 import com.iwmnetwork.aqtos.internship.identify.model.identifiers.Identifier;
 import com.iwmnetwork.aqtos.internship.identify.repository.webauthn.authenticator_model.CollectedClientData;
 import lombok.Getter;

@@ -2,7 +2,6 @@ package com.iwmnetwork.aqtos.internship.identify.api.commands.authentication_cer
 
 import com.iwmnetwork.aqtos.internship.identify.api.commands.AbstractCeremonyCommand;
 import com.iwmnetwork.aqtos.internship.identify.model.identifiers.AuthenticationCeremonyId;
-import lombok.Getter;
 
 /**
  * Deserialize client data json command.

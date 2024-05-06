@@ -2,13 +2,13 @@ package com.iwmnetwork.aqtos.internship.identify.model.aggregate;
 
 import co.nstant.in.cbor.CborException;
 import com.iwmnetwork.aqtos.internship.identify.api.commands.authentication_ceremony.*;
-import com.iwmnetwork.aqtos.internship.identify.api.commands.registration_ceremony.*;
 import com.iwmnetwork.aqtos.internship.identify.api.events.*;
 import com.iwmnetwork.aqtos.internship.identify.api.events.authentication_ceremony.*;
 import com.iwmnetwork.aqtos.internship.identify.bootstrap.Constants;
 import com.iwmnetwork.aqtos.internship.identify.model.exceptions.Fido2Exception;
 import com.iwmnetwork.aqtos.internship.identify.model.identifiers.AuthenticationCeremonyId;
 import com.iwmnetwork.aqtos.internship.identify.repository.AuthenticationCeremonyInMemoryRepository;
+import com.iwmnetwork.aqtos.internship.identify.repository.webauthn.authenticator_model.AuthenticatorAssertionResponse;
 import com.iwmnetwork.aqtos.internship.identify.repository.webauthn.authenticator_model.CollectedClientData;
 import com.iwmnetwork.aqtos.internship.identify.repository.webauthn.authenticator_model.PublicKeyCredentialRequestOptions;
 import com.iwmnetwork.aqtos.internship.identify.repository.webauthn.crypto.*;
@@ -18,6 +18,7 @@ import org.axonframework.commandhandling.CommandHandler;
 import org.axonframework.modelling.command.AggregateLifecycle;
 import org.axonframework.spring.stereotype.Aggregate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.configurationprocessor.json.JSONException;
 
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
@@ -28,9 +29,6 @@ import java.security.SignatureException;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.InvalidParameterSpecException;
 import java.util.UUID;
-
-import com.iwmnetwork.aqtos.internship.identify.repository.webauthn.authenticator_model.AuthenticatorAssertionResponse;
-import org.springframework.boot.configurationprocessor.json.JSONException;
 
 
 /**
@@ -119,7 +117,7 @@ public class AuthenticationCeremony {
         CredentialExistsEvent event = new CredentialExistsEvent(
                 command.getCeremonyId(),
                 command.isVerified(),
-                command.getPublicKey()
+                command.getFidoUser()
         );
         AggregateLifecycle.apply(event);
         this.on(event);
@@ -129,8 +127,8 @@ public class AuthenticationCeremony {
         if (!event.isVerified()) {
             throw new VerificationFailedException();
         } else {
-            repository.savePublicKey((AuthenticationCeremonyId) event.getCeremonyId(),
-                    event.getPublicKey());
+            repository.saveFidoUser((AuthenticationCeremonyId) event.getCeremonyId(),
+                    event.getFidoUser());
         }
     }
 

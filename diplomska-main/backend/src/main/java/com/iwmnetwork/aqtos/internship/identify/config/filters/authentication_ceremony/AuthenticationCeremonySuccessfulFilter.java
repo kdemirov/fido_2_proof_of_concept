@@ -6,12 +6,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.iwmnetwork.aqtos.internship.identify.bootstrap.Constants;
 import com.iwmnetwork.aqtos.internship.identify.config.authtokens.FidoUserAuthenticatorToken;
 import com.iwmnetwork.aqtos.internship.identify.config.filters.interfaces.CeremonyFilterInterface;
+import com.iwmnetwork.aqtos.internship.identify.model.FidoUser;
 import com.iwmnetwork.aqtos.internship.identify.model.aggregate.User;
 import com.iwmnetwork.aqtos.internship.identify.model.dto.UserDetailsDto;
 import com.iwmnetwork.aqtos.internship.identify.model.enumerations.Role;
 import com.iwmnetwork.aqtos.internship.identify.model.identifiers.AuthenticationCeremonyId;
 import com.iwmnetwork.aqtos.internship.identify.repository.AuthenticationCeremonyInMemoryRepository;
-import com.iwmnetwork.aqtos.internship.identify.repository.FidoUserRepository;
 import com.iwmnetwork.aqtos.internship.identify.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -19,7 +19,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import javax.servlet.FilterChain;
@@ -46,10 +45,10 @@ public class AuthenticationCeremonySuccessfulFilter extends UsernamePasswordAuth
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
         AuthenticationCeremonyId id = (AuthenticationCeremonyId) request.getAttribute(Constants.AUTHENTICATION_CEREMONY_ID_KEY);
-        byte[] credentialId = repository.getCredentialId(id);
+        FidoUser fidoUser = repository.getFidoUser(id);
         byte[] authData = repository.getResponse(id).getAuthenticatorData();
         return authenticationManager.authenticate(
-                new FidoUserAuthenticatorToken(authData, credentialId, Collections.singleton(Role.ROLE_USER))
+                new FidoUserAuthenticatorToken(authData, fidoUser, Collections.singleton(Role.ROLE_USER))
         );
     }
 

@@ -2,8 +2,6 @@ package com.iwmnetwork.aqtos.internship.identify.api.events.registration_ceremon
 
 import com.iwmnetwork.aqtos.internship.identify.api.events.AbstractCeremonyEvent;
 import com.iwmnetwork.aqtos.internship.identify.model.identifiers.Identifier;
-import com.iwmnetwork.aqtos.internship.identify.model.identifiers.RegistrationCeremonyId;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 

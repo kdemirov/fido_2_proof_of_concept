@@ -10,7 +10,7 @@ import lombok.Getter;
 @Getter
 public class VerifyTheValueOfStoredSignatureCountCommand extends AbstractCeremonyCommand {
 
-    private int storedSignatureCount;
+    private final int storedSignatureCount;
 
     /**
      * Constructor.

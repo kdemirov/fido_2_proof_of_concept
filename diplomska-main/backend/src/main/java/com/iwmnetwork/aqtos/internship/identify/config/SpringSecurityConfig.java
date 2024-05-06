@@ -1,9 +1,8 @@
 package com.iwmnetwork.aqtos.internship.identify.config;
 
-import com.iwmnetwork.aqtos.internship.identify.api.commands.authentication_ceremony.VerifyTheValueOfStoredSignatureCountCommand;
-import com.iwmnetwork.aqtos.internship.identify.config.filters.authentication_ceremony.*;
 import com.iwmnetwork.aqtos.internship.identify.config.filters.JwtAuthenticationFilter;
 import com.iwmnetwork.aqtos.internship.identify.config.filters.JwtAuthorizationFilter;
+import com.iwmnetwork.aqtos.internship.identify.config.filters.authentication_ceremony.*;
 import com.iwmnetwork.aqtos.internship.identify.repository.FidoUserRepository;
 import com.iwmnetwork.aqtos.internship.identify.service.DefaultIdentifyService;
 import com.iwmnetwork.aqtos.internship.identify.service.UserService;
@@ -19,6 +18,9 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+/**
+ * Spring security configuration.
+ */
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(securedEnabled = true, prePostEnabled = true)
@@ -45,7 +47,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .addFilter(new StartAuthenticationCeremonyFilter(
                         defaultIdentifyService,
                         userService))
-                .addFilterAfter(new VerifyThatCredentialExistsFilter(authenticationManager(),
+                .addFilterAfter(new VerifyThatCredentialExistsFilter(
                         defaultIdentifyService, fidoUserRepository), StartAuthenticationCeremonyFilter.class)
                 .addFilterAfter(new DeserializeClientDataFilter(defaultIdentifyService), StartAuthenticationCeremonyFilter.class)
                 .addFilterAfter(new VerifyClientDataTypeFilter(defaultIdentifyService), DeserializeClientDataFilter.class)
@@ -56,7 +58,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .addFilterAfter(new VerifyThatUserVerifiedFilter(defaultIdentifyService), VerifyThatUserIsPresentFilter.class)
                 .addFilterAfter(new ComputeHashOverClientDataFilter(defaultIdentifyService), VerifyThatUserVerifiedFilter.class)
                 .addFilterAfter(new VerifyAssertionResponseSignatureFilter(defaultIdentifyService), ComputeHashOverClientDataFilter.class)
-                .addFilterAfter(new VerifyValueOfStoredSignatureFilter(defaultIdentifyService, fidoUserRepository), VerifyAssertionResponseSignatureFilter.class)
+                .addFilterAfter(new VerifyValueOfStoredSignatureFilter(defaultIdentifyService), VerifyAssertionResponseSignatureFilter.class)
                 .addFilterAfter(new AuthenticationCeremonySuccessfulFilter(authenticationManager(), userService), VerifyValueOfStoredSignatureFilter.class)
                 .addFilter(new JwtAuthenticationFilter(authenticationManager(),
                         userService,

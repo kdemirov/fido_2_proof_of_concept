@@ -1,7 +1,6 @@
 package com.iwmnetwork.aqtos.internship.identify.api.events;
 
 import com.iwmnetwork.aqtos.internship.identify.model.identifiers.Identifier;
-import com.iwmnetwork.aqtos.internship.identify.model.identifiers.RegistrationCeremonyId;
 import lombok.Getter;
 
 /**

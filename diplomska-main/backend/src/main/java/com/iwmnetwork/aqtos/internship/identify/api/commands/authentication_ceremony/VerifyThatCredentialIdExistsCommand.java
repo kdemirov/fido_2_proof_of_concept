@@ -1,6 +1,7 @@
 package com.iwmnetwork.aqtos.internship.identify.api.commands.authentication_ceremony;
 
 import com.iwmnetwork.aqtos.internship.identify.api.commands.AbstractCeremonyCommand;
+import com.iwmnetwork.aqtos.internship.identify.model.FidoUser;
 import com.iwmnetwork.aqtos.internship.identify.model.identifiers.AuthenticationCeremonyId;
 import lombok.Getter;
 
@@ -11,19 +12,19 @@ import lombok.Getter;
 public class VerifyThatCredentialIdExistsCommand extends AbstractCeremonyCommand {
 
     private final boolean verified;
-    private final byte[] publicKey;
+    private final FidoUser fidoUser;
 
     /**
      * Constructor.
      *
      * @param authenticationCeremonyId authentication ceremony id for authentication ceremony aggregate
-     * @param publicKey                public key of the user with the credential id.
+     * @param fidoUser                 fido user.
      */
     public VerifyThatCredentialIdExistsCommand(AuthenticationCeremonyId authenticationCeremonyId,
                                                boolean verified,
-                                               byte[] publicKey) {
+                                               FidoUser fidoUser) {
         super(authenticationCeremonyId);
         this.verified = verified;
-        this.publicKey = publicKey;
+        this.fidoUser = fidoUser;
     }
 }

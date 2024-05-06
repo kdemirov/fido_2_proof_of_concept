@@ -1,6 +1,5 @@
 package com.iwmnetwork.aqtos.internship.identify.config.filters.authentication_ceremony;
 
-import com.iwmnetwork.aqtos.internship.identify.api.commands.authentication_ceremony.FidoUserAuthenticationStartCommand;
 import com.iwmnetwork.aqtos.internship.identify.api.commands.authentication_ceremony.VerifyThatCredentialIdExistsCommand;
 import com.iwmnetwork.aqtos.internship.identify.bootstrap.Constants;
 import com.iwmnetwork.aqtos.internship.identify.config.filters.interfaces.CeremonyFilterInterface;
@@ -10,9 +9,8 @@ import com.iwmnetwork.aqtos.internship.identify.repository.AuthenticationCeremon
 import com.iwmnetwork.aqtos.internship.identify.repository.FidoUserRepository;
 import com.iwmnetwork.aqtos.internship.identify.repository.webauthn.exceptions.VerificationFailedException;
 import com.iwmnetwork.aqtos.internship.identify.service.DefaultIdentifyService;
+import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import javax.servlet.FilterChain;
@@ -26,21 +24,13 @@ import java.io.IOException;
 /**
  * Verify that credential exists filter.
  */
+@AllArgsConstructor
 public class VerifyThatCredentialExistsFilter extends UsernamePasswordAuthenticationFilter
         implements CeremonyFilterInterface {
 
-    private final AuthenticationManager authenticationManager;
     private final DefaultIdentifyService defaultIdentifyService;
     private final FidoUserRepository fidoUserRepository;
     private final AuthenticationCeremonyInMemoryRepository repository = new AuthenticationCeremonyInMemoryRepository();
-
-    public VerifyThatCredentialExistsFilter(AuthenticationManager authenticationManager,
-                                            DefaultIdentifyService defaultIdentifyService,
-                                            FidoUserRepository fidoUserRepository) {
-        this.authenticationManager = authenticationManager;
-        this.defaultIdentifyService = defaultIdentifyService;
-        this.fidoUserRepository = fidoUserRepository;
-    }
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
@@ -62,7 +52,7 @@ public class VerifyThatCredentialExistsFilter extends UsernamePasswordAuthentica
             VerifyThatCredentialIdExistsCommand cmd = new VerifyThatCredentialIdExistsCommand(
                     authenticationCeremonyId,
                     verified,
-                    fidoUser.getPublicKey()
+                    fidoUser
             );
             defaultIdentifyService.dispatch(cmd);
             filterChain.doFilter(request, response);

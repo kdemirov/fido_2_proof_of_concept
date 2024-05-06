@@ -10,8 +10,8 @@ import lombok.Getter;
 @Getter
 public class ValueOfStoredSignatureCountVerifiedEvent extends AbstractCeremonyEvent {
 
-    private boolean verified;
-    private int signatureCount;
+    private final boolean verified;
+    private final int signatureCount;
 
     public ValueOfStoredSignatureCountVerifiedEvent(Identifier ceremonyId,
                                                     boolean verified,

@@ -1,5 +1,6 @@
 package com.iwmnetwork.aqtos.internship.identify.repository;
 
+import com.iwmnetwork.aqtos.internship.identify.model.FidoUser;
 import com.iwmnetwork.aqtos.internship.identify.model.dto.AuthenticationCeremonyInMemory;
 import com.iwmnetwork.aqtos.internship.identify.model.identifiers.AuthenticationCeremonyId;
 import com.iwmnetwork.aqtos.internship.identify.repository.webauthn.authenticator_model.AuthenticatorAssertionResponse;
@@ -85,18 +86,18 @@ public class AuthenticationCeremonyInMemoryRepository {
     }
 
     /**
-     * Saves public key by given authentication ceremony id.
+     * Saves fido user by given authentication ceremony id.
      *
      * @param ceremonyId authentication ceremony id
-     * @param publicKey  public key
+     * @param fidoUser   fido user
      */
-    public void savePublicKey(AuthenticationCeremonyId ceremonyId, byte[] publicKey) {
+    public void saveFidoUser(AuthenticationCeremonyId ceremonyId, FidoUser fidoUser) {
         saveEntry(ceremonyId, (key) -> {
             AuthenticationCeremonyInMemory memory = new AuthenticationCeremonyInMemory();
-            memory.setPublicKey(publicKey);
+            memory.setFidoUser(fidoUser);
             return memory;
         }, (key, val) -> {
-            val.setPublicKey(publicKey);
+            val.setFidoUser(fidoUser);
             return val;
         });
     }
@@ -168,7 +169,17 @@ public class AuthenticationCeremonyInMemoryRepository {
      * @return public key
      */
     public byte[] getPublicKey(AuthenticationCeremonyId authenticationCeremonyId) {
-        return MEMORY_MAP.get(authenticationCeremonyId).getPublicKey();
+        return MEMORY_MAP.get(authenticationCeremonyId).getFidoUser().getPublicKey();
+    }
+
+    /**
+     * Finds fido user by given authentication ceremony id.
+     *
+     * @param id authentication ceremony id
+     * @return {@link FidoUser}
+     */
+    public FidoUser getFidoUser(AuthenticationCeremonyId id) {
+        return MEMORY_MAP.get(id).getFidoUser();
     }
 
     /**

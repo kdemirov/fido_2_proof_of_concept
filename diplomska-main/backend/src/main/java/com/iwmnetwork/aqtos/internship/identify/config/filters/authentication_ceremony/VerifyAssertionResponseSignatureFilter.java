@@ -7,7 +7,6 @@ import com.iwmnetwork.aqtos.internship.identify.model.identifiers.Authentication
 import com.iwmnetwork.aqtos.internship.identify.service.DefaultIdentifyService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import javax.servlet.FilterChain;
@@ -16,7 +15,6 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.validation.groups.Default;
 import java.io.IOException;
 
 /**

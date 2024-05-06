@@ -1,24 +1,14 @@
 package com.iwmnetwork.aqtos.internship.identify.config.filters.authentication_ceremony;
 
-import com.auth0.jwt.JWT;
-import com.auth0.jwt.algorithms.Algorithm;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.iwmnetwork.aqtos.internship.identify.api.commands.authentication_ceremony.FidoUserAuthenticationStartCommand;
 import com.iwmnetwork.aqtos.internship.identify.bootstrap.Constants;
 import com.iwmnetwork.aqtos.internship.identify.config.filters.interfaces.CeremonyFilterInterface;
-import com.iwmnetwork.aqtos.internship.identify.model.aggregate.User;
 import com.iwmnetwork.aqtos.internship.identify.model.dto.PublicKeyCredentialRequestResponse;
-import com.iwmnetwork.aqtos.internship.identify.model.dto.UserDetailsDto;
 import com.iwmnetwork.aqtos.internship.identify.model.exceptions.Fido2Exception;
-import com.iwmnetwork.aqtos.internship.identify.model.identifiers.AuthenticationCeremonyId;
 import com.iwmnetwork.aqtos.internship.identify.service.DefaultIdentifyService;
 import com.iwmnetwork.aqtos.internship.identify.service.UserService;
-import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import javax.servlet.FilterChain;
@@ -28,7 +18,7 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Date;
+
 
 /**
  * Start Authentication ceremony.

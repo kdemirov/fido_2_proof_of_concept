@@ -6,12 +6,9 @@ import com.iwmnetwork.aqtos.internship.identify.config.filters.interfaces.Ceremo
 import com.iwmnetwork.aqtos.internship.identify.model.FidoUser;
 import com.iwmnetwork.aqtos.internship.identify.model.identifiers.AuthenticationCeremonyId;
 import com.iwmnetwork.aqtos.internship.identify.repository.AuthenticationCeremonyInMemoryRepository;
-import com.iwmnetwork.aqtos.internship.identify.repository.FidoUserRepository;
-import com.iwmnetwork.aqtos.internship.identify.repository.webauthn.exceptions.VerificationFailedException;
 import com.iwmnetwork.aqtos.internship.identify.service.DefaultIdentifyService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import javax.servlet.FilterChain;
@@ -30,7 +27,6 @@ public class VerifyValueOfStoredSignatureFilter extends UsernamePasswordAuthenti
         implements CeremonyFilterInterface {
 
     private final DefaultIdentifyService defaultIdentifyService;
-    private final FidoUserRepository fidoUserRepository;
     private final AuthenticationCeremonyInMemoryRepository repository = new AuthenticationCeremonyInMemoryRepository();
 
     @Override
@@ -46,9 +42,7 @@ public class VerifyValueOfStoredSignatureFilter extends UsernamePasswordAuthenti
     @Override
     public void filterLogic(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         AuthenticationCeremonyId id = (AuthenticationCeremonyId) request.getAttribute(Constants.AUTHENTICATION_CEREMONY_ID_KEY);
-        byte[] credentialId = repository.getCredentialId(id);
-        FidoUser fidoUser = fidoUserRepository.findByCredentialId(credentialId)
-                .orElseThrow(VerificationFailedException::new);
+        FidoUser fidoUser = repository.getFidoUser(id);
         VerifyTheValueOfStoredSignatureCountCommand cmd = new VerifyTheValueOfStoredSignatureCountCommand(
                 id,
                 fidoUser.getSignCount()

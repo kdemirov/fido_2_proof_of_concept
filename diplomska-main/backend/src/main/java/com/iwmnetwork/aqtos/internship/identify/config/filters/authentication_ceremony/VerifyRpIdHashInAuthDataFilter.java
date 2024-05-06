@@ -1,14 +1,12 @@
 package com.iwmnetwork.aqtos.internship.identify.config.filters.authentication_ceremony;
 
 import com.iwmnetwork.aqtos.internship.identify.api.commands.authentication_ceremony.AuthenticationVerifyRpIdHashInAuthDataCommand;
-import com.iwmnetwork.aqtos.internship.identify.api.commands.registration_ceremony.VerifyRpIdHashInAuthDataCommand;
 import com.iwmnetwork.aqtos.internship.identify.bootstrap.Constants;
 import com.iwmnetwork.aqtos.internship.identify.config.filters.interfaces.CeremonyFilterInterface;
 import com.iwmnetwork.aqtos.internship.identify.model.identifiers.AuthenticationCeremonyId;
 import com.iwmnetwork.aqtos.internship.identify.service.DefaultIdentifyService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import javax.servlet.FilterChain;
