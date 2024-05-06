@@ -11,6 +11,9 @@ import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import java.time.LocalDateTime;
 
+/**
+ * Comment view.
+ */
 @Data
 @Subselect("select * from public.comment_view")
 @Entity
@@ -20,14 +23,14 @@ public class CommentView {
     private CommentId id;
 
     private String body;
+
     @Column(name = "name")
     private String authorName;
 
     @Column(name = "submission_date")
     private LocalDateTime submissionDate;
+
     @AttributeOverride(name = "id",
             column = @Column(name = "discussion_id", nullable = false))
     private DiscussionId discussionId;
-
-
 }

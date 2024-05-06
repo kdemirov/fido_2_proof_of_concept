@@ -5,6 +5,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * UserDetails data transfer object
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -13,5 +16,4 @@ public class UserDetailsDto {
     private String name;
     private Role role;
     private String userID;
-
 }

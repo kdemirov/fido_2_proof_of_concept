@@ -1,8 +1,10 @@
 package com.iwmnetwork.aqtos.internship.identify.web;
 
-import com.iwmnetwork.aqtos.identify.demo.api.commands.LoginCommand;
-import com.iwmnetwork.aqtos.identify.demo.api.commands.RegisterCommand;
-import com.iwmnetwork.aqtos.identify.demo.service.DefaultIdentifyService;
+
+import com.iwmnetwork.aqtos.internship.identify.api.commands.LoginCommand;
+import com.iwmnetwork.aqtos.internship.identify.api.commands.RegisterCommand;
+import com.iwmnetwork.aqtos.internship.identify.service.UserService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.concurrent.CompletableFuture;
@@ -10,23 +12,17 @@ import java.util.concurrent.CompletableFuture;
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping("/api/identity")
+@RequiredArgsConstructor
 public class AuthController {
 
-    private final DefaultIdentifyService defaultIdentifyService;
-
-    public AuthController(DefaultIdentifyService defaultIdentifyService) {
-        this.defaultIdentifyService = defaultIdentifyService;
-    }
+    private final UserService userService;
 
     @PostMapping("/register")
     public CompletableFuture<String> register(@RequestBody RegisterCommand cmd) {
-        return this.defaultIdentifyService.dispatch(new RegisterCommand(cmd.getName(),
-                cmd.getSurname(), cmd.getUsername(), cmd.getPassword()));
+        return this.userService.register(cmd);
     }
 
     @PostMapping("/login")
     public void login(@RequestBody LoginCommand cmd) {
-
     }
-
 }

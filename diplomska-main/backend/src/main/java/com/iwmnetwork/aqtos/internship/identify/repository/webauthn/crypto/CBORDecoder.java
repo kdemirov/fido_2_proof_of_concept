@@ -1,14 +1,28 @@
 package com.iwmnetwork.aqtos.internship.identify.repository.webauthn.crypto;
 
+import co.nstant.in.cbor.CborDecoder;
+import co.nstant.in.cbor.CborException;
+import co.nstant.in.cbor.model.*;
 import com.iwmnetwork.aqtos.internship.identify.model.exceptions.Fido2Exception;
 import com.iwmnetwork.aqtos.internship.identify.repository.webauthn.authenticator_model.AuthenticatorAssertionResponse;
 import com.iwmnetwork.aqtos.internship.identify.repository.webauthn.authenticator_model.AuthenticatorAttestationResponse;
-import org.springframework.stereotype.Component;
+import com.iwmnetwork.aqtos.internship.identify.repository.webauthn.authenticator_model.PublicKey;
+import com.iwmnetwork.aqtos.internship.identify.repository.webauthn.enumerations.PublicKeyDescriptor;
+import org.springframework.boot.configurationprocessor.json.JSONException;
 
 import java.util.List;
 
-@Component
+/**
+ * CBOR Utils.
+ */
 public class CBORDecoder {
+
+    /**
+     * Decodes {@link AuthenticatorAttestationResponse}
+     *
+     * @param json json
+     * @return {@link AuthenticatorAttestationResponse}
+     */
     public static AuthenticatorAttestationResponse decodeAttStmt(String json) {
         byte[] bytes;
         List<DataItem> attestationResponseItems;
@@ -42,6 +56,14 @@ public class CBORDecoder {
         return response;
     }
 
+    /**
+     * Decodes {@link AuthenticatorAssertionResponse}
+     *
+     * @param authData   auth data
+     * @param userHandle user handle
+     * @param signature  signature
+     * @return {@link AuthenticatorAssertionResponse}
+     */
     public static AuthenticatorAssertionResponse decodeAssObj(String authData,
                                                               String userHandle,
                                                               String signature
@@ -99,6 +121,12 @@ public class CBORDecoder {
         return byteString.getBytes();
     }
 
+    /**
+     * Decodes public key.
+     *
+     * @param publicKey public key bytes.
+     * @return {@link  PublicKey}
+     */
     public static PublicKey decodePublicKey(byte[] publicKey) {
         List<DataItem> dataItems;
         try {

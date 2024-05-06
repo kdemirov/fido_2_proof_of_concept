@@ -1,9 +1,9 @@
 package com.iwmnetwork.aqtos.internship.discussion.config;
 
-import com.iwmnetwork.aqtos.internship.discussion.model.identifiers.CommentId;
-import com.iwmnetwork.aqtos.internship.discussion.model.identifiers.DiscussionId;
 import com.iwmnetwork.aqtos.internship.discussion.model.Comment;
 import com.iwmnetwork.aqtos.internship.discussion.model.aggregates.Discussion;
+import com.iwmnetwork.aqtos.internship.discussion.model.identifiers.CommentId;
+import com.iwmnetwork.aqtos.internship.discussion.model.identifiers.DiscussionId;
 import org.axonframework.common.jpa.SimpleEntityManagerProvider;
 import org.axonframework.eventhandling.EventBus;
 import org.axonframework.eventhandling.SimpleEventBus;
@@ -18,6 +18,9 @@ import org.springframework.context.annotation.Configuration;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+/**
+ * Axon config configuration.
+ */
 @Configuration
 public class AxonConfig {
 
@@ -54,6 +57,4 @@ public class AxonConfig {
     public void configureBeanValidation(@Qualifier("eventBus") EventBus eventBus) {
         eventBus.registerDispatchInterceptor(new BeanValidationInterceptor<>());
     }
-
-
 }

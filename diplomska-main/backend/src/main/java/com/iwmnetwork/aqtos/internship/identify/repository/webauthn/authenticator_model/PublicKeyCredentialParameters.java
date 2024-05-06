@@ -13,6 +13,9 @@ public class PublicKeyCredentialParameters {
     private int alg;
     private String type;
 
+    /**
+     * Constructor.
+     */
     public PublicKeyCredentialParameters() {
         this.alg = Constants.COSEAlgorithmIdentifier;
         this.type = "public-key";
