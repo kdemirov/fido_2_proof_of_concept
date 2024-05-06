@@ -1,18 +1,16 @@
 package com.iwmnetwork.aqtos.internship.identify.api.commands.registration_ceremony;
 
-import com.iwmnetwork.aqtos.internship.identify.api.commands.AbstractCommand;
+import com.iwmnetwork.aqtos.internship.identify.api.commands.AbstractCeremonyCommand;
 import com.iwmnetwork.aqtos.internship.identify.model.identifiers.RegistrationCeremonyId;
-import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import org.axonframework.modelling.command.TargetAggregateIdentifier;
 
 /**
  * FidoRegistrationStartCommand.
  */
 @AllArgsConstructor
 @Getter
-public class FidoRegistrationStartCommand extends AbstractRegistrationCeremonyCommand {
+public class FidoRegistrationStartCommand extends AbstractCeremonyCommand {
     private String id;
     private String type;
     private String attestationObject;

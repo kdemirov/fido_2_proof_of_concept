@@ -1,3 +1,9 @@
+package com.iwmnetwork.aqtos.internship.identify.repository.webauthn.authenticator_model;
+
+import com.iwmnetwork.aqtos.internship.identify.model.identifiers.AuthenticationCeremonyId;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 /*
 The PublicKeyCredentialRequestOptions dictionary
 supplies get() with the data it needs to generate
@@ -7,17 +13,11 @@ while its other members are OPTIONAL.
 more information here..
 https://w3c.github.io/webauthn/#dictdef-publickeycredentialrequestoptions
 * */
-package com.iwmnetwork.aqtos.internship.identify.repository.webauthn.authenticator_model;
-
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class PublicKeyCredentialRequestOptions {
     private String challenge;
     private long timeout;
-
+    private AuthenticationCeremonyId authenticationCeremonyId;
 }

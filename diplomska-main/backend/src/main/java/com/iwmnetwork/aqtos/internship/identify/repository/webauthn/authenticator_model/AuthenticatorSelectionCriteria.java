@@ -10,7 +10,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
+import javax.persistence.Embeddable;
+
 @AllArgsConstructor
 @NoArgsConstructor
 public class AuthenticatorSelectionCriteria {

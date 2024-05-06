@@ -1,8 +1,10 @@
 package com.iwmnetwork.aqtos.internship.identify.repository;
 
 import com.iwmnetwork.aqtos.internship.identify.model.aggregate.RegistrationCeremony;
+import com.iwmnetwork.aqtos.internship.identify.model.dto.AuthenticationCeremonyInMemory;
 import com.iwmnetwork.aqtos.internship.identify.model.dto.PublicKeyCredentialCreationResponse;
 import com.iwmnetwork.aqtos.internship.identify.model.dto.RegistrationCeremonyInMemory;
+import com.iwmnetwork.aqtos.internship.identify.model.identifiers.AuthenticationCeremonyId;
 import com.iwmnetwork.aqtos.internship.identify.model.identifiers.RegistrationCeremonyId;
 import com.iwmnetwork.aqtos.internship.identify.repository.webauthn.authenticator_model.AttestedCredentialData;
 import com.iwmnetwork.aqtos.internship.identify.repository.webauthn.authenticator_model.AuthenticatorAttestationResponse;
@@ -13,6 +15,8 @@ import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.function.BiFunction;
+import java.util.function.Function;
 
 /**
  * Registration Ceremony In Memory Repository
@@ -31,19 +35,15 @@ public class RegistrationCeremonyInMemoryRepository {
      * @param options created {@link PublicKeyCredentialCreationOptions}
      */
     public void setOptions(RegistrationCeremonyId id, PublicKeyCredentialCreationOptions options) {
-
-        if (MEMORY.containsKey(id)) {
-            MEMORY.computeIfPresent(id, (key, val) -> {
-                val.setOptions(options);
-                return val;
-            });
-        } else {
-            MEMORY.computeIfAbsent(id, key -> {
-                RegistrationCeremonyInMemory memory = new RegistrationCeremonyInMemory();
-                memory.setOptions(options);
-                return memory;
-            });
-        }
+        saveEntry(id,
+                key -> {
+                    RegistrationCeremonyInMemory memory = new RegistrationCeremonyInMemory();
+                    memory.setOptions(options);
+                    return memory;
+                }, (key, val) -> {
+                    val.setOptions(options);
+                    return val;
+                });
     }
 
     /**
@@ -54,18 +54,14 @@ public class RegistrationCeremonyInMemoryRepository {
      * @param jsonText received clientDataJsonText
      */
     public void setJsonText(RegistrationCeremonyId id, String jsonText) {
-        if (MEMORY.containsKey(id)) {
-            MEMORY.computeIfPresent(id, (key, val) -> {
-                val.setJsonText(jsonText);
-                return val;
-            });
-        } else {
-            MEMORY.computeIfAbsent(id, key -> {
-                RegistrationCeremonyInMemory memory = new RegistrationCeremonyInMemory();
-                memory.setJsonText(jsonText);
-                return memory;
-            });
-        }
+        saveEntry(id, key -> {
+            RegistrationCeremonyInMemory memory = new RegistrationCeremonyInMemory();
+            memory.setJsonText(jsonText);
+            return memory;
+        }, (key, val) -> {
+            val.setJsonText(jsonText);
+            return val;
+        });
     }
 
     /**
@@ -76,18 +72,14 @@ public class RegistrationCeremonyInMemoryRepository {
      * @param clientDataHash hashed client data
      */
     public void setClientDataHash(RegistrationCeremonyId id, byte[] clientDataHash) {
-        if (MEMORY.containsKey(id)) {
-            MEMORY.computeIfPresent(id, (key, val) -> {
-                val.setClientDataHash(clientDataHash);
-                return val;
-            });
-        } else {
-            MEMORY.computeIfAbsent(id, key -> {
-                RegistrationCeremonyInMemory memory = new RegistrationCeremonyInMemory();
-                memory.setClientDataHash(clientDataHash);
-                return memory;
-            });
-        }
+        saveEntry(id, key -> {
+            RegistrationCeremonyInMemory memory = new RegistrationCeremonyInMemory();
+            memory.setClientDataHash(clientDataHash);
+            return memory;
+        }, (key, val) -> {
+            val.setClientDataHash(clientDataHash);
+            return val;
+        });
     }
 
     /**
@@ -98,18 +90,14 @@ public class RegistrationCeremonyInMemoryRepository {
      * @param clientData             deserialized {@link CollectedClientData}
      */
     public void setClientCollectedData(RegistrationCeremonyId registrationCeremonyId, CollectedClientData clientData) {
-        if (MEMORY.containsKey(registrationCeremonyId)) {
-            MEMORY.computeIfPresent(registrationCeremonyId, (key, val) -> {
-                val.setClientData(clientData);
-                return val;
-            });
-        } else {
-            MEMORY.computeIfAbsent(registrationCeremonyId, key -> {
-                RegistrationCeremonyInMemory memory = new RegistrationCeremonyInMemory();
-                memory.setClientData(clientData);
-                return memory;
-            });
-        }
+        saveEntry(registrationCeremonyId, key -> {
+            RegistrationCeremonyInMemory memory = new RegistrationCeremonyInMemory();
+            memory.setClientData(clientData);
+            return memory;
+        }, (key, val) -> {
+            val.setClientData(clientData);
+            return val;
+        });
     }
 
     /**
@@ -120,18 +108,14 @@ public class RegistrationCeremonyInMemoryRepository {
      * @param credentialData         decoded {@link AttestedCredentialData}
      */
     public void setAttestedCredentialData(RegistrationCeremonyId registrationCeremonyId, AttestedCredentialData credentialData) {
-        if (MEMORY.containsKey(registrationCeremonyId)) {
-            MEMORY.computeIfPresent(registrationCeremonyId, (key, val) -> {
-                val.setAttestedCredentialData(credentialData);
-                return val;
-            });
-        } else {
-            MEMORY.computeIfAbsent(registrationCeremonyId, key -> {
-                RegistrationCeremonyInMemory memory = new RegistrationCeremonyInMemory();
-                memory.setAttestedCredentialData(credentialData);
-                return memory;
-            });
-        }
+        saveEntry(registrationCeremonyId, key -> {
+            RegistrationCeremonyInMemory memory = new RegistrationCeremonyInMemory();
+            memory.setAttestedCredentialData(credentialData);
+            return memory;
+        }, (key, val) -> {
+            val.setAttestedCredentialData(credentialData);
+            return val;
+        });
     }
 
     /**
@@ -142,18 +126,14 @@ public class RegistrationCeremonyInMemoryRepository {
      * @param response               decoded {@link AuthenticatorAttestationResponse}
      */
     public void setAuthenticatorAttestationResponse(RegistrationCeremonyId registrationCeremonyId, AuthenticatorAttestationResponse response) {
-        if (MEMORY.containsKey(registrationCeremonyId)) {
-            MEMORY.computeIfPresent(registrationCeremonyId, (key, val) -> {
-                val.setAttestationResponse(response);
-                return val;
-            });
-        } else {
-            MEMORY.computeIfAbsent(registrationCeremonyId, key -> {
-                RegistrationCeremonyInMemory memory = new RegistrationCeremonyInMemory();
-                memory.setAttestationResponse(response);
-                return memory;
-            });
-        }
+        saveEntry(registrationCeremonyId, key -> {
+            RegistrationCeremonyInMemory memory = new RegistrationCeremonyInMemory();
+            memory.setAttestationResponse(response);
+            return memory;
+        }, (key, val) -> {
+            val.setAttestationResponse(response);
+            return val;
+        });
     }
 
     /**
@@ -164,18 +144,14 @@ public class RegistrationCeremonyInMemoryRepository {
      * @param response decoded {@link PublicKeyCredentialCreationResponse}
      */
     public void setPublicKeyCredentialResponse(RegistrationCeremonyId id, PublicKeyCredentialCreationResponse response) {
-        if (MEMORY.containsKey(id)) {
-            MEMORY.computeIfPresent(id, (key, val) -> {
-                val.setCredentialResponse(response);
-                return val;
-            });
-        } else {
-            MEMORY.computeIfAbsent(id, k -> {
-                RegistrationCeremonyInMemory memory = new RegistrationCeremonyInMemory();
-                memory.setCredentialResponse(response);
-                return memory;
-            });
-        }
+        saveEntry(id, k -> {
+            RegistrationCeremonyInMemory memory = new RegistrationCeremonyInMemory();
+            memory.setCredentialResponse(response);
+            return memory;
+        }, (key, val) -> {
+            val.setCredentialResponse(response);
+            return val;
+        });
     }
 
     /**
@@ -247,5 +223,17 @@ public class RegistrationCeremonyInMemoryRepository {
      */
     public PublicKeyCredentialCreationResponse getCredentialCreationResponse(RegistrationCeremonyId id) {
         return MEMORY.get(id).getCredentialResponse();
+    }
+
+    public void saveEntry(RegistrationCeremonyId id,
+                          Function<RegistrationCeremonyId, RegistrationCeremonyInMemory> keyNoPresentFunction,
+                          BiFunction<RegistrationCeremonyId,
+                                  RegistrationCeremonyInMemory,
+                                  RegistrationCeremonyInMemory> keyPresentFunction) {
+        if (MEMORY.containsKey(id)) {
+            MEMORY.computeIfPresent(id, keyPresentFunction);
+        } else {
+            MEMORY.computeIfAbsent(id, keyNoPresentFunction);
+        }
     }
 }

@@ -14,6 +14,10 @@ package com.iwmnetwork.aqtos.internship.identify.repository.webauthn.authenticat
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.validator.constraints.CreditCardNumber;
+
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
 
 @Data
 @NoArgsConstructor
@@ -24,6 +28,4 @@ public class AuthenticatorAttestationResponse extends AuthenticatorResponse {
     private byte[] x5c;
     private byte[] authData;
     private String fmt;
-
-
 }

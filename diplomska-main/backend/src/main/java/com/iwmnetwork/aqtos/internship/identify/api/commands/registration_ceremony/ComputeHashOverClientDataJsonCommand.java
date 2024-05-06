@@ -1,26 +1,23 @@
 package com.iwmnetwork.aqtos.internship.identify.api.commands.registration_ceremony;
 
-import com.iwmnetwork.aqtos.internship.identify.api.commands.AbstractCommand;
-import com.iwmnetwork.aqtos.internship.identify.model.identifiers.RegistrationCeremonyId;
-import lombok.AccessLevel;
+import com.iwmnetwork.aqtos.internship.identify.api.commands.AbstractCeremonyCommand;
+import com.iwmnetwork.aqtos.internship.identify.model.identifiers.Identifier;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
-import org.axonframework.modelling.command.TargetAggregateIdentifier;
 
 /**
  * Compute Hash Over Received Client Data command;
  */
-@AllArgsConstructor()
+@AllArgsConstructor
 @Getter
-public class ComputeHashOverClientDataJsonCommand extends AbstractRegistrationCeremonyCommand {
+public class ComputeHashOverClientDataJsonCommand extends AbstractCeremonyCommand {
 
     /**
      * Constructor.
      *
      * @param registrationCeremonyId command for registration ceremony aggregate with the given id.
      */
-    public ComputeHashOverClientDataJsonCommand(RegistrationCeremonyId registrationCeremonyId) {
+    public ComputeHashOverClientDataJsonCommand(Identifier registrationCeremonyId) {
         super(registrationCeremonyId);
     }
 }

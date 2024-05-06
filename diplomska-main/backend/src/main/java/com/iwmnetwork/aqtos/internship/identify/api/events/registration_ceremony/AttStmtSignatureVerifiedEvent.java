@@ -1,7 +1,7 @@
 package com.iwmnetwork.aqtos.internship.identify.api.events.registration_ceremony;
 
-import com.iwmnetwork.aqtos.internship.identify.model.identifiers.RegistrationCeremonyId;
-import lombok.AllArgsConstructor;
+import com.iwmnetwork.aqtos.internship.identify.api.events.AbstractCeremonyEvent;
+import com.iwmnetwork.aqtos.internship.identify.model.identifiers.Identifier;
 import lombok.Getter;
 
 
@@ -9,7 +9,7 @@ import lombok.Getter;
  * Attestation statement signature verified event.
  */
 @Getter
-public class AttStmtSignatureVerifiedEvent extends AbstractRegistrationCeremonyEvent {
+public class AttStmtSignatureVerifiedEvent extends AbstractCeremonyEvent {
 
     private final boolean verified;
 
@@ -20,7 +20,7 @@ public class AttStmtSignatureVerifiedEvent extends AbstractRegistrationCeremonyE
      * @param verified verified if the signature is valid over the concatenation of
      *                 auth data hash and client data hash
      */
-    public AttStmtSignatureVerifiedEvent(RegistrationCeremonyId id, boolean verified) {
+    public AttStmtSignatureVerifiedEvent(Identifier id, boolean verified) {
         super(id);
         this.verified = verified;
     }

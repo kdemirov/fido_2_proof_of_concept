@@ -6,15 +6,19 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.axonframework.modelling.command.TargetAggregateIdentifier;
 
+/**
+ * Register fido user with the given attributes if all steps passed successfully command.
+ */
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class FidoUserRegistrationFinishCommand {
+public class FidoUserRegistrationFinishCommand extends AbstractCommand {
     @TargetAggregateIdentifier
     private UserId userId;
     private String name;
     private String username;
     private byte[] publicKey;
     private byte[] credentialId;
+    private int signCount;
 
 }

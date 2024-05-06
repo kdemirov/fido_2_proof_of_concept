@@ -1,46 +1,30 @@
 package com.iwmnetwork.aqtos.internship.identify.web;
 
-import com.iwmnetwork.aqtos.identify.demo.api.commands.FidoUserAuthenticateCommand;
-import com.iwmnetwork.aqtos.identify.demo.model.exceptions.Fido2Exception;
-import com.iwmnetwork.aqtos.identify.demo.repository.webauthn.authenticator_model.PublicKeyCredentialRequestOptions;
-import com.iwmnetwork.aqtos.identify.demo.service.DefaultIdentifyService;
-import com.iwmnetwork.aqtos.identify.demo.service.UserService;
-import com.iwmnetwork.aqtos.identify.demo.service.impl.RelyingPartyService;
-import org.springframework.boot.configurationprocessor.json.JSONException;
+import com.iwmnetwork.aqtos.internship.identify.model.dto.PublicKeyCredentialRequestResponse;
+import com.iwmnetwork.aqtos.internship.identify.repository.webauthn.authenticator_model.PublicKeyCredentialRequestOptions;
+import com.iwmnetwork.aqtos.internship.identify.service.AuthenticationCeremonyService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+/**
+ * Rest controller for fido authentication.
+ */
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping("/api/identity")
+@RequiredArgsConstructor
 public class AuthFidoLoginController {
 
-    private final RelyingPartyService relyingPartyService;
-    private final DefaultIdentifyService defaultIdentifyService;
-    private final UserService userService;
-
-    public AuthFidoLoginController(RelyingPartyService relyingPartyService,
-                                   DefaultIdentifyService defaultIdentifyService,
-                                   UserService userService) {
-        this.relyingPartyService = relyingPartyService;
-        this.defaultIdentifyService = defaultIdentifyService;
-        this.userService = userService;
-    }
+    private final AuthenticationCeremonyService authenticationCeremonyService;
 
     @PostMapping("/login_start")
     public ResponseEntity<PublicKeyCredentialRequestOptions> startAuthentication() {
-        String challenge = this.relyingPartyService.createChallenge();
-        PublicKeyCredentialRequestOptions options = new PublicKeyCredentialRequestOptions(
-                challenge,
-                60000
-        );
+        PublicKeyCredentialRequestOptions options = authenticationCeremonyService.createRequestOptions();
         return ResponseEntity.ok(options);
-
-
     }
 
     @PostMapping("/login_finish")
-    public void validateAuthentication(@RequestBody FidoUserAuthenticateCommand command)
-            throws JSONException, Fido2Exception {
+    public void validateAuthentication(@RequestBody PublicKeyCredentialRequestResponse response) {
     }
 }
