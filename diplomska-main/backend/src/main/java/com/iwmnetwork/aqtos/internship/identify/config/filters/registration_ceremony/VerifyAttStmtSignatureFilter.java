@@ -22,7 +22,7 @@ import java.io.IOException;
  */
 @Component
 @RequiredArgsConstructor
-@Order(Constants.TWELVETH_FILTER_REGISTRATION_CEREMONY)
+@Order(Constants.TWELFTH_FILTER_REGISTRATION_CEREMONY)
 public class VerifyAttStmtSignatureFilter extends OncePerRequestFilter
         implements CeremonyFilterInterface {
 

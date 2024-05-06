@@ -7,6 +7,7 @@ import com.iwmnetwork.aqtos.internship.identify.config.filters.interfaces.Ceremo
 import com.iwmnetwork.aqtos.internship.identify.model.identifiers.AuthenticationCeremonyId;
 import com.iwmnetwork.aqtos.internship.identify.service.DefaultIdentifyService;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
@@ -34,7 +35,7 @@ public class ComputeHashOverClientDataFilter extends UsernamePasswordAuthenticat
                 (HttpServletResponse) response,
                 chain,
                 Constants.AUTHENTICATION_CEREMONY_URL,
-                401);
+                HttpStatus.UNAUTHORIZED.value());
     }
 
     @Override

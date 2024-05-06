@@ -42,9 +42,6 @@ public class RegistrationCeremony {
 
     private static final String TYPE = "webauthn.create";
 
-    private static final String RP_ID_CROSS_ORIGIN = "http://localhost:3000";
-    private static final String RP_ID = "localhost";
-
     @Transient
     RegistrationCeremonyInMemoryRepository repository = new RegistrationCeremonyInMemoryRepository();
 
@@ -60,7 +57,7 @@ public class RegistrationCeremony {
                 cmd.getId(),
                 new PublicKeyCredentialCreationOptions(
                         cmd.getId(),
-                        new PublicKeyCredentialRpEntity(Constants.rpId),
+                        new PublicKeyCredentialRpEntity(Constants.RP_ID),
                         new PublicKeyCredentialUserEntity(UUID.randomUUID().toString(), cmd.getUsername()),
                         cmd.getChallenge(),
                         new PublicKeyCredentialParameters(),
@@ -86,7 +83,7 @@ public class RegistrationCeremony {
      * @param cmd command for verifying that the received response is {@link AuthenticatorAttestationResponse}
      */
     @CommandHandler
-    public void handle(FidoStartCommand cmd) {
+    public void handle(FidoRegistrationStartCommand cmd) {
         try {
             DecodedAttestationResponseEvent event = new DecodedAttestationResponseEvent(
                     cmd.getCeremonyId(),
@@ -193,7 +190,7 @@ public class RegistrationCeremony {
     @CommandHandler
     public void handle(VerifyRpIdCommand cmd) {
         CollectedClientData clientData = repository.getClientData(id);
-        boolean verified = clientData.getOrigin().equals(RP_ID_CROSS_ORIGIN);
+        boolean verified = clientData.getOrigin().equals(Constants.RP_ID_ORIGIN);
         RpIdVerifiedEvent event = new RpIdVerifiedEvent(
                 cmd.getCeremonyId(),
                 verified
@@ -271,7 +268,7 @@ public class RegistrationCeremony {
     public void handle(VerifyRpIdHashInAuthDataCommand command) {
         AuthenticatorAttestationResponse attestationResponse = repository.getAuthenticatorAttestationResponse(id);
         boolean verified = RelyingPartyUtils.verifyRrIdHash(attestationResponse.getAuthData(),
-                Constants.rpId.getBytes());
+                Constants.RP_ID.getBytes());
         RpIdHashInAuthDataVerifiedEvent event = new RpIdHashInAuthDataVerifiedEvent(
                 command.getCeremonyId(),
                 verified

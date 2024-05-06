@@ -14,7 +14,6 @@ import javax.persistence.Embeddable;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Embeddable
 public class AuthenticatorSelectionCriteria {
     private String userVerification;
 }

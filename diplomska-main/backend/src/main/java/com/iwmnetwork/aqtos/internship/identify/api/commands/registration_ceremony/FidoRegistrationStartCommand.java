@@ -10,7 +10,7 @@ import lombok.Getter;
  */
 @AllArgsConstructor
 @Getter
-public class FidoStartCommand extends AbstractCeremonyCommand {
+public class FidoRegistrationStartCommand extends AbstractCeremonyCommand {
     private String id;
     private String type;
     private String attestationObject;
@@ -27,12 +27,12 @@ public class FidoStartCommand extends AbstractCeremonyCommand {
      * @param username               username
      * @param clientDataHash         clientData received in json
      */
-    public FidoStartCommand(RegistrationCeremonyId registrationCeremonyId,
-                            String id,
-                            String type,
-                            String attestationObject,
-                            String username,
-                            String clientDataHash) {
+    public FidoRegistrationStartCommand(RegistrationCeremonyId registrationCeremonyId,
+                                        String id,
+                                        String type,
+                                        String attestationObject,
+                                        String username,
+                                        String clientDataHash) {
         super(registrationCeremonyId);
         this.id = id;
         this.type = type;

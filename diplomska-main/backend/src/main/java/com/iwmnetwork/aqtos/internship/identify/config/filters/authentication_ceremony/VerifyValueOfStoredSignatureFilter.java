@@ -10,6 +10,7 @@ import com.iwmnetwork.aqtos.internship.identify.repository.FidoUserRepository;
 import com.iwmnetwork.aqtos.internship.identify.repository.webauthn.exceptions.VerificationFailedException;
 import com.iwmnetwork.aqtos.internship.identify.service.DefaultIdentifyService;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
@@ -39,7 +40,7 @@ public class VerifyValueOfStoredSignatureFilter extends UsernamePasswordAuthenti
                 (HttpServletResponse) response,
                 chain,
                 Constants.AUTHENTICATION_CEREMONY_URL,
-                401);
+                HttpStatus.UNAUTHORIZED.value());
     }
 
     @Override

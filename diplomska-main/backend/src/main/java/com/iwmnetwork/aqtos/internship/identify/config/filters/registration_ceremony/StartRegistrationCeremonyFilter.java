@@ -1,12 +1,11 @@
 package com.iwmnetwork.aqtos.internship.identify.config.filters.registration_ceremony;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.iwmnetwork.aqtos.internship.identify.api.commands.registration_ceremony.FidoStartCommand;
+import com.iwmnetwork.aqtos.internship.identify.api.commands.registration_ceremony.FidoRegistrationStartCommand;
 import com.iwmnetwork.aqtos.internship.identify.config.filters.interfaces.CeremonyFilterInterface;
 import com.iwmnetwork.aqtos.internship.identify.model.dto.PublicKeyCredentialCreationResponse;
 import com.iwmnetwork.aqtos.internship.identify.bootstrap.Constants;
 import com.iwmnetwork.aqtos.internship.identify.model.exceptions.Fido2Exception;
-import com.iwmnetwork.aqtos.internship.identify.model.identifiers.AuthenticationCeremonyId;
 import com.iwmnetwork.aqtos.internship.identify.model.identifiers.RegistrationCeremonyId;
 import com.iwmnetwork.aqtos.internship.identify.repository.RegistrationCeremonyInMemoryRepository;
 import com.iwmnetwork.aqtos.internship.identify.service.DefaultIdentifyService;
@@ -28,7 +27,7 @@ import java.io.IOException;
 @Component
 @RequiredArgsConstructor
 @Order(Constants.FIRST_FILTER_REGISTRATION_CEREMONY)
-public class StartCeremonyFilter extends OncePerRequestFilter
+public class StartRegistrationCeremonyFilter extends OncePerRequestFilter
         implements CeremonyFilterInterface {
 
     private final DefaultIdentifyService defaultIdentifyService;
@@ -48,7 +47,7 @@ public class StartCeremonyFilter extends OncePerRequestFilter
         try {
             publicKeyCredentialCreationResponse = objectMapper.readValue(request.getInputStream(),
                     PublicKeyCredentialCreationResponse.class);
-            FidoStartCommand cmd = new FidoStartCommand(
+            FidoRegistrationStartCommand cmd = new FidoRegistrationStartCommand(
                     new RegistrationCeremonyId(publicKeyCredentialCreationResponse.getRegistrationCeremonyId()),
                     publicKeyCredentialCreationResponse.getId(),
                     publicKeyCredentialCreationResponse.getType(),

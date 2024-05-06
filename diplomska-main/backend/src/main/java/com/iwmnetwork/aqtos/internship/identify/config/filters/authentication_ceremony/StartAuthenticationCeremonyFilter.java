@@ -14,6 +14,7 @@ import com.iwmnetwork.aqtos.internship.identify.model.identifiers.Authentication
 import com.iwmnetwork.aqtos.internship.identify.service.DefaultIdentifyService;
 import com.iwmnetwork.aqtos.internship.identify.service.UserService;
 import org.springframework.core.env.Environment;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -49,7 +50,7 @@ public class StartAuthenticationCeremonyFilter extends UsernamePasswordAuthentic
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         CeremonyFilterInterface.super.doFilterInternal((HttpServletRequest) request,
                 (HttpServletResponse) response, chain,
-                Constants.AUTHENTICATION_CEREMONY_URL, 401);
+                Constants.AUTHENTICATION_CEREMONY_URL,   HttpStatus.UNAUTHORIZED.value());
     }
 
     @Override

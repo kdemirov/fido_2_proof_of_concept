@@ -44,6 +44,8 @@ public class AuthenticationCeremony {
     @EmbeddedId
     private AuthenticationCeremonyId id;
 
+    private static final String TYPE = "webauthn.get";
+
     @Autowired
     @Transient
     private AuthenticationCeremonyInMemoryRepository repository = new AuthenticationCeremonyInMemoryRepository();
@@ -168,7 +170,7 @@ public class AuthenticationCeremony {
     @CommandHandler
     public void handle(AuthenticationVerifyClientDataTypeCommand command) {
         CollectedClientData clientData = repository.getClientData((AuthenticationCeremonyId) command.getCeremonyId());
-        boolean verified = clientData.getType().equals("webauthn.get");
+        boolean verified = clientData.getType().equals(TYPE);
         ClientDataTypeVerifiedEvent event = new ClientDataTypeVerifiedEvent(
                 command.getCeremonyId(),
                 verified
@@ -218,7 +220,7 @@ public class AuthenticationCeremony {
     @CommandHandler
     public void handle(AuthenticationVerifyRpIdCommand command) {
         CollectedClientData clientData = repository.getClientData((AuthenticationCeremonyId) command.getCeremonyId());
-        boolean verified = clientData.getOrigin().equals("http://localhost:3000");
+        boolean verified = clientData.getOrigin().equals(Constants.RP_ID_ORIGIN);
         RpIdVerifiedEvent event = new RpIdVerifiedEvent(
                 command.getCeremonyId(),
                 verified
@@ -242,7 +244,7 @@ public class AuthenticationCeremony {
     @CommandHandler
     public void handle(AuthenticationVerifyRpIdHashInAuthDataCommand command) {
         byte[] authData = repository.getResponse((AuthenticationCeremonyId) command.getCeremonyId()).getAuthenticatorData();
-        boolean verified = RelyingPartyUtils.verifyRrIdHash(authData, Constants.rpId.getBytes());
+        boolean verified = RelyingPartyUtils.verifyRrIdHash(authData, Constants.RP_ID.getBytes());
         RpIdHashInAuthDataVerifiedEvent event = new RpIdHashInAuthDataVerifiedEvent(
                 command.getCeremonyId(),
                 verified
@@ -355,8 +357,8 @@ public class AuthenticationCeremony {
             );
             this.on(event);
         } catch (InvalidKeySpecException | NoSuchAlgorithmException | InvalidKeyException |
-                 SignatureException | CborException | InvalidParameterSpecException e) {
-            throw new Fido2Exception(e);
+                 SignatureException | CborException | InvalidParameterSpecException o_O) {
+            throw new Fido2Exception(o_O);
         }
     }
 

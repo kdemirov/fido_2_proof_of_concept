@@ -71,7 +71,7 @@ public class AuthenticationCeremonySuccessfulFilter extends UsernamePasswordAuth
         User user = this.userService.findByUsername(userDetails.getUsername())
                 .orElseThrow(() -> new UsernameNotFoundException(userDetails.getUsername()));
         String token = JWT.create()
-                .withIssuer("auth0")
+                .withIssuer(Constants.JWT_ISSUER)
                 .withSubject(new ObjectMapper().writeValueAsString(new UserDetailsDto(user.getUsername(),
                         user.getName(), user.getRole(), user.getId().getId())))
                 .withExpiresAt(new Date(System.currentTimeMillis() + Constants.EXPIRATION_TIME))
