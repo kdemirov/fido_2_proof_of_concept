@@ -14,6 +14,7 @@ import com.iwmnetwork.aqtos.internship.identify.model.identifiers.Authentication
 import com.iwmnetwork.aqtos.internship.identify.repository.AuthenticationCeremonyInMemoryRepository;
 import com.iwmnetwork.aqtos.internship.identify.service.UserService;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
@@ -59,7 +60,7 @@ public class AuthenticationCeremonySuccessfulFilter extends UsernamePasswordAuth
                 (HttpServletResponse) response,
                 chain,
                 Constants.AUTHENTICATION_CEREMONY_URL,
-                401
+                HttpStatus.UNAUTHORIZED.value()
         );
     }
 

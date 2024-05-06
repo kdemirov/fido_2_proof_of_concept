@@ -13,6 +13,13 @@ public class ValueOfStoredSignatureCountVerifiedEvent extends AbstractCeremonyEv
     private final boolean verified;
     private final int signatureCount;
 
+    /**
+     * Constructor.
+     *
+     * @param ceremonyId     authentication ceremony id for authentication ceremony aggregate
+     * @param verified       verified if the received signature counter in auth data is greater that the one stored in fido user
+     * @param signatureCount new signature counter value for fido user
+     */
     public ValueOfStoredSignatureCountVerifiedEvent(Identifier ceremonyId,
                                                     boolean verified,
                                                     int signatureCount) {
