@@ -119,7 +119,7 @@ public class AuthenticationCeremonyInMemoryRepository {
     }
 
     /**
-     * Saves {@link CollectedClientData} by given authentication client id.
+     * Saves {@link CollectedClientData} by given authentication ceremony id.
      *
      * @param authenticationCeremonyId authentication ceremony id
      * @param clientData               {@link CollectedClientData}

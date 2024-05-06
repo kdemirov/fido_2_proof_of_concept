@@ -11,7 +11,7 @@ public class AuthenticationVerifyThatUserVerifiedInAuthDataIsSetCommand extends 
     /**
      * Constructor.
      *
-     * @param id registration ceremony id for registration ceremony aggregate
+     * @param id authentication ceremony id for authentication ceremony aggregate
      */
     public AuthenticationVerifyThatUserVerifiedInAuthDataIsSetCommand(Identifier id) {
         super(id);

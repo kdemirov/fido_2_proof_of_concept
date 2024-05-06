@@ -15,7 +15,7 @@ public class ComputedHashOverClientDataJsonEvent extends AbstractCeremonyEvent {
     /**
      * Constructor.
      *
-     * @param id             registration ceremony id for registration ceremony aggregate
+     * @param id             ceremony id for ceremony aggregate
      * @param clientDataHash computed client data hash
      */
     public ComputedHashOverClientDataJsonEvent(Identifier id, byte[] clientDataHash) {

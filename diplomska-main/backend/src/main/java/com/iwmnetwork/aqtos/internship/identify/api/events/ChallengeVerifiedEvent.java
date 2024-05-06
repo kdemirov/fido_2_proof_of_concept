@@ -4,7 +4,7 @@ import com.iwmnetwork.aqtos.internship.identify.model.identifiers.Identifier;
 import lombok.Getter;
 
 /**
- * Challenge verified event for registration ceremony.
+ * Challenge verified event for both ceremonies'.
  */
 @Getter
 public class ChallengeVerifiedEvent extends AbstractCeremonyEvent {
@@ -14,9 +14,9 @@ public class ChallengeVerifiedEvent extends AbstractCeremonyEvent {
     /**
      * Constructor.
      *
-     * @param id       registration ceremony id for registration ceremony aggregate
+     * @param id       ceremony id for ceremony aggregate
      * @param verified true if received challenge is the same as the one we send
-     *                 in public key credentials options
+     *                 in public key credentials options or public key request options
      */
     public ChallengeVerifiedEvent(Identifier id, boolean verified) {
         super(id);

@@ -5,7 +5,7 @@ import com.iwmnetwork.aqtos.internship.identify.model.identifiers.RegistrationCe
 import lombok.Getter;
 
 /**
- * RP id hash verified with our RP id hash event
+ * RP id hash matches with our RP id hash event
  */
 @Getter
 public class RpIdHashInAuthDataVerifiedEvent extends AbstractCeremonyEvent {
@@ -15,11 +15,11 @@ public class RpIdHashInAuthDataVerifiedEvent extends AbstractCeremonyEvent {
     /**
      * Constructor.
      *
-     * @param registrationCeremonyId registration ceremony id for registration ceremony aggregate
+     * @param ceremonyId ceremony id for ceremony aggregate
      * @param verified               true if received rpId hash from auth data matches our rpId hash
      */
-    public RpIdHashInAuthDataVerifiedEvent(Identifier registrationCeremonyId, boolean verified) {
-        super(registrationCeremonyId);
+    public RpIdHashInAuthDataVerifiedEvent(Identifier ceremonyId, boolean verified) {
+        super(ceremonyId);
         this.verified = verified;
     }
 }

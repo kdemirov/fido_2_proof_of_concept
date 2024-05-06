@@ -210,7 +210,7 @@ public class AuthenticationCeremony {
     }
 
     /**
-     * Verify {@link CollectedClientData}#origin matches our PR origin
+     * Verify {@link CollectedClientData}#origin matches our RP origin
      * step 13 from <a href="https://www.w3.org/TR/webauthn/#sctn-verifying-assertion">...</a>
      *
      * @param command command for verifying value received origin in our origin
@@ -234,7 +234,7 @@ public class AuthenticationCeremony {
     }
 
     /**
-     * Verify {@link CollectedClientData}#origin matches our PR origin
+     * Verify {@link CollectedClientData}#origin matches our RP origin
      * step 15 from <a href="https://www.w3.org/TR/webauthn/#sctn-verifying-assertion">...</a>
      *
      * @param command command for verifying value received origin in our origin

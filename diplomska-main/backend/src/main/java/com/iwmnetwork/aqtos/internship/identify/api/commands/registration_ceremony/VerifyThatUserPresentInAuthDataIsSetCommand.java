@@ -4,7 +4,7 @@ import com.iwmnetwork.aqtos.internship.identify.api.commands.AbstractCeremonyCom
 import com.iwmnetwork.aqtos.internship.identify.model.identifiers.Identifier;
 
 /**
- * Verify that user is present is authenticator data flags command.
+ * Verify that user is present in authenticator data flags command.
  */
 public class VerifyThatUserPresentInAuthDataIsSetCommand extends AbstractCeremonyCommand {
 

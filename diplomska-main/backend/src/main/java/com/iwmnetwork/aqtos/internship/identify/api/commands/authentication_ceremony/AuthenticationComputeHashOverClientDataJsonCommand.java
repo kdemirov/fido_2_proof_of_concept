@@ -15,9 +15,9 @@ public class AuthenticationComputeHashOverClientDataJsonCommand extends Abstract
     /**
      * Constructor.
      *
-     * @param registrationCeremonyId command for registration ceremony aggregate with the given id.
+     * @param authenticationId command for authentication ceremony aggregate with the given id.
      */
-    public AuthenticationComputeHashOverClientDataJsonCommand(Identifier registrationCeremonyId) {
-        super(registrationCeremonyId);
+    public AuthenticationComputeHashOverClientDataJsonCommand(Identifier authenticationId) {
+        super(authenticationId);
     }
 }

@@ -4,7 +4,7 @@ import com.iwmnetwork.aqtos.internship.identify.api.commands.AbstractCeremonyCom
 import com.iwmnetwork.aqtos.internship.identify.model.identifiers.Identifier;
 
 /**
- * Verify that user verified in auth data flags is set command.
+ * Verify that user verified flag in auth data flags is set command.
  */
 public class VerifyThatUserVerifiedInAuthDataIsSetCommand extends AbstractCeremonyCommand {
 

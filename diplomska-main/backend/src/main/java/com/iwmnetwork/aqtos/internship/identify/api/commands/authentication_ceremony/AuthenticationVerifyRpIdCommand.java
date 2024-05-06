@@ -5,7 +5,7 @@ import com.iwmnetwork.aqtos.internship.identify.model.identifiers.Identifier;
 import com.iwmnetwork.aqtos.internship.identify.repository.webauthn.authenticator_model.CollectedClientData;
 
 /**
- * Registration ceremony verify that our Relying Party id is equal with the one
+ * Authentication ceremony verify that our Relying Party id is equal with the one
  * received from {@link CollectedClientData}
  */
 public class AuthenticationVerifyRpIdCommand extends AbstractCeremonyCommand {
@@ -13,7 +13,7 @@ public class AuthenticationVerifyRpIdCommand extends AbstractCeremonyCommand {
     /**
      * Constructor.
      *
-     * @param id registration ceremony id for registration ceremony aggregate
+     * @param id authentication ceremony id for authentication ceremony aggregate
      */
     public AuthenticationVerifyRpIdCommand(Identifier id) {
         super(id);

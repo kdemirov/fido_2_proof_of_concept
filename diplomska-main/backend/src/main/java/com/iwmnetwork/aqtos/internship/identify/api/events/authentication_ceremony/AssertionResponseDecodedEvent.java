@@ -7,7 +7,7 @@ import com.iwmnetwork.aqtos.internship.identify.repository.webauthn.authenticato
 import lombok.Getter;
 
 /**
- * Checking if credential request options response is instance of {@link AuthenticatorAssertionResponse}
+ * Checking if credential request options response is instance of {@link AuthenticatorAssertionResponse} event.
  */
 @Getter
 public class AssertionResponseDecodedEvent extends AbstractCeremonyEvent {

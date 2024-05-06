@@ -14,7 +14,7 @@ public class RpIdVerifiedEvent extends AbstractCeremonyEvent {
     /**
      * Constructor.
      *
-     * @param id       registration ceremony id for registration ceremony aggregate
+     * @param id       ceremony id for ceremony aggregate
      * @param verified true if received rpId is the same as our rp id.
      */
     public RpIdVerifiedEvent(Identifier id, boolean verified) {

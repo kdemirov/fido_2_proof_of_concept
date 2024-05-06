@@ -5,7 +5,7 @@ import com.iwmnetwork.aqtos.internship.identify.model.identifiers.Authentication
 import lombok.Getter;
 
 /**
- * Verify that that credential id received from credential request options exists in our system.
+ * Verify that credential id received from credential request options exists in our system.
  */
 @Getter
 public class VerifyThatCredentialIdExistsCommand extends AbstractCeremonyCommand {

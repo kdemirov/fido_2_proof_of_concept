@@ -4,14 +4,14 @@ import com.iwmnetwork.aqtos.internship.identify.api.commands.AbstractCeremonyCom
 import com.iwmnetwork.aqtos.internship.identify.model.identifiers.Identifier;
 
 /**
- * Registration Ceremony Verify Challenge Command.
+ * Authentication Ceremony Verify Challenge Command.
  */
 public class AuthenticationVerifyChallengeCommand extends AbstractCeremonyCommand {
 
     /**
      * Constructor.
      *
-     * @param id registration ceremony id for registration ceremony aggregate.
+     * @param id authentication ceremony id for authentication ceremony aggregate.
      */
     public AuthenticationVerifyChallengeCommand(Identifier id) {
         super(id);

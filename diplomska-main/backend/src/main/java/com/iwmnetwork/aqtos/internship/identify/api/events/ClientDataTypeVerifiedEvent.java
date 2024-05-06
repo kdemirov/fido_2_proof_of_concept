@@ -4,7 +4,7 @@ import com.iwmnetwork.aqtos.internship.identify.model.identifiers.Identifier;
 import lombok.Getter;
 
 /**
- * Client data type verified for registration ceremony event.
+ * Client data type verified for both ceremonies' event.
  */
 @Getter
 public class ClientDataTypeVerifiedEvent extends AbstractCeremonyEvent {
@@ -14,8 +14,8 @@ public class ClientDataTypeVerifiedEvent extends AbstractCeremonyEvent {
     /**
      * Constructor.
      *
-     * @param id       registration ceremony id for registration ceremony aggregate.
-     * @param verified true if client data is webauthn.create.
+     * @param id       ceremony id for ceremony aggregate.
+     * @param verified true if client data is webauthn.create or webauthn.get.
      */
     public ClientDataTypeVerifiedEvent(Identifier id, boolean verified) {
         super(id);

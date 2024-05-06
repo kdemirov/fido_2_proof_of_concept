@@ -15,7 +15,7 @@ public class UserPresentInAuthDataVerifiedEvent extends AbstractCeremonyEvent {
     /**
      * Constructor.
      *
-     * @param id       registration ceremony id for registration ceremony aggregate
+     * @param id       ceremony id for ceremony aggregate
      * @param verified true if user flag is set in auth data flags
      */
     public UserPresentInAuthDataVerifiedEvent(Identifier id, boolean verified) {

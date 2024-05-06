@@ -1,6 +1,5 @@
 package com.iwmnetwork.aqtos.internship.identify.api.commands.authentication_ceremony;
 
-import com.iwmnetwork.aqtos.internship.identify.api.commands.AbstractCeremonyCommand;
 import com.iwmnetwork.aqtos.internship.identify.api.commands.AbstractCommand;
 import com.iwmnetwork.aqtos.internship.identify.model.identifiers.AuthenticationCeremonyId;
 import lombok.AllArgsConstructor;

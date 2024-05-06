@@ -11,9 +11,9 @@ public class AuthenticationVerifyRpIdHashInAuthDataCommand extends AbstractCerem
     /**
      * Constructor.
      *
-     * @param registrationCeremonyId registration ceremony id for registration ceremony aggregate.
+     * @param authenticationId authentication  ceremony id for authentication ceremony aggregate.
      */
-    public AuthenticationVerifyRpIdHashInAuthDataCommand(Identifier registrationCeremonyId) {
-        super(registrationCeremonyId);
+    public AuthenticationVerifyRpIdHashInAuthDataCommand(Identifier authenticationId) {
+        super(authenticationId);
     }
 }
