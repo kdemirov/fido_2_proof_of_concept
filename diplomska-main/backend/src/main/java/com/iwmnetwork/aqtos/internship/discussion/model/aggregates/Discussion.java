@@ -2,18 +2,16 @@ package com.iwmnetwork.aqtos.internship.discussion.model.aggregates;
 
 import com.iwmnetwork.aqtos.internship.discussion.api.commands.*;
 import com.iwmnetwork.aqtos.internship.discussion.api.events.*;
-import com.iwmnetwork.aqtos.internship.discussion.model.*;
+import com.iwmnetwork.aqtos.internship.discussion.model.Comment;
 import com.iwmnetwork.aqtos.internship.discussion.model.identifiers.CommentId;
 import com.iwmnetwork.aqtos.internship.discussion.model.identifiers.DiscussionId;
 import com.iwmnetwork.aqtos.internship.discussion.model.identifiers.PersonId;
-import lombok.Data;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import org.axonframework.commandhandling.CommandHandler;
-
 import org.axonframework.modelling.command.AggregateIdentifier;
 import org.axonframework.modelling.command.AggregateLifecycle;
 import org.axonframework.modelling.command.AggregateMember;
-
 import org.axonframework.spring.stereotype.Aggregate;
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -22,6 +20,10 @@ import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
 
+/**
+ * Discussion aggregate.
+ */
+@NoArgsConstructor
 @Entity
 @Aggregate(repository = "axonDiscussionRepository")
 @Getter
@@ -35,20 +37,21 @@ public class Discussion {
     @AttributeOverride(name = "id",
             column = @Column(name = "creator_id", nullable = false))
     private PersonId creator;
-
     private String description;
-
     @OneToMany(cascade = {CascadeType.ALL},
             orphanRemoval = true,
             fetch = FetchType.EAGER)
     @AggregateMember
     @OrderBy("submissionDate")
     private Set<Comment> comments;
-
     @ElementCollection
     private List<PersonId> members;
 
-    // create discussion command: constructor
+    /**
+     * Creates discussion with attributes from command.
+     *
+     * @param cmd {@link CreateDiscussionCommand}
+     */
     @CommandHandler
     public Discussion(CreateDiscussionCommand cmd) {
         DiscussionCreatedEvent event = new DiscussionCreatedEvent(
@@ -60,6 +63,11 @@ public class Discussion {
         this.on(event);
     }
 
+    /**
+     * Creates discussion with participants.
+     *
+     * @param cmd {@link CreateDiscussionWithMembersCommand}
+     */
     @CommandHandler
     public Discussion(CreateDiscussionWithMembersCommand cmd) {
         DiscussionCreatedEvent event = new DiscussionCreatedEvent(
@@ -75,14 +83,18 @@ public class Discussion {
     public void on(DiscussionCreatedEvent event) {
         this.id = event.getDiscussionId();
         this.name = event.getName();
-        this.name = event.getName();
         this.description = event.getDescription();
         this.creator = event.getCreator();
         this.comments = new TreeSet<>(Comparator.comparing(Comment::getSubmissionDate));
         this.members = event.getMembers();
     }
 
-    // add comment
+    /**
+     * Adds comment to a discussion.
+     *
+     * @param cmd {@link AddCommentCommand }
+     * @return added {@link CommentId}
+     */
     @CommandHandler
     public CommentId handle(AddCommentCommand cmd) {
         CommentId commentId = new CommentId();
@@ -107,7 +119,11 @@ public class Discussion {
 
     }
 
-    // remove comment
+    /**
+     * Deletes comment from a discussion.
+     *
+     * @param cmd {@link RemoveCommentCommand}
+     */
     @CommandHandler
     public void handle(RemoveCommentCommand cmd) {
         CommentRemovedEvent event = new CommentRemovedEvent(
@@ -125,7 +141,11 @@ public class Discussion {
 
     }
 
-    // update comment
+    /**
+     * Updates comment's content
+     *
+     * @param cmd {@link UpdateCommentCommand}
+     */
     @CommandHandler
     public void handle(UpdateCommentCommand cmd) {
         CommentEditedEvent event = new CommentEditedEvent(
@@ -135,9 +155,13 @@ public class Discussion {
 
         );
         AggregateLifecycle.apply(event);
-
     }
 
+    /**
+     * Adds member to a discussion.
+     *
+     * @param cmd {@link AddMemberCommand}
+     */
     @CommandHandler
     public void handle(AddMemberCommand cmd) {
         MemberAddedEvent event = new MemberAddedEvent(
@@ -152,6 +176,11 @@ public class Discussion {
 
     }
 
+    /**
+     * Removes member from a discussion.
+     *
+     * @param cmd {@link RemoveMemberCommand}
+     */
     @CommandHandler
     private void handle(RemoveMemberCommand cmd) {
         MemberRemovedEvent event = new MemberRemovedEvent(
@@ -167,9 +196,4 @@ public class Discussion {
                 .collect(Collectors.toList());
 
     }
-
-    //
-    public Discussion() {
-    }
-
 }

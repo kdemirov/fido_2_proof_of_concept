@@ -17,6 +17,4 @@ import lombok.NoArgsConstructor;
 public class PublicKeyCredentialUserEntity {
     private String id;
     private String displayName;
-
-
 }

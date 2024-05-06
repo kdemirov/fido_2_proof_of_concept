@@ -7,7 +7,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.iwmnetwork.aqtos.internship.identify.bootstrap.Constants;
 import com.iwmnetwork.aqtos.internship.identify.config.authtokens.FidoUserAuthenticatorToken;
 import com.iwmnetwork.aqtos.internship.identify.model.dto.UserDetailsDto;
+import org.springframework.security.authentication.AbstractAuthenticationToken;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
@@ -19,6 +21,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Collections;
 
+/**
+ * Jwt Authorization filter.
+ */
 public class JwtAuthorizationFilter extends BasicAuthenticationFilter {
 
     private final UserDetailsService userDetailsService;
@@ -32,16 +37,17 @@ public class JwtAuthorizationFilter extends BasicAuthenticationFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
             throws IOException, ServletException {
         String header = request.getHeader(Constants.HEADER);
+        String type = request.getHeader(Constants.TYPE_OF_AUTHENTICATION);
         if (header == null || !header.startsWith(Constants.TOKEN_PREFIX)) {
             chain.doFilter(request, response);
             return;
         }
-        FidoUserAuthenticatorToken token = getToken(header);
+        AbstractAuthenticationToken token = getToken(header, type);
         SecurityContextHolder.getContext().setAuthentication(token);
         chain.doFilter(request, response);
     }
 
-    public FidoUserAuthenticatorToken getToken(String header) throws JsonProcessingException {
+    public AbstractAuthenticationToken getToken(String header, String type) throws JsonProcessingException {
         String user = JWT.require(Algorithm.none())
                 .build()
                 .verify(header.replace(Constants.TOKEN_PREFIX, ""))
@@ -50,7 +56,11 @@ public class JwtAuthorizationFilter extends BasicAuthenticationFilter {
             return null;
         }
         UserDetailsDto userDetailsDto = new ObjectMapper().readValue(user, UserDetailsDto.class);
-        return new FidoUserAuthenticatorToken(userDetailsDto.getUsername(),
+        return type == null || type.isEmpty()
+                ? new UsernamePasswordAuthenticationToken(userDetailsDto.getUsername(),
+                "",
+                Collections.singletonList(userDetailsDto.getRole()))
+                : new FidoUserAuthenticatorToken(userDetailsDto.getUsername(),
                 "",
                 Collections.singletonList(userDetailsDto.getRole()));
     }

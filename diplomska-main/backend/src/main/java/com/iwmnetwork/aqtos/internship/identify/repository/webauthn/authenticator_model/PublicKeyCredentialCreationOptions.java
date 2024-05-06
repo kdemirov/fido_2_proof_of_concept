@@ -6,6 +6,7 @@ https://w3c.github.io/webauthn/#dictdef-publickeycredentialcreationoptions
 * */
 package com.iwmnetwork.aqtos.internship.identify.repository.webauthn.authenticator_model;
 
+import com.iwmnetwork.aqtos.internship.identify.model.identifiers.RegistrationCeremonyId;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,6 +15,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class PublicKeyCredentialCreationOptions {
+    private RegistrationCeremonyId registrationCeremonyId;
     private PublicKeyCredentialRpEntity rp;
     private PublicKeyCredentialUserEntity user;
     private String challenge;

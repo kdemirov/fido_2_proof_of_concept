@@ -2,7 +2,6 @@ package com.iwmnetwork.aqtos.internship.identify.model.dto;
 
 import com.iwmnetwork.aqtos.internship.identify.repository.webauthn.authenticator_model.AttestedCredentialData;
 import com.iwmnetwork.aqtos.internship.identify.repository.webauthn.authenticator_model.AuthenticatorAttestationResponse;
-import com.iwmnetwork.aqtos.internship.identify.repository.webauthn.authenticator_model.CollectedClientData;
 import com.iwmnetwork.aqtos.internship.identify.repository.webauthn.authenticator_model.PublicKeyCredentialCreationOptions;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,12 +13,9 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class RegistrationCeremonyInMemory {
-    private CollectedClientData clientData;
+public class RegistrationCeremonyInMemory extends CeremonyHolder {
     private AttestedCredentialData attestedCredentialData;
     private AuthenticatorAttestationResponse attestationResponse;
     private PublicKeyCredentialCreationOptions options;
-    private String jsonText;
-    private byte[] clientDataHash;
     private PublicKeyCredentialCreationResponse credentialResponse;
 }

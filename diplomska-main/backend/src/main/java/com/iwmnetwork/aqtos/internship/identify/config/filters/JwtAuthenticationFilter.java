@@ -3,6 +3,12 @@ package com.iwmnetwork.aqtos.internship.identify.config.filters;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.iwmnetwork.aqtos.internship.identify.api.commands.LoginCommand;
+import com.iwmnetwork.aqtos.internship.identify.bootstrap.Constants;
+import com.iwmnetwork.aqtos.internship.identify.model.aggregate.User;
+import com.iwmnetwork.aqtos.internship.identify.model.dto.UserDetailsDto;
+import com.iwmnetwork.aqtos.internship.identify.model.enumerations.Role;
+import com.iwmnetwork.aqtos.internship.identify.service.UserService;
 import lombok.SneakyThrows;
 import org.springframework.core.env.Environment;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -22,7 +28,9 @@ import java.io.IOException;
 import java.util.Collections;
 import java.util.Date;
 
-
+/**
+ * Authentication filter with username and password method.
+ */
 public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
     private final AuthenticationManager authenticationManager;
@@ -66,9 +74,9 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         User user = this.userService.findByUsername((String) authResult.getPrincipal())
                 .orElseThrow(() -> new UsernameNotFoundException("Username not found"));
         String token = JWT.create()
-                .withIssuer("auth0")
+                .withIssuer(Constants.JWT_ISSUER)
                 .withSubject(new ObjectMapper().writeValueAsString(new UserDetailsDto(user.getUsername(),
-                        user.getName(),user.getRole(), user.getId().getId())))
+                        user.getName(), user.getRole(), user.getId().getId())))
                 .withExpiresAt(new Date(System.currentTimeMillis() + Constants.EXPIRATION_TIME))
                 .sign(Algorithm.none());
         response.addHeader(Constants.HEADER, Constants.TOKEN_PREFIX + token);

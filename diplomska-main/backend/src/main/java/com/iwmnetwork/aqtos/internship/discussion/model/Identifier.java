@@ -2,27 +2,34 @@ package com.iwmnetwork.aqtos.internship.discussion.model;
 
 import lombok.Data;
 
-
 import javax.persistence.MappedSuperclass;
 import java.io.Serializable;
-
 import java.util.UUID;
 
+/**
+ * Identifier for aggregates.
+ */
 @Data
 @MappedSuperclass
 public class Identifier implements Serializable {
 
     protected String id;
 
-
+    /**
+     * Constructor for creation of the id.
+     */
     public Identifier() {
         this.id = UUID.randomUUID().toString();
     }
 
+    /**
+     * Constructor for recreation of the id.
+     *
+     * @param id given id.
+     */
     public Identifier(String id) {
         this.id = id;
     }
-
 
     @Override
     public boolean equals(Object o) {
@@ -31,7 +38,6 @@ public class Identifier implements Serializable {
         Identifier that = (Identifier) o;
         return that.id.equals(this.id);
     }
-
 
     @Override
     public String toString() {
