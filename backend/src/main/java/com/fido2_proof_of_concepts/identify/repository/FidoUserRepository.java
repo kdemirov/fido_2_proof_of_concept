@@ -1,7 +1,8 @@
-package com.iwmnetwork.aqtos.internship.identify.repository;
+package com.fido2_proof_of_concepts.identify.repository;
 
-import com.iwmnetwork.aqtos.internship.identify.model.FidoUser;
-import com.iwmnetwork.aqtos.internship.identify.model.identifiers.FidoUserId;
+
+import com.fido2_proof_of_concepts.identify.model.FidoUser;
+import com.fido2_proof_of_concepts.identify.model.identifiers.FidoUserId;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

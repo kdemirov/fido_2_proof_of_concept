@@ -1,6 +1,6 @@
-package com.iwmnetwork.aqtos.internship.discussion.service;
+package com.fido2_proof_of_concepts.common.service;
 
-import com.iwmnetwork.aqtos.internship.discussion.api.commands.AbstractCommand;
+import com.fido2_proof_of_concepts.common.commands.AbstractCommand;
 import lombok.RequiredArgsConstructor;
 import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.springframework.stereotype.Service;

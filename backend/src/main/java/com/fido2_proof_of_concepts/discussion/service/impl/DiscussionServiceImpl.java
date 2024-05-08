@@ -1,14 +1,14 @@
-package com.iwmnetwork.aqtos.internship.discussion.service.impl;
+package com.fido2_proof_of_concepts.discussion.service.impl;
 
-import com.iwmnetwork.aqtos.internship.discussion.model.aggregates.Discussion;
-import com.iwmnetwork.aqtos.internship.discussion.model.dto.DiscussionViewDto;
-import com.iwmnetwork.aqtos.internship.discussion.model.identifiers.DiscussionId;
-import com.iwmnetwork.aqtos.internship.discussion.model.views.CommentView;
-import com.iwmnetwork.aqtos.internship.discussion.model.views.DiscussionView;
-import com.iwmnetwork.aqtos.internship.discussion.repository.CommentViewRepository;
-import com.iwmnetwork.aqtos.internship.discussion.repository.DiscussionJpaRepository;
-import com.iwmnetwork.aqtos.internship.discussion.repository.DiscussionViewRepository;
-import com.iwmnetwork.aqtos.internship.discussion.service.DiscussionService;
+import com.fido2_proof_of_concepts.discussion.model.aggregates.Discussion;
+import com.fido2_proof_of_concepts.discussion.model.dto.DiscussionViewDto;
+import com.fido2_proof_of_concepts.discussion.model.identifiers.DiscussionId;
+import com.fido2_proof_of_concepts.discussion.model.views.CommentView;
+import com.fido2_proof_of_concepts.discussion.model.views.DiscussionView;
+import com.fido2_proof_of_concepts.discussion.repository.CommentViewRepository;
+import com.fido2_proof_of_concepts.discussion.repository.DiscussionJpaRepository;
+import com.fido2_proof_of_concepts.discussion.repository.DiscussionViewRepository;
+import com.fido2_proof_of_concepts.discussion.service.DiscussionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

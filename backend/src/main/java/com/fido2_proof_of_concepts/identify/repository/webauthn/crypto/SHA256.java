@@ -1,8 +1,8 @@
-package com.iwmnetwork.aqtos.internship.identify.repository.webauthn.crypto;
+package com.fido2_proof_of_concepts.identify.repository.webauthn.crypto;
 
 import co.nstant.in.cbor.CborException;
-import com.iwmnetwork.aqtos.internship.identify.repository.webauthn.authenticator_model.AuthenticatorAssertionResponse;
-import com.iwmnetwork.aqtos.internship.identify.repository.webauthn.authenticator_model.AuthenticatorAttestationResponse;
+import com.fido2_proof_of_concepts.identify.repository.webauthn.authenticator_model.AuthenticatorAssertionResponse;
+import com.fido2_proof_of_concepts.identify.repository.webauthn.authenticator_model.AuthenticatorAttestationResponse;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;

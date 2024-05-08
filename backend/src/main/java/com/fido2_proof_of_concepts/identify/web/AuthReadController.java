@@ -1,10 +1,10 @@
-package com.iwmnetwork.aqtos.internship.identify.web;
+package com.fido2_proof_of_concepts.identify.web;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.iwmnetwork.aqtos.internship.identify.model.aggregate.User;
-import com.iwmnetwork.aqtos.internship.identify.model.dto.UserDetailsDto;
-import com.iwmnetwork.aqtos.internship.identify.model.identifiers.UserId;
-import com.iwmnetwork.aqtos.internship.identify.service.UserService;
+import com.fido2_proof_of_concepts.identify.model.aggregate.User;
+import com.fido2_proof_of_concepts.identify.model.dto.UserDetailsDto;
+import com.fido2_proof_of_concepts.identify.model.identifiers.UserId;
+import com.fido2_proof_of_concepts.identify.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

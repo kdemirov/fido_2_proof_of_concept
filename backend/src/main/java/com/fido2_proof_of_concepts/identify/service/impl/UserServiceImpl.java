@@ -1,15 +1,15 @@
-package com.iwmnetwork.aqtos.internship.identify.service.impl;
+package com.fido2_proof_of_concepts.identify.service.impl;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.iwmnetwork.aqtos.internship.identify.api.commands.RegisterCommand;
-import com.iwmnetwork.aqtos.internship.identify.model.FidoUser;
-import com.iwmnetwork.aqtos.internship.identify.model.aggregate.User;
-import com.iwmnetwork.aqtos.internship.identify.model.dto.UserDetailsDto;
-import com.iwmnetwork.aqtos.internship.identify.model.identifiers.UserId;
-import com.iwmnetwork.aqtos.internship.identify.repository.JwtRepository;
-import com.iwmnetwork.aqtos.internship.identify.repository.UserRepository;
-import com.iwmnetwork.aqtos.internship.identify.service.DefaultIdentifyService;
-import com.iwmnetwork.aqtos.internship.identify.service.UserService;
+import com.fido2_proof_of_concepts.common.service.DefaultService;
+import com.fido2_proof_of_concepts.identify.api.commands.RegisterCommand;
+import com.fido2_proof_of_concepts.identify.model.FidoUser;
+import com.fido2_proof_of_concepts.identify.model.aggregate.User;
+import com.fido2_proof_of_concepts.identify.model.dto.UserDetailsDto;
+import com.fido2_proof_of_concepts.identify.model.identifiers.UserId;
+import com.fido2_proof_of_concepts.identify.repository.JwtRepository;
+import com.fido2_proof_of_concepts.identify.repository.UserRepository;
+import com.fido2_proof_of_concepts.identify.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -33,7 +33,7 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final JwtRepository jwtRepository;
-    private final DefaultIdentifyService defaultIdentifyService;
+    private final DefaultService defaultIdentifyService;
 
     @Override
     public Optional<User> findByUsername(String username) {

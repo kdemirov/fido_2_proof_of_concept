@@ -1,10 +1,10 @@
-package com.iwmnetwork.aqtos.internship.identify.config.filters.authentication_ceremony;
+package com.fido2_proof_of_concepts.identify.config.filters.authentication_ceremony;
 
-import com.iwmnetwork.aqtos.internship.identify.api.commands.authentication_ceremony.AuthenticationVerifyClientDataTypeCommand;
-import com.iwmnetwork.aqtos.internship.identify.bootstrap.Constants;
-import com.iwmnetwork.aqtos.internship.identify.config.filters.interfaces.CeremonyFilterInterface;
-import com.iwmnetwork.aqtos.internship.identify.model.identifiers.AuthenticationCeremonyId;
-import com.iwmnetwork.aqtos.internship.identify.service.DefaultIdentifyService;
+import com.fido2_proof_of_concepts.common.service.DefaultService;
+import com.fido2_proof_of_concepts.identify.api.commands.authentication_ceremony.AuthenticationVerifyClientDataTypeCommand;
+import com.fido2_proof_of_concepts.identify.bootstrap.Constants;
+import com.fido2_proof_of_concepts.identify.config.filters.interfaces.CeremonyFilterInterface;
+import com.fido2_proof_of_concepts.identify.model.identifiers.AuthenticationCeremonyId;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
@@ -24,7 +24,7 @@ import java.io.IOException;
 public class VerifyClientDataTypeFilter extends UsernamePasswordAuthenticationFilter
         implements CeremonyFilterInterface {
 
-    private final DefaultIdentifyService defaultIdentifyService;
+    private final DefaultService defaultIdentifyService;
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {

@@ -1,12 +1,12 @@
-package com.iwmnetwork.aqtos.internship.discussion.web;
+package com.fido2_proof_of_concepts.discussion.web;
 
-import com.iwmnetwork.aqtos.internship.discussion.api.commands.AddMemberCommand;
-import com.iwmnetwork.aqtos.internship.discussion.api.commands.CreateDiscussionCommand;
-import com.iwmnetwork.aqtos.internship.discussion.api.commands.CreateDiscussionWithMembersCommand;
-import com.iwmnetwork.aqtos.internship.discussion.api.commands.RemoveMemberCommand;
-import com.iwmnetwork.aqtos.internship.discussion.model.identifiers.DiscussionId;
-import com.iwmnetwork.aqtos.internship.discussion.model.identifiers.PersonId;
-import com.iwmnetwork.aqtos.internship.discussion.service.DefaultService;
+import com.fido2_proof_of_concepts.common.service.DefaultService;
+import com.fido2_proof_of_concepts.discussion.api.commands.AddMemberCommand;
+import com.fido2_proof_of_concepts.discussion.api.commands.CreateDiscussionCommand;
+import com.fido2_proof_of_concepts.discussion.api.commands.CreateDiscussionWithMembersCommand;
+import com.fido2_proof_of_concepts.discussion.api.commands.RemoveMemberCommand;
+import com.fido2_proof_of_concepts.discussion.model.identifiers.DiscussionId;
+import com.fido2_proof_of_concepts.discussion.model.identifiers.PersonId;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;

@@ -1,9 +1,9 @@
-package com.iwmnetwork.aqtos.internship.discussion.model;
+package com.fido2_proof_of_concepts.discussion.model;
 
-import com.iwmnetwork.aqtos.internship.discussion.api.events.CommentEditedEvent;
-import com.iwmnetwork.aqtos.internship.discussion.model.identifiers.CommentId;
-import com.iwmnetwork.aqtos.internship.discussion.model.identifiers.DiscussionId;
-import com.iwmnetwork.aqtos.internship.discussion.model.identifiers.PersonId;
+import com.fido2_proof_of_concepts.discussion.api.events.CommentEditedEvent;
+import com.fido2_proof_of_concepts.discussion.model.identifiers.CommentId;
+import com.fido2_proof_of_concepts.discussion.model.identifiers.DiscussionId;
+import com.fido2_proof_of_concepts.discussion.model.identifiers.PersonId;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.axonframework.eventhandling.EventHandler;

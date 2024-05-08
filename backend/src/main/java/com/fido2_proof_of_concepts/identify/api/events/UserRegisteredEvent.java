@@ -1,6 +1,6 @@
-package com.iwmnetwork.aqtos.internship.identify.api.events;
+package com.fido2_proof_of_concepts.identify.api.events;
 
-import com.iwmnetwork.aqtos.internship.identify.model.identifiers.UserId;
+import com.fido2_proof_of_concepts.identify.model.identifiers.UserId;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

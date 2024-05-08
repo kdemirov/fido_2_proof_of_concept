@@ -1,4 +1,4 @@
-package com.iwmnetwork.aqtos.internship.identify.config.filters.interfaces;
+package com.fido2_proof_of_concepts.identify.config.filters.interfaces;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;

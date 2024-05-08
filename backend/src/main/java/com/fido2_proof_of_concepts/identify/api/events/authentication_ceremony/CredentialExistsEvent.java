@@ -1,8 +1,8 @@
-package com.iwmnetwork.aqtos.internship.identify.api.events.authentication_ceremony;
+package com.fido2_proof_of_concepts.identify.api.events.authentication_ceremony;
 
-import com.iwmnetwork.aqtos.internship.identify.api.events.AbstractCeremonyEvent;
-import com.iwmnetwork.aqtos.internship.identify.model.FidoUser;
-import com.iwmnetwork.aqtos.internship.identify.model.identifiers.Identifier;
+import com.fido2_proof_of_concepts.common.identifiers.Identifier;
+import com.fido2_proof_of_concepts.identify.api.events.AbstractCeremonyEvent;
+import com.fido2_proof_of_concepts.identify.model.FidoUser;
 import lombok.Getter;
 
 /**

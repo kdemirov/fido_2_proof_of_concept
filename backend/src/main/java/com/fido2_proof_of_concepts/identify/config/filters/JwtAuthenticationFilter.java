@@ -1,14 +1,14 @@
-package com.iwmnetwork.aqtos.internship.identify.config.filters;
+package com.fido2_proof_of_concepts.identify.config.filters;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.iwmnetwork.aqtos.internship.identify.api.commands.LoginCommand;
-import com.iwmnetwork.aqtos.internship.identify.bootstrap.Constants;
-import com.iwmnetwork.aqtos.internship.identify.model.aggregate.User;
-import com.iwmnetwork.aqtos.internship.identify.model.dto.UserDetailsDto;
-import com.iwmnetwork.aqtos.internship.identify.model.enumerations.Role;
-import com.iwmnetwork.aqtos.internship.identify.service.UserService;
+import com.fido2_proof_of_concepts.identify.api.commands.LoginCommand;
+import com.fido2_proof_of_concepts.identify.bootstrap.Constants;
+import com.fido2_proof_of_concepts.identify.model.aggregate.User;
+import com.fido2_proof_of_concepts.identify.model.dto.UserDetailsDto;
+import com.fido2_proof_of_concepts.identify.model.enumerations.Role;
+import com.fido2_proof_of_concepts.identify.service.UserService;
 import lombok.SneakyThrows;
 import org.springframework.core.env.Environment;
 import org.springframework.security.authentication.AuthenticationManager;

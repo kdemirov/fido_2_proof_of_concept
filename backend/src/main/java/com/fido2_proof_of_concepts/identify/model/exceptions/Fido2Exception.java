@@ -1,4 +1,4 @@
-package com.iwmnetwork.aqtos.internship.identify.model.exceptions;
+package com.fido2_proof_of_concepts.identify.model.exceptions;
 
 /**
  * Fido 2 exception.

@@ -1,10 +1,10 @@
-package com.iwmnetwork.aqtos.internship.identify.config;
+package com.fido2_proof_of_concepts.identify.config;
 
-import com.iwmnetwork.aqtos.internship.identify.config.authtokens.FidoUserAuthenticatorToken;
-import com.iwmnetwork.aqtos.internship.identify.model.FidoUser;
-import com.iwmnetwork.aqtos.internship.identify.model.aggregate.User;
-import com.iwmnetwork.aqtos.internship.identify.repository.webauthn.exceptions.VerificationFailedException;
-import com.iwmnetwork.aqtos.internship.identify.service.UserService;
+import com.fido2_proof_of_concepts.identify.config.authtokens.FidoUserAuthenticatorToken;
+import com.fido2_proof_of_concepts.identify.model.FidoUser;
+import com.fido2_proof_of_concepts.identify.model.aggregate.User;
+import com.fido2_proof_of_concepts.identify.repository.webauthn.exceptions.VerificationFailedException;
+import com.fido2_proof_of_concepts.identify.service.UserService;
 import lombok.AllArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.security.authentication.AuthenticationProvider;

@@ -1,4 +1,4 @@
-package com.iwmnetwork.aqtos.internship.identify.repository.webauthn.authenticator_model;
+package com.fido2_proof_of_concepts.identify.repository.webauthn.authenticator_model;
 
 
 import lombok.AllArgsConstructor;

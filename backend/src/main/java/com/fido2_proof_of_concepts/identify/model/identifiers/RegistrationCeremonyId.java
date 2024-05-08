@@ -1,15 +1,21 @@
-package com.iwmnetwork.aqtos.internship.identify.model.identifiers;
+package com.fido2_proof_of_concepts.identify.model.identifiers;
 
-import lombok.NoArgsConstructor;
+import com.fido2_proof_of_concepts.common.identifiers.Identifier;
 
 import javax.persistence.Embeddable;
 
 /**
  * Registration Ceremony id.
  */
-@NoArgsConstructor
 @Embeddable
 public class RegistrationCeremonyId extends Identifier {
+
+    /**
+     * Constructor for creating an id.
+     */
+    public RegistrationCeremonyId() {
+        super();
+    }
 
     /**
      * Constructor.

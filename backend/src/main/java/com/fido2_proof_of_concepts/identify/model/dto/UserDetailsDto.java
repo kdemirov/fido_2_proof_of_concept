@@ -1,6 +1,7 @@
-package com.iwmnetwork.aqtos.internship.identify.model.dto;
+package com.fido2_proof_of_concepts.identify.model.dto;
 
-import com.iwmnetwork.aqtos.internship.identify.model.enumerations.Role;
+
+import com.fido2_proof_of_concepts.identify.model.enumerations.Role;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

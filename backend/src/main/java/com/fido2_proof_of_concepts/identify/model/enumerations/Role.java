@@ -1,4 +1,4 @@
-package com.iwmnetwork.aqtos.internship.identify.model.enumerations;
+package com.fido2_proof_of_concepts.identify.model.enumerations;
 
 import org.springframework.security.core.GrantedAuthority;
 

@@ -1,7 +1,7 @@
-package com.iwmnetwork.aqtos.internship.identify.api.events.authentication_ceremony;
+package com.fido2_proof_of_concepts.identify.api.events.authentication_ceremony;
 
-import com.iwmnetwork.aqtos.internship.identify.model.identifiers.Identifier;
-import com.iwmnetwork.aqtos.internship.identify.repository.webauthn.authenticator_model.PublicKeyCredentialRequestOptions;
+import com.fido2_proof_of_concepts.common.identifiers.Identifier;
+import com.fido2_proof_of_concepts.identify.repository.webauthn.authenticator_model.PublicKeyCredentialRequestOptions;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 

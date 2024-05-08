@@ -1,4 +1,4 @@
-package com.iwmnetwork.aqtos.internship.discussion.config;
+package com.fido2_proof_of_concepts.discussion.config;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonInclude;

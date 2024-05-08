@@ -1,9 +1,9 @@
-package com.iwmnetwork.aqtos.internship.identify.web;
+package com.fido2_proof_of_concepts.identify.web;
 
 
-import com.iwmnetwork.aqtos.internship.identify.api.commands.LoginCommand;
-import com.iwmnetwork.aqtos.internship.identify.api.commands.RegisterCommand;
-import com.iwmnetwork.aqtos.internship.identify.service.UserService;
+import com.fido2_proof_of_concepts.identify.api.commands.LoginCommand;
+import com.fido2_proof_of_concepts.identify.api.commands.RegisterCommand;
+import com.fido2_proof_of_concepts.identify.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 

@@ -1,9 +1,9 @@
-package com.iwmnetwork.aqtos.internship.discussion.config;
+package com.fido2_proof_of_concepts.discussion.config;
 
-import com.iwmnetwork.aqtos.internship.discussion.model.Comment;
-import com.iwmnetwork.aqtos.internship.discussion.model.aggregates.Discussion;
-import com.iwmnetwork.aqtos.internship.discussion.model.identifiers.CommentId;
-import com.iwmnetwork.aqtos.internship.discussion.model.identifiers.DiscussionId;
+import com.fido2_proof_of_concepts.discussion.model.Comment;
+import com.fido2_proof_of_concepts.discussion.model.aggregates.Discussion;
+import com.fido2_proof_of_concepts.discussion.model.identifiers.CommentId;
+import com.fido2_proof_of_concepts.discussion.model.identifiers.DiscussionId;
 import org.axonframework.common.jpa.SimpleEntityManagerProvider;
 import org.axonframework.eventhandling.EventBus;
 import org.axonframework.eventhandling.SimpleEventBus;

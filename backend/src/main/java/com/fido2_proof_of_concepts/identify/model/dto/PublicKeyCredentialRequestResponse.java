@@ -1,6 +1,6 @@
-package com.iwmnetwork.aqtos.internship.identify.model.dto;
+package com.fido2_proof_of_concepts.identify.model.dto;
 
-import com.iwmnetwork.aqtos.internship.identify.model.identifiers.AuthenticationCeremonyId;
+import com.fido2_proof_of_concepts.identify.model.identifiers.AuthenticationCeremonyId;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

@@ -1,4 +1,4 @@
-package com.iwmnetwork.aqtos.internship.identify.api.commands;
+package com.fido2_proof_of_concepts.identify.api.commands;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

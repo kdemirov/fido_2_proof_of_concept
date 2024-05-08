@@ -1,13 +1,13 @@
-package com.iwmnetwork.aqtos.internship.identify.repository.webauthn.crypto;
+package com.fido2_proof_of_concepts.identify.repository.webauthn.crypto;
 
 import co.nstant.in.cbor.CborDecoder;
 import co.nstant.in.cbor.CborException;
 import co.nstant.in.cbor.model.*;
-import com.iwmnetwork.aqtos.internship.identify.model.exceptions.Fido2Exception;
-import com.iwmnetwork.aqtos.internship.identify.repository.webauthn.authenticator_model.AuthenticatorAssertionResponse;
-import com.iwmnetwork.aqtos.internship.identify.repository.webauthn.authenticator_model.AuthenticatorAttestationResponse;
-import com.iwmnetwork.aqtos.internship.identify.repository.webauthn.authenticator_model.PublicKey;
-import com.iwmnetwork.aqtos.internship.identify.repository.webauthn.enumerations.PublicKeyDescriptor;
+import com.fido2_proof_of_concepts.identify.model.exceptions.Fido2Exception;
+import com.fido2_proof_of_concepts.identify.repository.webauthn.authenticator_model.AuthenticatorAssertionResponse;
+import com.fido2_proof_of_concepts.identify.repository.webauthn.authenticator_model.AuthenticatorAttestationResponse;
+import com.fido2_proof_of_concepts.identify.repository.webauthn.authenticator_model.PublicKey;
+import com.fido2_proof_of_concepts.identify.repository.webauthn.enumerations.PublicKeyDescriptor;
 import org.springframework.boot.configurationprocessor.json.JSONException;
 
 import java.util.List;

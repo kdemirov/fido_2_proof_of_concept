@@ -3,9 +3,9 @@ this object is also part of PublicKeyCredentialCreationOptions
 for sending type of alg
 https://w3c.github.io/webauthn/#dictdef-publickeycredentialparameters
 * */
-package com.iwmnetwork.aqtos.internship.identify.repository.webauthn.authenticator_model;
+package com.fido2_proof_of_concepts.identify.repository.webauthn.authenticator_model;
 
-import com.iwmnetwork.aqtos.internship.identify.bootstrap.Constants;
+import com.fido2_proof_of_concepts.identify.bootstrap.Constants;
 import lombok.Data;
 
 @Data

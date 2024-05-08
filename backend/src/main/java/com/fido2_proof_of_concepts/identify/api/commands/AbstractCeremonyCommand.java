@@ -1,6 +1,7 @@
-package com.iwmnetwork.aqtos.internship.identify.api.commands;
+package com.fido2_proof_of_concepts.identify.api.commands;
 
-import com.iwmnetwork.aqtos.internship.identify.model.identifiers.Identifier;
+import com.fido2_proof_of_concepts.common.commands.AbstractCommand;
+import com.fido2_proof_of_concepts.common.identifiers.Identifier;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

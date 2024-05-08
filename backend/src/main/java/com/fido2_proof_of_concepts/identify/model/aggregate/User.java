@@ -1,16 +1,16 @@
-package com.iwmnetwork.aqtos.internship.identify.model.aggregate;
+package com.fido2_proof_of_concepts.identify.model.aggregate;
 
 
-import com.iwmnetwork.aqtos.internship.identify.api.commands.FidoUserRegistrationFinishCommand;
-import com.iwmnetwork.aqtos.internship.identify.api.commands.RegisterCommand;
-import com.iwmnetwork.aqtos.internship.identify.api.commands.UpdateFidoUserSignCountCommand;
-import com.iwmnetwork.aqtos.internship.identify.api.events.FidoUserRegisteredEvent;
-import com.iwmnetwork.aqtos.internship.identify.api.events.FidoUserSignCountUpdatedEvent;
-import com.iwmnetwork.aqtos.internship.identify.api.events.UserRegisteredEvent;
-import com.iwmnetwork.aqtos.internship.identify.model.FidoUser;
-import com.iwmnetwork.aqtos.internship.identify.model.enumerations.Role;
-import com.iwmnetwork.aqtos.internship.identify.model.identifiers.FidoUserId;
-import com.iwmnetwork.aqtos.internship.identify.model.identifiers.UserId;
+import com.fido2_proof_of_concepts.identify.api.commands.FidoUserRegistrationFinishCommand;
+import com.fido2_proof_of_concepts.identify.api.commands.RegisterCommand;
+import com.fido2_proof_of_concepts.identify.api.commands.UpdateFidoUserSignCountCommand;
+import com.fido2_proof_of_concepts.identify.api.events.FidoUserRegisteredEvent;
+import com.fido2_proof_of_concepts.identify.api.events.FidoUserSignCountUpdatedEvent;
+import com.fido2_proof_of_concepts.identify.api.events.UserRegisteredEvent;
+import com.fido2_proof_of_concepts.identify.model.FidoUser;
+import com.fido2_proof_of_concepts.identify.model.enumerations.Role;
+import com.fido2_proof_of_concepts.identify.model.identifiers.FidoUserId;
+import com.fido2_proof_of_concepts.identify.model.identifiers.UserId;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.axonframework.commandhandling.CommandHandler;

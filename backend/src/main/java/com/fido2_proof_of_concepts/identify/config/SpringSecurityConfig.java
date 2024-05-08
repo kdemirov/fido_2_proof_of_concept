@@ -1,11 +1,11 @@
-package com.iwmnetwork.aqtos.internship.identify.config;
+package com.fido2_proof_of_concepts.identify.config;
 
-import com.iwmnetwork.aqtos.internship.identify.config.filters.JwtAuthenticationFilter;
-import com.iwmnetwork.aqtos.internship.identify.config.filters.JwtAuthorizationFilter;
-import com.iwmnetwork.aqtos.internship.identify.config.filters.authentication_ceremony.*;
-import com.iwmnetwork.aqtos.internship.identify.repository.FidoUserRepository;
-import com.iwmnetwork.aqtos.internship.identify.service.DefaultIdentifyService;
-import com.iwmnetwork.aqtos.internship.identify.service.UserService;
+import com.fido2_proof_of_concepts.common.service.DefaultService;
+import com.fido2_proof_of_concepts.identify.config.filters.JwtAuthenticationFilter;
+import com.fido2_proof_of_concepts.identify.config.filters.JwtAuthorizationFilter;
+import com.fido2_proof_of_concepts.identify.config.filters.authentication_ceremony.*;
+import com.fido2_proof_of_concepts.identify.repository.FidoUserRepository;
+import com.fido2_proof_of_concepts.identify.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
@@ -29,7 +29,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final PasswordEncoder passwordEncoder;
     private final UserService userService;
-    private final DefaultIdentifyService defaultIdentifyService;
+    private final DefaultService defaultIdentifyService;
     private final CustomFidoAuthenticatorProvider fidoAuthenticatorProvider;
     private final CustomUsernameAndPasswordAuthenticatorProvider usernameAndPasswordAuthenticatorProvider;
     private final Environment environment;
@@ -59,7 +59,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .addFilterAfter(new ComputeHashOverClientDataFilter(defaultIdentifyService), VerifyThatUserVerifiedFilter.class)
                 .addFilterAfter(new VerifyAssertionResponseSignatureFilter(defaultIdentifyService), ComputeHashOverClientDataFilter.class)
                 .addFilterAfter(new VerifyValueOfStoredSignatureFilter(defaultIdentifyService), VerifyAssertionResponseSignatureFilter.class)
-                .addFilterAfter(new AuthenticationCeremonySuccessfulFilter(authenticationManager(), userService), VerifyValueOfStoredSignatureFilter.class)
+                .addFilterAfter(new AuthenticationCeremonySuccessfulFilter(authenticationManager()), VerifyValueOfStoredSignatureFilter.class)
                 .addFilter(new JwtAuthenticationFilter(authenticationManager(),
                         userService,
                         passwordEncoder,

@@ -1,8 +1,8 @@
-package com.iwmnetwork.aqtos.internship.identify.web;
+package com.fido2_proof_of_concepts.identify.web;
 
-import com.iwmnetwork.aqtos.internship.identify.model.dto.PublicKeyCredentialCreationResponse;
-import com.iwmnetwork.aqtos.internship.identify.repository.webauthn.authenticator_model.PublicKeyCredentialCreationOptions;
-import com.iwmnetwork.aqtos.internship.identify.service.impl.RegistrationCeremonyImpl;
+import com.fido2_proof_of_concepts.identify.model.dto.PublicKeyCredentialCreationResponse;
+import com.fido2_proof_of_concepts.identify.repository.webauthn.authenticator_model.PublicKeyCredentialCreationOptions;
+import com.fido2_proof_of_concepts.identify.service.impl.RegistrationCeremonyImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

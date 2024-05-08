@@ -1,11 +1,11 @@
-package com.iwmnetwork.aqtos.internship.discussion.web;
+package com.fido2_proof_of_concepts.discussion.web;
 
-import com.iwmnetwork.aqtos.internship.discussion.api.commands.AddCommentCommand;
-import com.iwmnetwork.aqtos.internship.discussion.api.commands.RemoveCommentCommand;
-import com.iwmnetwork.aqtos.internship.discussion.api.commands.UpdateCommentCommand;
-import com.iwmnetwork.aqtos.internship.discussion.model.identifiers.CommentId;
-import com.iwmnetwork.aqtos.internship.discussion.model.identifiers.DiscussionId;
-import com.iwmnetwork.aqtos.internship.discussion.service.DefaultService;
+import com.fido2_proof_of_concepts.common.service.DefaultService;
+import com.fido2_proof_of_concepts.discussion.api.commands.AddCommentCommand;
+import com.fido2_proof_of_concepts.discussion.api.commands.RemoveCommentCommand;
+import com.fido2_proof_of_concepts.discussion.api.commands.UpdateCommentCommand;
+import com.fido2_proof_of_concepts.discussion.model.identifiers.CommentId;
+import com.fido2_proof_of_concepts.discussion.model.identifiers.DiscussionId;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;

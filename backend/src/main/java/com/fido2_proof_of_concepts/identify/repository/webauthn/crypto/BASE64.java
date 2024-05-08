@@ -1,4 +1,4 @@
-package com.iwmnetwork.aqtos.internship.identify.repository.webauthn.crypto;
+package com.fido2_proof_of_concepts.identify.repository.webauthn.crypto;
 
 import java.util.Base64;
 

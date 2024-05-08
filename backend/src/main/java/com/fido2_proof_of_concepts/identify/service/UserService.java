@@ -1,11 +1,11 @@
-package com.iwmnetwork.aqtos.internship.identify.service;
+package com.fido2_proof_of_concepts.identify.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.iwmnetwork.aqtos.internship.identify.api.commands.RegisterCommand;
-import com.iwmnetwork.aqtos.internship.identify.model.FidoUser;
-import com.iwmnetwork.aqtos.internship.identify.model.aggregate.User;
-import com.iwmnetwork.aqtos.internship.identify.model.dto.UserDetailsDto;
-import com.iwmnetwork.aqtos.internship.identify.model.identifiers.UserId;
+import com.fido2_proof_of_concepts.identify.api.commands.RegisterCommand;
+import com.fido2_proof_of_concepts.identify.model.FidoUser;
+import com.fido2_proof_of_concepts.identify.model.aggregate.User;
+import com.fido2_proof_of_concepts.identify.model.dto.UserDetailsDto;
+import com.fido2_proof_of_concepts.identify.model.identifiers.UserId;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 import javax.servlet.http.HttpServletRequest;

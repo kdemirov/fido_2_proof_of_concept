@@ -1,7 +1,8 @@
-package com.iwmnetwork.aqtos.internship.identify.service;
+package com.fido2_proof_of_concepts.identify.service;
 
-import com.iwmnetwork.aqtos.internship.identify.model.dto.PublicKeyCredentialCreationResponse;
-import com.iwmnetwork.aqtos.internship.identify.repository.webauthn.authenticator_model.PublicKeyCredentialCreationOptions;
+
+import com.fido2_proof_of_concepts.identify.model.dto.PublicKeyCredentialCreationResponse;
+import com.fido2_proof_of_concepts.identify.repository.webauthn.authenticator_model.PublicKeyCredentialCreationOptions;
 
 /**
  * Registration Ceremony Service.

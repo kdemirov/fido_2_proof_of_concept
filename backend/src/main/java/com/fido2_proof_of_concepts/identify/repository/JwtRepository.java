@@ -1,11 +1,11 @@
-package com.iwmnetwork.aqtos.internship.identify.repository;
+package com.fido2_proof_of_concepts.identify.repository;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.iwmnetwork.aqtos.internship.identify.bootstrap.Constants;
-import com.iwmnetwork.aqtos.internship.identify.model.dto.UserDetailsDto;
+import com.fido2_proof_of_concepts.identify.bootstrap.Constants;
+import com.fido2_proof_of_concepts.identify.model.dto.UserDetailsDto;
 import org.springframework.stereotype.Repository;
 
 import javax.servlet.http.HttpServletRequest;

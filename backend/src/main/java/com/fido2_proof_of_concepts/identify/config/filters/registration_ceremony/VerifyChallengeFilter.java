@@ -1,10 +1,10 @@
-package com.iwmnetwork.aqtos.internship.identify.config.filters.registration_ceremony;
+package com.fido2_proof_of_concepts.identify.config.filters.registration_ceremony;
 
-import com.iwmnetwork.aqtos.internship.identify.api.commands.registration_ceremony.VerifyChallengeCommand;
-import com.iwmnetwork.aqtos.internship.identify.bootstrap.Constants;
-import com.iwmnetwork.aqtos.internship.identify.config.filters.interfaces.CeremonyFilterInterface;
-import com.iwmnetwork.aqtos.internship.identify.model.identifiers.RegistrationCeremonyId;
-import com.iwmnetwork.aqtos.internship.identify.service.DefaultIdentifyService;
+import com.fido2_proof_of_concepts.common.service.DefaultService;
+import com.fido2_proof_of_concepts.identify.api.commands.registration_ceremony.VerifyChallengeCommand;
+import com.fido2_proof_of_concepts.identify.bootstrap.Constants;
+import com.fido2_proof_of_concepts.identify.config.filters.interfaces.CeremonyFilterInterface;
+import com.fido2_proof_of_concepts.identify.model.identifiers.RegistrationCeremonyId;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpStatus;
@@ -26,7 +26,7 @@ import java.io.IOException;
 public class VerifyChallengeFilter extends OncePerRequestFilter
         implements CeremonyFilterInterface {
 
-    private final DefaultIdentifyService defaultIdentifyService;
+    private final DefaultService defaultIdentifyService;
 
     @Override
     public void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)

@@ -1,4 +1,4 @@
-package com.iwmnetwork.aqtos.internship.discussion.api.events;
+package com.fido2_proof_of_concepts.common.events;
 
 
 /**

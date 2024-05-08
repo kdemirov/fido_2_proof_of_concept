@@ -1,12 +1,12 @@
-package com.iwmnetwork.aqtos.internship.identify.config.filters.registration_ceremony;
+package com.fido2_proof_of_concepts.identify.config.filters.registration_ceremony;
 
-import com.iwmnetwork.aqtos.internship.identify.bootstrap.Constants;
-import com.iwmnetwork.aqtos.internship.identify.config.filters.interfaces.CeremonyFilterInterface;
-import com.iwmnetwork.aqtos.internship.identify.model.dto.PublicKeyCredentialCreationResponse;
-import com.iwmnetwork.aqtos.internship.identify.model.identifiers.RegistrationCeremonyId;
-import com.iwmnetwork.aqtos.internship.identify.repository.RegistrationCeremonyInMemoryRepository;
-import com.iwmnetwork.aqtos.internship.identify.repository.webauthn.exceptions.VerificationFailedException;
-import com.iwmnetwork.aqtos.internship.identify.service.impl.RegistrationCeremonyImpl;
+import com.fido2_proof_of_concepts.identify.bootstrap.Constants;
+import com.fido2_proof_of_concepts.identify.config.filters.interfaces.CeremonyFilterInterface;
+import com.fido2_proof_of_concepts.identify.model.dto.PublicKeyCredentialCreationResponse;
+import com.fido2_proof_of_concepts.identify.model.identifiers.RegistrationCeremonyId;
+import com.fido2_proof_of_concepts.identify.repository.RegistrationCeremonyInMemoryRepository;
+import com.fido2_proof_of_concepts.identify.repository.webauthn.exceptions.VerificationFailedException;
+import com.fido2_proof_of_concepts.identify.service.RegistrationCeremonyService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpStatus;
@@ -28,7 +28,7 @@ import java.io.IOException;
 public class SuccessfulFilter extends OncePerRequestFilter
         implements CeremonyFilterInterface {
 
-    private final RegistrationCeremonyImpl registrationCeremony;
+    private final RegistrationCeremonyService registrationCeremony;
     private final RegistrationCeremonyInMemoryRepository repository;
 
     @Override

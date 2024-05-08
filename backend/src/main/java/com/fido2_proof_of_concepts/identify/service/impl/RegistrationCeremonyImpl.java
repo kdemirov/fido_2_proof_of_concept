@@ -1,20 +1,20 @@
-package com.iwmnetwork.aqtos.internship.identify.service.impl;
+package com.fido2_proof_of_concepts.identify.service.impl;
 
-import com.iwmnetwork.aqtos.internship.identify.api.commands.registration_ceremony.CreatePublicKeyCredentialsOptionsCommand;
-import com.iwmnetwork.aqtos.internship.identify.api.commands.FidoUserRegistrationFinishCommand;
-import com.iwmnetwork.aqtos.internship.identify.model.dto.PublicKeyCredentialCreationResponse;
-import com.iwmnetwork.aqtos.internship.identify.model.aggregate.User;
-import com.iwmnetwork.aqtos.internship.identify.model.identifiers.RegistrationCeremonyId;
-import com.iwmnetwork.aqtos.internship.identify.repository.FidoUserRepository;
-import com.iwmnetwork.aqtos.internship.identify.repository.RegistrationCeremonyInMemoryRepository;
-import com.iwmnetwork.aqtos.internship.identify.repository.webauthn.authenticator_model.AttestedCredentialData;
-import com.iwmnetwork.aqtos.internship.identify.repository.webauthn.authenticator_model.AuthenticatorAttestationResponse;
-import com.iwmnetwork.aqtos.internship.identify.repository.webauthn.authenticator_model.PublicKeyCredentialCreationOptions;
-import com.iwmnetwork.aqtos.internship.identify.repository.webauthn.crypto.RelyingPartyUtils;
-import com.iwmnetwork.aqtos.internship.identify.repository.webauthn.exceptions.VerificationFailedException;
-import com.iwmnetwork.aqtos.internship.identify.service.DefaultIdentifyService;
-import com.iwmnetwork.aqtos.internship.identify.service.RegistrationCeremonyService;
-import com.iwmnetwork.aqtos.internship.identify.service.UserService;
+import com.fido2_proof_of_concepts.common.service.DefaultService;
+import com.fido2_proof_of_concepts.identify.api.commands.FidoUserRegistrationFinishCommand;
+import com.fido2_proof_of_concepts.identify.api.commands.registration_ceremony.CreatePublicKeyCredentialsOptionsCommand;
+import com.fido2_proof_of_concepts.identify.model.aggregate.User;
+import com.fido2_proof_of_concepts.identify.model.dto.PublicKeyCredentialCreationResponse;
+import com.fido2_proof_of_concepts.identify.model.identifiers.RegistrationCeremonyId;
+import com.fido2_proof_of_concepts.identify.repository.FidoUserRepository;
+import com.fido2_proof_of_concepts.identify.repository.RegistrationCeremonyInMemoryRepository;
+import com.fido2_proof_of_concepts.identify.repository.webauthn.authenticator_model.AttestedCredentialData;
+import com.fido2_proof_of_concepts.identify.repository.webauthn.authenticator_model.AuthenticatorAttestationResponse;
+import com.fido2_proof_of_concepts.identify.repository.webauthn.authenticator_model.PublicKeyCredentialCreationOptions;
+import com.fido2_proof_of_concepts.identify.repository.webauthn.crypto.RelyingPartyUtils;
+import com.fido2_proof_of_concepts.identify.repository.webauthn.exceptions.VerificationFailedException;
+import com.fido2_proof_of_concepts.identify.service.RegistrationCeremonyService;
+import com.fido2_proof_of_concepts.identify.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -27,7 +27,7 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class RegistrationCeremonyImpl implements RegistrationCeremonyService {
 
-    private final DefaultIdentifyService defaultIdentifyService;
+    private final DefaultService defaultIdentifyService;
     private final RegistrationCeremonyInMemoryRepository registrationCeremonyInMemoryRepository;
     private final FidoUserRepository fidoUserRepository;
     private final UserService userService;
@@ -44,11 +44,10 @@ public class RegistrationCeremonyImpl implements RegistrationCeremonyService {
     }
 
     public boolean registrationSuccessful(PublicKeyCredentialCreationResponse cmd) {
-        RegistrationCeremonyId registrationCeremonyId = new RegistrationCeremonyId(cmd.getRegistrationCeremonyId());
         AttestedCredentialData attestedCredentialData = registrationCeremonyInMemoryRepository
-                .getAttestedCredentialData(registrationCeremonyId);
+                .getAttestedCredentialData(cmd.getRegistrationCeremonyId());
         AuthenticatorAttestationResponse response = registrationCeremonyInMemoryRepository
-                .getAuthenticatorAttestationResponse(registrationCeremonyId);
+                .getAuthenticatorAttestationResponse(cmd.getRegistrationCeremonyId());
         byte[] credentialId = attestedCredentialData.getCredentialId();
         byte[] publicKey = attestedCredentialData.getCredentialPublicKey();
         int signCount = RelyingPartyUtils.getSignCount(response.getAuthData());

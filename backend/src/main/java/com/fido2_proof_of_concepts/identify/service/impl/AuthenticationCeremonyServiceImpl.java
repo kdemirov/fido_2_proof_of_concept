@@ -1,12 +1,11 @@
-package com.iwmnetwork.aqtos.internship.identify.service.impl;
+package com.fido2_proof_of_concepts.identify.service.impl;
 
-import com.iwmnetwork.aqtos.internship.identify.api.commands.authentication_ceremony.CreatePublicKeyCredentialRequestOptionsCommand;
-import com.iwmnetwork.aqtos.internship.identify.model.aggregate.AuthenticationCeremony;
-import com.iwmnetwork.aqtos.internship.identify.model.identifiers.AuthenticationCeremonyId;
-import com.iwmnetwork.aqtos.internship.identify.repository.AuthenticationCeremonyInMemoryRepository;
-import com.iwmnetwork.aqtos.internship.identify.repository.webauthn.authenticator_model.PublicKeyCredentialRequestOptions;
-import com.iwmnetwork.aqtos.internship.identify.service.AuthenticationCeremonyService;
-import com.iwmnetwork.aqtos.internship.identify.service.DefaultIdentifyService;
+import com.fido2_proof_of_concepts.common.service.DefaultService;
+import com.fido2_proof_of_concepts.identify.api.commands.authentication_ceremony.CreatePublicKeyCredentialRequestOptionsCommand;
+import com.fido2_proof_of_concepts.identify.model.identifiers.AuthenticationCeremonyId;
+import com.fido2_proof_of_concepts.identify.repository.AuthenticationCeremonyInMemoryRepository;
+import com.fido2_proof_of_concepts.identify.repository.webauthn.authenticator_model.PublicKeyCredentialRequestOptions;
+import com.fido2_proof_of_concepts.identify.service.AuthenticationCeremonyService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +16,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class AuthenticationCeremonyServiceImpl implements AuthenticationCeremonyService {
 
-    private final DefaultIdentifyService defaultIdentifyService;
+    private final DefaultService defaultIdentifyService;
     private final AuthenticationCeremonyInMemoryRepository repository;
 
     @Override

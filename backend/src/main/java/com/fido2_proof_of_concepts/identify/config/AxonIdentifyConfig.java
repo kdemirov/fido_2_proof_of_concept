@@ -1,11 +1,11 @@
-package com.iwmnetwork.aqtos.internship.identify.config;
+package com.fido2_proof_of_concepts.identify.config;
 
-import com.iwmnetwork.aqtos.internship.identify.model.aggregate.AuthenticationCeremony;
-import com.iwmnetwork.aqtos.internship.identify.model.aggregate.RegistrationCeremony;
-import com.iwmnetwork.aqtos.internship.identify.model.aggregate.User;
-import com.iwmnetwork.aqtos.internship.identify.model.identifiers.AuthenticationCeremonyId;
-import com.iwmnetwork.aqtos.internship.identify.model.identifiers.RegistrationCeremonyId;
-import com.iwmnetwork.aqtos.internship.identify.model.identifiers.UserId;
+import com.fido2_proof_of_concepts.identify.model.aggregate.AuthenticationCeremony;
+import com.fido2_proof_of_concepts.identify.model.aggregate.RegistrationCeremony;
+import com.fido2_proof_of_concepts.identify.model.aggregate.User;
+import com.fido2_proof_of_concepts.identify.model.identifiers.AuthenticationCeremonyId;
+import com.fido2_proof_of_concepts.identify.model.identifiers.RegistrationCeremonyId;
+import com.fido2_proof_of_concepts.identify.model.identifiers.UserId;
 import org.axonframework.common.jpa.SimpleEntityManagerProvider;
 import org.axonframework.eventhandling.EventBus;
 import org.axonframework.modelling.command.GenericJpaRepository;

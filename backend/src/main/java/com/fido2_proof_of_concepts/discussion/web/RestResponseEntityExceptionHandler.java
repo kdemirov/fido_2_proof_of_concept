@@ -1,4 +1,4 @@
-package com.iwmnetwork.aqtos.internship.discussion.web;
+package com.fido2_proof_of_concepts.discussion.web;
 
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
