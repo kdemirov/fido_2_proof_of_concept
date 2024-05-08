@@ -18,8 +18,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import javax.servlet.FilterChain;
@@ -67,16 +65,13 @@ public class AuthenticationCeremonySuccessfulFilter extends UsernamePasswordAuth
     @Override
     protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authResult)
             throws IOException {
-        UserDetails userDetails = (UserDetails) authResult.getPrincipal();
-        User user = this.userService.findByUsername(userDetails.getUsername())
-                .orElseThrow(() -> new UsernameNotFoundException(userDetails.getUsername()));
+        User user = (User) authResult.getPrincipal();
         String token = JWT.create()
                 .withIssuer(Constants.JWT_ISSUER)
                 .withSubject(new ObjectMapper().writeValueAsString(new UserDetailsDto(user.getUsername(),
-                        user.getName(), user.getRole(), user.getId().getId())))
+                        user.getName(), user.getRole(), user.getId().getId(), Constants.FIDO_AUTHENTICATION_TYPE)))
                 .withExpiresAt(new Date(System.currentTimeMillis() + Constants.EXPIRATION_TIME))
                 .sign(Algorithm.none());
-        response.addHeader(Constants.TYPE_OF_AUTHENTICATION, Constants.FIDO_AUTHENTICATION_TYPE);
         response.addHeader(Constants.HEADER, Constants.TOKEN_PREFIX + token);
         response.getWriter().append(token);
         response.getWriter().flush();

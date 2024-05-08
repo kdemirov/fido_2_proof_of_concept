@@ -1,10 +1,7 @@
 package com.iwmnetwork.aqtos.internship.identify.repository;
 
-import com.iwmnetwork.aqtos.internship.identify.model.aggregate.RegistrationCeremony;
-import com.iwmnetwork.aqtos.internship.identify.model.dto.AuthenticationCeremonyInMemory;
 import com.iwmnetwork.aqtos.internship.identify.model.dto.PublicKeyCredentialCreationResponse;
 import com.iwmnetwork.aqtos.internship.identify.model.dto.RegistrationCeremonyInMemory;
-import com.iwmnetwork.aqtos.internship.identify.model.identifiers.AuthenticationCeremonyId;
 import com.iwmnetwork.aqtos.internship.identify.model.identifiers.RegistrationCeremonyId;
 import com.iwmnetwork.aqtos.internship.identify.repository.webauthn.authenticator_model.AttestedCredentialData;
 import com.iwmnetwork.aqtos.internship.identify.repository.webauthn.authenticator_model.AuthenticatorAttestationResponse;
@@ -225,7 +222,7 @@ public class RegistrationCeremonyInMemoryRepository {
         return MEMORY.get(id).getCredentialResponse();
     }
 
-    public void saveEntry(RegistrationCeremonyId id,
+    private void saveEntry(RegistrationCeremonyId id,
                           Function<RegistrationCeremonyId, RegistrationCeremonyInMemory> keyNoPresentFunction,
                           BiFunction<RegistrationCeremonyId,
                                   RegistrationCeremonyInMemory,

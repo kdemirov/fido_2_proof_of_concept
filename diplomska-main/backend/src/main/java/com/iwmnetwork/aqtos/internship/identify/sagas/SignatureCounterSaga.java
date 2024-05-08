@@ -16,9 +16,12 @@ import org.axonframework.modelling.saga.StartSaga;
 import org.axonframework.spring.stereotype.Saga;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
+/**
+ * Signature counter saga.
+ */
 @RequiredArgsConstructor
-@Saga
-public class SignatureValidationSaga {
+@Saga(sagaStore = "signatureCounterSaga")
+public class SignatureCounterSaga {
 
     private final UserService userService;
     private final FidoUserRepository fidoUserRepository;

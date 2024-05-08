@@ -10,14 +10,23 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 import javax.validation.ConstraintViolationException;
 
+/**
+ * Controller advice for handling exceptions.
+ */
 @ControllerAdvice
 public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionHandler {
 
+    /**
+     * {@link ConstraintViolationException} exception handler
+     *
+     * @param o_O     exception
+     * @param request request
+     * @return Bad Request if the exception occurs.
+     */
     @ExceptionHandler(ConstraintViolationException.class)
     public ResponseEntity<Object> handleConstraintViolationException(
-            RuntimeException ex, WebRequest request
-    ) {
+            RuntimeException o_O, WebRequest request) {
         String bodyOfResponse = "Something went wrong";
-        return handleExceptionInternal(ex, bodyOfResponse, new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
+        return handleExceptionInternal(o_O, bodyOfResponse, new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
     }
 }

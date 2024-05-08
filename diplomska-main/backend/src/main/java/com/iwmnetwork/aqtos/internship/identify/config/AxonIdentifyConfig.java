@@ -18,15 +18,18 @@ import org.springframework.context.annotation.Configuration;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+/**
+ * Axon identify config
+ */
 @Configuration
 public class AxonIdentifyConfig {
+
     @PersistenceContext
     private EntityManager entityManager;
 
     @Qualifier("eventBus")
     @Autowired
     private EventBus eventBus;
-
 
     @Bean("axonUserRepository")
     public Repository<User> axonUserRepository(@Qualifier("eventBus") EventBus eventBus) {
@@ -54,5 +57,4 @@ public class AxonIdentifyConfig {
                 .identifierConverter(AuthenticationCeremonyId::new)
                 .build();
     }
-
 }

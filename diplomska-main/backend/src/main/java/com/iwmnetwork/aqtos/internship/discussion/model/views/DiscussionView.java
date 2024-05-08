@@ -8,6 +8,9 @@ import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 
+/**
+ * Discussion View
+ */
 @Entity
 @Data
 @Subselect("select * from public.discussion_view")

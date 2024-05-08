@@ -1,5 +1,8 @@
 package com.iwmnetwork.aqtos.internship.identify.repository.webauthn.enumerations;
 
+/**
+ * Resident key requirement.
+ */
 public enum ResidentKeyRequirement {
     DISCOURAGED("discouraged"),
     PREFERRED("preferred"),
@@ -7,6 +10,11 @@ public enum ResidentKeyRequirement {
 
     public final String requirement;
 
+    /**
+     * Constructor.
+     *
+     * @param requirement requirement
+     */
     ResidentKeyRequirement(String requirement) {
         this.requirement = requirement;
     }

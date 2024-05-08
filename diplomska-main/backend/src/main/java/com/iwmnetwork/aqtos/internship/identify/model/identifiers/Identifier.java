@@ -7,15 +7,27 @@ import java.io.Serializable;
 import java.util.Objects;
 import java.util.UUID;
 
+/**
+ * Parent class for all id's.
+ */
 @MappedSuperclass
 @Getter
 public abstract class Identifier implements Serializable {
+
     protected String id;
 
+    /**
+     * Constructor for creating id.
+     */
     public Identifier() {
         this.id = UUID.randomUUID().toString();
     }
 
+    /**
+     * Constructor for recreating id.
+     *
+     * @param id given id
+     */
     public Identifier(String id) {
         this.id = id;
     }

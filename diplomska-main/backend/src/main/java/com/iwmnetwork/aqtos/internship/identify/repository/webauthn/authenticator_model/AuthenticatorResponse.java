@@ -4,6 +4,10 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * Parent class for Authenticator response {@link AuthenticatorAttestationResponse}
+ * and {@link AuthenticatorAssertionResponse}.
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

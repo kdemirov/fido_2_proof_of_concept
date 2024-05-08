@@ -14,6 +14,13 @@ import java.util.Optional;
 @Repository
 public class JwtRepository {
 
+    /**
+     * Gets Authenticated user.
+     *
+     * @param request http servlet request.
+     * @return optional of {@link UserDetailsDto}
+     * @throws JsonProcessingException
+     */
     public Optional<UserDetailsDto> getCurrentUser(HttpServletRequest request) throws JsonProcessingException {
         String header = request.getHeader(Constants.HEADER);
         String token = header.replace(Constants.TOKEN_PREFIX, "");

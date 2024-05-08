@@ -13,8 +13,8 @@ public class Constants {
     public static final String HEADER = "Authorization";
     public static final String TOKEN_PREFIX = "Bearer ";
     public static final Integer TIMEOUT = 60000;
-    public static final String TYPE_OF_AUTHENTICATION = "Type";
     public static final String FIDO_AUTHENTICATION_TYPE = "Fido";
+    public static final String PASSWORD_AUTHENTICATION_TYPE = "Password";
     public static final String REGISTRATION_CEREMONY_ID_KEY = "registrationCeremonyId";
     public static final String AUTHENTICATION_CEREMONY_ID_KEY = "authenticationCeremonyId";
     public static final String REGISTRATION_CEREMONY_URL = "/api/identity/registration_finish";
@@ -36,5 +36,4 @@ public class Constants {
     public static final int ELEVENTH_FILTER_REGISTRATION_CEREMONY = LOWEST_PRECEDENCE - 6;
     public static final int TWELFTH_FILTER_REGISTRATION_CEREMONY = LOWEST_PRECEDENCE - 5;
     public static final int THIRTEENTH_FILTER_REGISTRATION_CEREMONY = LOWEST_PRECEDENCE - 4;
-
 }

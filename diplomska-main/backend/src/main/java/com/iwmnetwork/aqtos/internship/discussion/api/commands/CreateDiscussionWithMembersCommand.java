@@ -1,15 +1,28 @@
 package com.iwmnetwork.aqtos.internship.discussion.api.commands;
 
 import com.iwmnetwork.aqtos.internship.discussion.model.identifiers.PersonId;
-import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
-@Data
+/**
+ * Creates discussion with members command.
+ */
+@NoArgsConstructor
+@Getter
 public class CreateDiscussionWithMembersCommand extends CreateDiscussionCommand {
 
     private List<PersonId> members;
 
+    /**
+     * Constructor.
+     *
+     * @param name        name of the discussion.
+     * @param description description of the discussion
+     * @param creator     creator's id of the discussion
+     * @param members     list of members id of the discussion.
+     */
     public CreateDiscussionWithMembersCommand(String name,
                                               String description,
                                               PersonId creator,
@@ -17,6 +30,4 @@ public class CreateDiscussionWithMembersCommand extends CreateDiscussionCommand 
         super(name, description, creator);
         this.members = members;
     }
-
-
 }

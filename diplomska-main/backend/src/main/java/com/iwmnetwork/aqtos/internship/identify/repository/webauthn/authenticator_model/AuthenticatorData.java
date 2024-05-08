@@ -11,10 +11,10 @@ https://w3c.github.io/webauthn/#sctn-authenticator-data
 package com.iwmnetwork.aqtos.internship.identify.repository.webauthn.authenticator_model;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-@Data
+@Getter
 @NoArgsConstructor
 @AllArgsConstructor
 public class AuthenticatorData {
@@ -27,5 +27,4 @@ public class AuthenticatorData {
     private int signatureCount;
     private byte[] attestedCredentialData;
     private byte[] extensions;
-
 }
