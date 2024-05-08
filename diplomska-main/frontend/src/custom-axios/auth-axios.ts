@@ -3,7 +3,7 @@ import LocalStorageRepository from "../Repository/localStorageRepository";
 
 
 const instance = axios.create({
-    baseURL: 'http://localhost:9090/api/identity',
+    baseURL: 'http://localhost:8080/api',
     headers: {
         'Access-Control-Allow-Origin': '*'
     }

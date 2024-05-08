@@ -8,7 +8,7 @@ import CredentialService from "./CredentialService";
 const AuthService = {
 
     register: (name: string, surname: string, username: string, password: string) => {
-        return instance.post("/register", {
+        return instance.post("/identity/register", {
             name: name,
             surname: surname,
             username: username,
@@ -17,15 +17,15 @@ const AuthService = {
             NotificationService.error(err.message)
         })
     },
+
     fido_register: (username: string, name: string) => {
-        return instance.post(`/registration_start?username=${username}`)
+        return instance.post(`/identity/registration_start?username=${username}`)
             .then((response: any) => {
                 CredentialService.createCredential(response.data, username, name)
                     .then((newCredentialInfo: any) => {
-                        AuthService.finish_register(newCredentialInfo, username)
+                        AuthService.finish_register(newCredentialInfo, username, response.data.registrationCeremonyId.id)
                             .then(() => {
                                 NotificationService.success("Registration was successfully")
-                                window.location.href = "/discussions"
                             }).catch((err: any) => {
                             NotificationService.error(err.message);
                         })
@@ -34,8 +34,9 @@ const AuthService = {
                 })
             })
     },
-    finish_register: (credentialResponse: any, username: string) => {
-        return instance.post("/registration_finish", {
+    finish_register: (credentialResponse: any, username: string, registrationCeremonyId: string) => {
+        return instance.post("/identity/registration_finish", {
+            registrationCeremonyId: registrationCeremonyId,
             id: credentialResponse.id,
             type: credentialResponse.type,
             attestationObject: JSON.stringify(Buffer.from(credentialResponse.response.attestationObject)),
@@ -43,14 +44,9 @@ const AuthService = {
             clientDataHash: JSON.stringify(Buffer.from(credentialResponse.response.clientDataJSON))
         })
     },
-    register_certificate: (userId:string)=>{
-        return instance.post("/register_certificate",{
-            id:userId
-        })
-    },
     login: (username: string, password: string) => {
         let localStorageRepository = new LocalStorageRepository();
-        return instance.post("/login", {
+        return instance.post("/identity/login", {
             username: username,
             password: password
         }).then((response: any) => {
@@ -58,11 +54,11 @@ const AuthService = {
         })
     },
     login_fido: () => {
-        return instance.post("/login_start")
+        return instance.post("/identity/login_start")
             .then((response: any) => {
                 CredentialService.getCredentials(response.data)
                     .then((assertionResponse: any) => {
-                        AuthService.authenticate(assertionResponse)
+                        AuthService.authenticate(assertionResponse, response.data.authenticationCeremonyId)
                             .then((res) => {
                                 window.location.href = "/discussions"
                             }).catch((error: any) => {
@@ -74,9 +70,10 @@ const AuthService = {
                 NotificationService.error(error.message)
             })
     },
-    authenticate: (resp: any) => {
+    authenticate: (resp: any, authenticationCeremonyId: any) => {
         let localStorageRepo = new LocalStorageRepository();
-        return instance.post("/login_finish", {
+        return instance.post("/identity/login_finish", {
+            authenticationCeremonyId: authenticationCeremonyId,
             id: JSON.stringify(Buffer.from(resp.rawId)),
             signature: JSON.stringify(Buffer.from(resp.response.signature)),
             authData: JSON.stringify(Buffer.from(resp.response.authenticatorData)),
@@ -84,7 +81,6 @@ const AuthService = {
             clientDataJSON: JSON.stringify(Buffer.from(resp.response.clientDataJSON)),
             type: resp.type
         }).then((response: any) => {
-            console.log(response.data, '!!! sss')
             localStorageRepo.saveUser(response.data)
         })
     },
@@ -93,10 +89,10 @@ const AuthService = {
         localStorageRepo.removeUser()
     },
     getCurrentUser: () => {
-        return instance.get("/",)
+        return instance.get("/identity",)
     },
     findById: (id: string) => {
-        return instance.get(`/${id}`)
+        return instance.get(`/identity${id}`)
     }
 
 }
