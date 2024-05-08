@@ -23,7 +23,7 @@ public interface DiscussionService {
     Optional<DiscussionViewDto> findById(DiscussionId discussionId);
 
     /**
-     * Finds discussion that contains the given string in their name.
+     * Finds discussions that contains the given string in their name.
      *
      * @param name given string
      * @return list of {@link Discussion}
@@ -31,7 +31,7 @@ public interface DiscussionService {
     List<Discussion> findByName(String name);
 
     /**
-     * Finds all discussion with page request.
+     * Finds all discussions with page request.
      *
      * @param pageable page request
      * @return page of {@link Discussion}

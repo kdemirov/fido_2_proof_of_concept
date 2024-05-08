@@ -5,7 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 /**
- * Abstract class for all discussion event related to discussion aggregate.
+ * Abstract class for all discussion events related to discussion aggregate.
  */
 @NoArgsConstructor
 @Getter
