@@ -6,7 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 /**
- * Response from credential.get() call from frontend.
+ * Response from credential.get() call from frontend needed for
+ * initializations commands for authentication ceremony.
  */
 @AllArgsConstructor
 @Getter

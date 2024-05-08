@@ -57,6 +57,4 @@ public interface UserService extends UserDetailsService {
      * @return Optional of {@link User}
      */
     Optional<User> findByFidoUser(FidoUser user);
-
-
 }

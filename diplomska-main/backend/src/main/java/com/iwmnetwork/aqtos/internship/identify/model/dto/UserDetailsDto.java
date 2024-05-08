@@ -16,4 +16,5 @@ public class UserDetailsDto {
     private String name;
     private Role role;
     private String userID;
+    private String type;
 }

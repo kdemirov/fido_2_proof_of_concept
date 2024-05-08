@@ -8,14 +8,14 @@ import com.iwmnetwork.aqtos.internship.discussion.model.Identifier;
 public class TaskId extends Identifier {
 
     /**
-     * Constructor creation of id.
+     * Constructor creating an id.
      */
     public TaskId() {
         super();
     }
 
     /**
-     * Constructor recreation of id
+     * Constructor recreation the id
      *
      * @param id given id string
      */

@@ -1,15 +1,21 @@
 package com.iwmnetwork.aqtos.internship.discussion.api.commands;
 
-import com.iwmnetwork.aqtos.internship.discussion.model.*;
+import com.iwmnetwork.aqtos.internship.discussion.model.Mention;
+import com.iwmnetwork.aqtos.internship.discussion.model.Reference;
 import com.iwmnetwork.aqtos.internship.discussion.model.identifiers.CommentId;
 import com.iwmnetwork.aqtos.internship.discussion.model.identifiers.DiscussionId;
 import com.iwmnetwork.aqtos.internship.discussion.model.identifiers.TaskId;
-import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 import org.axonframework.modelling.command.TargetAggregateIdentifier;
 
 import java.util.List;
 
-@Data
+/**
+ * Update comment from a discussion command.
+ */
+@AllArgsConstructor
+@Getter
 public class UpdateCommentCommand extends AbstractCommand {
     @TargetAggregateIdentifier
     private DiscussionId discussionId;
@@ -17,20 +23,4 @@ public class UpdateCommentCommand extends AbstractCommand {
     private String newBody;
     List<Mention> mentions;
     List<Reference<TaskId>> taskReferences;
-
-    public UpdateCommentCommand(DiscussionId discussionId,
-                                CommentId commentId,
-                                String newBody,
-                                List<Mention> mentions,
-                                List<Reference<TaskId>> taskReferences) {
-        super();
-        this.discussionId = discussionId;
-        this.commentId = commentId;
-        this.newBody = newBody;
-        this.mentions = mentions;
-        this.taskReferences = taskReferences;
-    }
-
-    public UpdateCommentCommand() {
-    }
 }

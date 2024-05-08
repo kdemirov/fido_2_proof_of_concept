@@ -5,7 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 /**
- * Fido user sign count updated event.
+ * Fido user signature counter updated event.
  */
 @AllArgsConstructor
 @Getter

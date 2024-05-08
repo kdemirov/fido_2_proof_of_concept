@@ -1,5 +1,8 @@
 package com.iwmnetwork.aqtos.internship.identify.repository.webauthn.enumerations;
 
+/**
+ * Public key descriptor enum.
+ */
 public enum PublicKeyDescriptor {
     KEY_TYPE(1),
     ALG(3),
@@ -9,6 +12,11 @@ public enum PublicKeyDescriptor {
 
     public final int descriptor;
 
+    /**
+     * Constructor.
+     *
+     * @param descriptor descriptor
+     */
     PublicKeyDescriptor(int descriptor) {
         this.descriptor = descriptor;
     }

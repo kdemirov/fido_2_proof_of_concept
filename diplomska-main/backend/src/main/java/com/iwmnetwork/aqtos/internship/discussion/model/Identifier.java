@@ -16,14 +16,14 @@ public class Identifier implements Serializable {
     protected String id;
 
     /**
-     * Constructor for creation of the id.
+     * Constructor for creating the id.
      */
     public Identifier() {
         this.id = UUID.randomUUID().toString();
     }
 
     /**
-     * Constructor for recreation of the id.
+     * Constructor for recreation the id.
      *
      * @param id given id.
      */

@@ -1,13 +1,8 @@
 package com.iwmnetwork.aqtos.internship.discussion.api.events;
 
 
-import lombok.Data;
-
-@Data
+/**
+ * Abstract event for the discussion aggregate.
+ */
 public abstract class AbstractEvent {
-
-
-
-    public AbstractEvent() {
-    }
 }

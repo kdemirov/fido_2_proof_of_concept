@@ -5,6 +5,9 @@ import org.springframework.security.core.GrantedAuthority;
 
 import java.util.Collection;
 
+/**
+ * Fido user authenticator token.
+ */
 public class FidoUserAuthenticatorToken extends AbstractAuthenticationToken {
 
     private final Object principal;
@@ -36,6 +39,4 @@ public class FidoUserAuthenticatorToken extends AbstractAuthenticationToken {
     public Object getPrincipal() {
         return this.principal;
     }
-
-
 }

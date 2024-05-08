@@ -5,6 +5,9 @@ import com.iwmnetwork.aqtos.internship.discussion.model.views.DiscussionView;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+/**
+ * Jpa repository for {@link DiscussionView}.
+ */
 @Repository
 public interface DiscussionViewRepository extends JpaRepository<DiscussionView, DiscussionId> {
 }

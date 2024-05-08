@@ -2,7 +2,17 @@ package com.iwmnetwork.aqtos.internship.identify.repository.webauthn.authenticat
 
 import java.util.Arrays;
 
+/**
+ * Attestation Response Reader Utils.
+ */
 public class AttestationResponseReader {
+
+    /**
+     * Decodes {@link AttestedCredentialData}.
+     *
+     * @param authData auth data
+     * @return {@link AttestedCredentialData}
+     */
     public static AttestedCredentialData decodeAttestedCredentialData(byte[] authData) {
         AttestedCredentialData credentialData = new AttestedCredentialData();
         //2 bytes represent an unsigned 16 bit integer

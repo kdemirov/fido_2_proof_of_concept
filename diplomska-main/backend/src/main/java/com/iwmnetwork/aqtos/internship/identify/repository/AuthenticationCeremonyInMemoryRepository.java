@@ -232,7 +232,7 @@ public class AuthenticationCeremonyInMemoryRepository {
         return MEMORY_MAP.get(authenticationCeremonyId).getResponse();
     }
 
-    public void saveEntry(AuthenticationCeremonyId id,
+    private void saveEntry(AuthenticationCeremonyId id,
                           Function<AuthenticationCeremonyId, AuthenticationCeremonyInMemory> keyNoPresentFunction,
                           BiFunction<AuthenticationCeremonyId,
                                   AuthenticationCeremonyInMemory,

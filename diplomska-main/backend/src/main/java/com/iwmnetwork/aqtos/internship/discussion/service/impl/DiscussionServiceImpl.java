@@ -9,6 +9,7 @@ import com.iwmnetwork.aqtos.internship.discussion.repository.CommentViewReposito
 import com.iwmnetwork.aqtos.internship.discussion.repository.DiscussionJpaRepository;
 import com.iwmnetwork.aqtos.internship.discussion.repository.DiscussionViewRepository;
 import com.iwmnetwork.aqtos.internship.discussion.service.DiscussionService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -16,22 +17,13 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
+@RequiredArgsConstructor
 @Service
 public class DiscussionServiceImpl implements DiscussionService {
 
     private final DiscussionJpaRepository discussionJpaRepository;
     private final DiscussionViewRepository discussionViewRepository;
     private final CommentViewRepository commentViewRepository;
-
-
-    public DiscussionServiceImpl(DiscussionJpaRepository discussionJpaRepository,
-                                 DiscussionViewRepository discussionViewRepository,
-                                 CommentViewRepository commentViewRepository) {
-        this.discussionJpaRepository = discussionJpaRepository;
-        this.discussionViewRepository = discussionViewRepository;
-        this.commentViewRepository = commentViewRepository;
-    }
-
 
     @Override
     public Optional<DiscussionViewDto> findById(DiscussionId discussionId) {
@@ -46,7 +38,6 @@ public class DiscussionServiceImpl implements DiscussionService {
         return this.discussionJpaRepository.findByNameLike(queryName);
     }
 
-
     @Override
     public Page<Discussion> findAllWithPagination(Pageable pageable) {
         return this.discussionJpaRepository.findAll(pageable);
@@ -56,6 +47,4 @@ public class DiscussionServiceImpl implements DiscussionService {
     public Long getNumberOfDiscussion() {
         return this.discussionJpaRepository.count();
     }
-
-
 }

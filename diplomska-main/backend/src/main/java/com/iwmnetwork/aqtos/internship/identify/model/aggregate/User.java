@@ -12,20 +12,22 @@ import com.iwmnetwork.aqtos.internship.identify.model.enumerations.Role;
 import com.iwmnetwork.aqtos.internship.identify.model.identifiers.FidoUserId;
 import com.iwmnetwork.aqtos.internship.identify.model.identifiers.UserId;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import org.axonframework.commandhandling.CommandHandler;
 import org.axonframework.modelling.command.AggregateIdentifier;
 import org.axonframework.modelling.command.AggregateLifecycle;
 import org.axonframework.spring.stereotype.Aggregate;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.persistence.*;
 
+/**
+ * User Aggregate.
+ */
 @Entity
 @Aggregate(repository = "axonUserRepository")
 @Table(name = "discussion_users")
 @Getter
+@NoArgsConstructor
 public class User {
     @EmbeddedId
     @AggregateIdentifier
@@ -39,6 +41,15 @@ public class User {
     @Enumerated(EnumType.STRING)
     private Role role;
 
+    /**
+     * Constructor.
+     *
+     * @param username username
+     * @param password encoded password
+     * @param name     name
+     * @param surname  surname
+     * @param role     role
+     */
     public User(String username, String password, String name, String surname, Role role) {
         this.username = username;
         this.password = password;
@@ -49,6 +60,11 @@ public class User {
 
     }
 
+    /**
+     * Register user command.
+     *
+     * @param cmd {@link RegisterCommand}
+     */
     @CommandHandler
     public User(RegisterCommand cmd) {
         UserRegisteredEvent event = new UserRegisteredEvent(
@@ -70,6 +86,11 @@ public class User {
         this.role = Role.ROLE_USER;
     }
 
+    /**
+     * Saves instance of fido user if all defined steps are verified.
+     *
+     * @param cmd {@link FidoUserRegistrationFinishCommand}
+     */
     @CommandHandler
     public void handle(FidoUserRegistrationFinishCommand cmd) {
         FidoUserRegisteredEvent event = new FidoUserRegisteredEvent(
@@ -93,6 +114,11 @@ public class User {
         );
     }
 
+    /**
+     * Update signature counter value of registered fido user.
+     *
+     * @param cmd {@link UpdateFidoUserSignCountCommand}
+     */
     @CommandHandler
     public void handle(UpdateFidoUserSignCountCommand cmd) {
         FidoUserSignCountUpdatedEvent event = new FidoUserSignCountUpdatedEvent(
@@ -100,8 +126,5 @@ public class User {
                 cmd.getStoredCount()
         );
         AggregateLifecycle.apply(event);
-    }
-
-    public User() {
     }
 }

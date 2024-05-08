@@ -1,5 +1,8 @@
 package com.iwmnetwork.aqtos.internship.identify.repository.webauthn.enumerations;
 
+/**
+ * Authenticator Transport.
+ */
 public enum AuthenticatorTransport {
     USB("usb"),
     NFC("nfc"),
@@ -8,6 +11,11 @@ public enum AuthenticatorTransport {
 
     public final String transportType;
 
+    /**
+     * Constructor.
+     *
+     * @param transportType transportType
+     */
     AuthenticatorTransport(String transportType) {
         this.transportType = transportType;
     }

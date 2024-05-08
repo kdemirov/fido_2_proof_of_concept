@@ -4,6 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+/**
+ * Register command.
+ */
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor

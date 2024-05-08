@@ -5,6 +5,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+/**
+ * Ceremony holder for in memory repository.
+ */
 @NoArgsConstructor
 @Setter
 @Getter

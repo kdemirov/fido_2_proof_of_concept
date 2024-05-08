@@ -18,12 +18,22 @@ public class AuthFidoLoginController {
 
     private final AuthenticationCeremonyService authenticationCeremonyService;
 
+    /**
+     * Start fido authentication entry point.
+     *
+     * @return created {@link PublicKeyCredentialRequestOptions}
+     */
     @PostMapping("/login_start")
     public ResponseEntity<PublicKeyCredentialRequestOptions> startAuthentication() {
         PublicKeyCredentialRequestOptions options = authenticationCeremonyService.createRequestOptions();
         return ResponseEntity.ok(options);
     }
 
+    /**
+     * Entry point for validation the fido authenticator.
+     *
+     * @param response received response from authenticator {@link PublicKeyCredentialRequestResponse}
+     */
     @PostMapping("/login_finish")
     public void validateAuthentication(@RequestBody PublicKeyCredentialRequestResponse response) {
     }

@@ -36,7 +36,6 @@ public class AxonConfig {
                 .build();
     }
 
-
     @Bean("axonDiscussionRepository")
     public Repository<Discussion> axonDiscussionRepository(@Qualifier("eventBus") EventBus eventBus) {
         return GenericJpaRepository.builder(Discussion.class)

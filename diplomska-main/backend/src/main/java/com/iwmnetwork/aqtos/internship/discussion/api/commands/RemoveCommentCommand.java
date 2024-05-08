@@ -2,20 +2,17 @@ package com.iwmnetwork.aqtos.internship.discussion.api.commands;
 
 import com.iwmnetwork.aqtos.internship.discussion.model.identifiers.CommentId;
 import com.iwmnetwork.aqtos.internship.discussion.model.identifiers.DiscussionId;
-import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 import org.axonframework.modelling.command.TargetAggregateIdentifier;
 
-
-@Data
+/**
+ * Remove comment command.
+ */
+@AllArgsConstructor
+@Getter
 public class RemoveCommentCommand extends AbstractCommand {
     @TargetAggregateIdentifier
     private DiscussionId discussionId;
     private CommentId commentId;
-
-
-    public RemoveCommentCommand(DiscussionId discussionId, CommentId commentId) {
-        super();
-        this.discussionId = discussionId;
-        this.commentId = commentId;
-    }
 }
