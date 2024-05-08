@@ -4,7 +4,9 @@
 # Reference: https://intellij-support.jetbrains.com/hc/en-us/articles/206544839
 
 # User-specific stuff
-.idea/
+fido_2_proof_of_concept/.idea/
+
+backend/.idea
 
 # CMake
 cmake-build-*/
