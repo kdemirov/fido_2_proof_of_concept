@@ -28,5 +28,13 @@ export default class LocalStorageRepository {
     removeUser() {
         return localStorage.removeItem("user")
     }
+
+    saveType(type: string) {
+        localStorage.setItem("type", type);
+    }
+
+    getType() {
+        return localStorage.getItem("type");
+    }
 }
 

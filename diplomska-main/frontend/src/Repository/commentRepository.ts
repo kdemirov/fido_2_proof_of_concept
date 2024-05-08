@@ -1,4 +1,4 @@
-import axios from '../custom-axios/axios';
+import axios from '../custom-axios/auth-axios';
 import {PersonId, DiscussionId} from "../model/model";
 import NotificationService from "./NotificationService";
 
