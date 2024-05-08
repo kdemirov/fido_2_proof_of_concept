@@ -1,11 +1,11 @@
-package com.iwmnetwork.aqtos.internship.discussion.model.aggregates;
+package com.fido2_proof_of_concepts.discussion.model.aggregates;
 
-import com.iwmnetwork.aqtos.internship.discussion.api.commands.*;
-import com.iwmnetwork.aqtos.internship.discussion.api.events.*;
-import com.iwmnetwork.aqtos.internship.discussion.model.Comment;
-import com.iwmnetwork.aqtos.internship.discussion.model.identifiers.CommentId;
-import com.iwmnetwork.aqtos.internship.discussion.model.identifiers.DiscussionId;
-import com.iwmnetwork.aqtos.internship.discussion.model.identifiers.PersonId;
+import com.fido2_proof_of_concepts.discussion.api.commands.*;
+import com.fido2_proof_of_concepts.discussion.api.events.*;
+import com.fido2_proof_of_concepts.discussion.model.Comment;
+import com.fido2_proof_of_concepts.discussion.model.identifiers.CommentId;
+import com.fido2_proof_of_concepts.discussion.model.identifiers.DiscussionId;
+import com.fido2_proof_of_concepts.discussion.model.identifiers.PersonId;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.axonframework.commandhandling.CommandHandler;

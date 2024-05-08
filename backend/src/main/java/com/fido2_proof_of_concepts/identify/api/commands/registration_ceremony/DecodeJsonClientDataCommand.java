@@ -1,9 +1,9 @@
-package com.iwmnetwork.aqtos.internship.identify.api.commands.registration_ceremony;
+package com.fido2_proof_of_concepts.identify.api.commands.registration_ceremony;
 
-import com.iwmnetwork.aqtos.internship.identify.api.commands.AbstractCeremonyCommand;
-import com.iwmnetwork.aqtos.internship.identify.model.identifiers.RegistrationCeremonyId;
+import com.fido2_proof_of_concepts.identify.api.commands.AbstractCeremonyCommand;
+import com.fido2_proof_of_concepts.identify.model.identifiers.RegistrationCeremonyId;
+import com.fido2_proof_of_concepts.identify.repository.webauthn.authenticator_model.CollectedClientData;
 import lombok.Getter;
-import com.iwmnetwork.aqtos.internship.identify.repository.webauthn.authenticator_model.CollectedClientData;
 
 /**
  * Decode Json Client Data Command.

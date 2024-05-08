@@ -23,7 +23,7 @@ const AuthService = {
             .then((response: any) => {
                 CredentialService.createCredential(response.data, username, name)
                     .then((newCredentialInfo: any) => {
-                        AuthService.finish_register(newCredentialInfo, username, response.data.registrationCeremonyId.id)
+                        AuthService.finish_register(newCredentialInfo, username, response.data.registrationCeremonyId)
                             .then(() => {
                                 NotificationService.success("Registration was successfully")
                             }).catch((err: any) => {
@@ -34,7 +34,7 @@ const AuthService = {
                 })
             })
     },
-    finish_register: (credentialResponse: any, username: string, registrationCeremonyId: string) => {
+    finish_register: (credentialResponse: any, username: string, registrationCeremonyId: any) => {
         return instance.post("/identity/registration_finish", {
             registrationCeremonyId: registrationCeremonyId,
             id: credentialResponse.id,

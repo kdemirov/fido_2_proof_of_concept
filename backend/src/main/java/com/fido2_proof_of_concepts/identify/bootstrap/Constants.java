@@ -1,4 +1,4 @@
-package com.iwmnetwork.aqtos.internship.identify.bootstrap;
+package com.fido2_proof_of_concepts.identify.bootstrap;
 
 import static org.springframework.core.Ordered.LOWEST_PRECEDENCE;
 

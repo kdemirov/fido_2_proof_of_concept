@@ -1,5 +1,6 @@
-package com.iwmnetwork.aqtos.internship.identify.model.dto;
+package com.fido2_proof_of_concepts.identify.model.dto;
 
+import com.fido2_proof_of_concepts.identify.model.identifiers.RegistrationCeremonyId;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,7 +13,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 public class PublicKeyCredentialCreationResponse {
-    private String registrationCeremonyId;
+    private RegistrationCeremonyId registrationCeremonyId;
     private String id;
     private String type;
     private String attestationObject;

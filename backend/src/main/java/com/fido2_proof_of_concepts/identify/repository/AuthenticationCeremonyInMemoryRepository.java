@@ -1,11 +1,11 @@
-package com.iwmnetwork.aqtos.internship.identify.repository;
+package com.fido2_proof_of_concepts.identify.repository;
 
-import com.iwmnetwork.aqtos.internship.identify.model.FidoUser;
-import com.iwmnetwork.aqtos.internship.identify.model.dto.AuthenticationCeremonyInMemory;
-import com.iwmnetwork.aqtos.internship.identify.model.identifiers.AuthenticationCeremonyId;
-import com.iwmnetwork.aqtos.internship.identify.repository.webauthn.authenticator_model.AuthenticatorAssertionResponse;
-import com.iwmnetwork.aqtos.internship.identify.repository.webauthn.authenticator_model.CollectedClientData;
-import com.iwmnetwork.aqtos.internship.identify.repository.webauthn.authenticator_model.PublicKeyCredentialRequestOptions;
+import com.fido2_proof_of_concepts.identify.model.FidoUser;
+import com.fido2_proof_of_concepts.identify.model.dto.AuthenticationCeremonyInMemory;
+import com.fido2_proof_of_concepts.identify.model.identifiers.AuthenticationCeremonyId;
+import com.fido2_proof_of_concepts.identify.repository.webauthn.authenticator_model.AuthenticatorAssertionResponse;
+import com.fido2_proof_of_concepts.identify.repository.webauthn.authenticator_model.CollectedClientData;
+import com.fido2_proof_of_concepts.identify.repository.webauthn.authenticator_model.PublicKeyCredentialRequestOptions;
 import org.springframework.boot.configurationprocessor.json.JSONException;
 import org.springframework.stereotype.Component;
 
@@ -14,7 +14,7 @@ import java.util.Map;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 
-import static com.iwmnetwork.aqtos.internship.identify.repository.webauthn.crypto.JsonParser.JsonToByteArray;
+import static com.fido2_proof_of_concepts.identify.repository.webauthn.crypto.JsonParser.JsonToByteArray;
 
 /**
  * Authentication in memory repository

@@ -1,9 +1,9 @@
-package com.iwmnetwork.aqtos.internship.discussion.web;
+package com.fido2_proof_of_concepts.discussion.web;
 
-import com.iwmnetwork.aqtos.internship.discussion.model.aggregates.Discussion;
-import com.iwmnetwork.aqtos.internship.discussion.model.dto.DiscussionViewDto;
-import com.iwmnetwork.aqtos.internship.discussion.model.identifiers.DiscussionId;
-import com.iwmnetwork.aqtos.internship.discussion.service.DiscussionService;
+import com.fido2_proof_of_concepts.discussion.model.aggregates.Discussion;
+import com.fido2_proof_of_concepts.discussion.model.dto.DiscussionViewDto;
+import com.fido2_proof_of_concepts.discussion.model.identifiers.DiscussionId;
+import com.fido2_proof_of_concepts.discussion.service.DiscussionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;

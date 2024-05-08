@@ -1,14 +1,14 @@
-package com.iwmnetwork.aqtos.internship.identify.config.filters.registration_ceremony;
+package com.fido2_proof_of_concepts.identify.config.filters.registration_ceremony;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.iwmnetwork.aqtos.internship.identify.api.commands.registration_ceremony.FidoRegistrationStartCommand;
-import com.iwmnetwork.aqtos.internship.identify.config.filters.interfaces.CeremonyFilterInterface;
-import com.iwmnetwork.aqtos.internship.identify.model.dto.PublicKeyCredentialCreationResponse;
-import com.iwmnetwork.aqtos.internship.identify.bootstrap.Constants;
-import com.iwmnetwork.aqtos.internship.identify.model.exceptions.Fido2Exception;
-import com.iwmnetwork.aqtos.internship.identify.model.identifiers.RegistrationCeremonyId;
-import com.iwmnetwork.aqtos.internship.identify.repository.RegistrationCeremonyInMemoryRepository;
-import com.iwmnetwork.aqtos.internship.identify.service.DefaultIdentifyService;
+import com.fido2_proof_of_concepts.common.service.DefaultService;
+import com.fido2_proof_of_concepts.identify.api.commands.registration_ceremony.FidoRegistrationStartCommand;
+import com.fido2_proof_of_concepts.identify.bootstrap.Constants;
+import com.fido2_proof_of_concepts.identify.config.filters.interfaces.CeremonyFilterInterface;
+import com.fido2_proof_of_concepts.identify.model.dto.PublicKeyCredentialCreationResponse;
+import com.fido2_proof_of_concepts.identify.model.exceptions.Fido2Exception;
+import com.fido2_proof_of_concepts.identify.model.identifiers.RegistrationCeremonyId;
+import com.fido2_proof_of_concepts.identify.repository.RegistrationCeremonyInMemoryRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpStatus;
@@ -30,7 +30,7 @@ import java.io.IOException;
 public class StartRegistrationCeremonyFilter extends OncePerRequestFilter
         implements CeremonyFilterInterface {
 
-    private final DefaultIdentifyService defaultIdentifyService;
+    private final DefaultService defaultIdentifyService;
     private final ObjectMapper objectMapper;
     private final RegistrationCeremonyInMemoryRepository repository;
 
@@ -48,7 +48,7 @@ public class StartRegistrationCeremonyFilter extends OncePerRequestFilter
             publicKeyCredentialCreationResponse = objectMapper.readValue(request.getInputStream(),
                     PublicKeyCredentialCreationResponse.class);
             FidoRegistrationStartCommand cmd = new FidoRegistrationStartCommand(
-                    new RegistrationCeremonyId(publicKeyCredentialCreationResponse.getRegistrationCeremonyId()),
+                    publicKeyCredentialCreationResponse.getRegistrationCeremonyId(),
                     publicKeyCredentialCreationResponse.getId(),
                     publicKeyCredentialCreationResponse.getType(),
                     publicKeyCredentialCreationResponse.getAttestationObject(),

@@ -4,9 +4,9 @@ for creating Attestation Response Object
 more information here ...
 https://w3c.github.io/webauthn/#dictdef-publickeycredentialcreationoptions
 * */
-package com.iwmnetwork.aqtos.internship.identify.repository.webauthn.authenticator_model;
+package com.fido2_proof_of_concepts.identify.repository.webauthn.authenticator_model;
 
-import com.iwmnetwork.aqtos.internship.identify.model.identifiers.RegistrationCeremonyId;
+import com.fido2_proof_of_concepts.identify.model.identifiers.RegistrationCeremonyId;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

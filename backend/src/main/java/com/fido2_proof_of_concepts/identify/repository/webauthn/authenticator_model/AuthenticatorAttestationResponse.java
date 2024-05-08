@@ -9,15 +9,11 @@ during registration
 more information you can find here ...
 https://w3c.github.io/webauthn/#authenticatorattestationresponse
 * */
-package com.iwmnetwork.aqtos.internship.identify.repository.webauthn.authenticator_model;
+package com.fido2_proof_of_concepts.identify.repository.webauthn.authenticator_model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.validator.constraints.CreditCardNumber;
-
-import javax.persistence.Column;
-import javax.persistence.Embeddable;
 
 @Data
 @NoArgsConstructor

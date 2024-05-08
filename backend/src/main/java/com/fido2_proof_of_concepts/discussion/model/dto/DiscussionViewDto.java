@@ -1,7 +1,7 @@
-package com.iwmnetwork.aqtos.internship.discussion.model.dto;
+package com.fido2_proof_of_concepts.discussion.model.dto;
 
-import com.iwmnetwork.aqtos.internship.discussion.model.views.CommentView;
-import com.iwmnetwork.aqtos.internship.discussion.model.views.DiscussionView;
+import com.fido2_proof_of_concepts.discussion.model.views.CommentView;
+import com.fido2_proof_of_concepts.discussion.model.views.DiscussionView;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

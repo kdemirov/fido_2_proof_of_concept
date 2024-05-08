@@ -1,8 +1,8 @@
-package com.iwmnetwork.aqtos.internship.identify.model.dto;
+package com.fido2_proof_of_concepts.identify.model.dto;
 
-import com.iwmnetwork.aqtos.internship.identify.repository.webauthn.authenticator_model.AttestedCredentialData;
-import com.iwmnetwork.aqtos.internship.identify.repository.webauthn.authenticator_model.AuthenticatorAttestationResponse;
-import com.iwmnetwork.aqtos.internship.identify.repository.webauthn.authenticator_model.PublicKeyCredentialCreationOptions;
+import com.fido2_proof_of_concepts.identify.repository.webauthn.authenticator_model.AttestedCredentialData;
+import com.fido2_proof_of_concepts.identify.repository.webauthn.authenticator_model.AuthenticatorAttestationResponse;
+import com.fido2_proof_of_concepts.identify.repository.webauthn.authenticator_model.PublicKeyCredentialCreationOptions;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

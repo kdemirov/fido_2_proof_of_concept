@@ -1,6 +1,6 @@
-package com.iwmnetwork.aqtos.internship.identify.repository.webauthn.crypto;
+package com.fido2_proof_of_concepts.identify.repository.webauthn.crypto;
 
-import com.iwmnetwork.aqtos.internship.identify.repository.webauthn.authenticator_model.CollectedClientData;
+import com.fido2_proof_of_concepts.identify.repository.webauthn.authenticator_model.CollectedClientData;
 import org.springframework.boot.configurationprocessor.json.JSONArray;
 import org.springframework.boot.configurationprocessor.json.JSONException;
 import org.springframework.boot.configurationprocessor.json.JSONObject;

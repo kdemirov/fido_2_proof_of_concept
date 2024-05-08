@@ -1,13 +1,13 @@
-package com.iwmnetwork.aqtos.internship.identify.config.filters.authentication_ceremony;
+package com.fido2_proof_of_concepts.identify.config.filters.authentication_ceremony;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.iwmnetwork.aqtos.internship.identify.api.commands.authentication_ceremony.FidoUserAuthenticationStartCommand;
-import com.iwmnetwork.aqtos.internship.identify.bootstrap.Constants;
-import com.iwmnetwork.aqtos.internship.identify.config.filters.interfaces.CeremonyFilterInterface;
-import com.iwmnetwork.aqtos.internship.identify.model.dto.PublicKeyCredentialRequestResponse;
-import com.iwmnetwork.aqtos.internship.identify.model.exceptions.Fido2Exception;
-import com.iwmnetwork.aqtos.internship.identify.service.DefaultIdentifyService;
-import com.iwmnetwork.aqtos.internship.identify.service.UserService;
+import com.fido2_proof_of_concepts.common.service.DefaultService;
+import com.fido2_proof_of_concepts.identify.api.commands.authentication_ceremony.FidoUserAuthenticationStartCommand;
+import com.fido2_proof_of_concepts.identify.bootstrap.Constants;
+import com.fido2_proof_of_concepts.identify.config.filters.interfaces.CeremonyFilterInterface;
+import com.fido2_proof_of_concepts.identify.model.dto.PublicKeyCredentialRequestResponse;
+import com.fido2_proof_of_concepts.identify.model.exceptions.Fido2Exception;
+import com.fido2_proof_of_concepts.identify.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
@@ -26,10 +26,10 @@ import java.io.IOException;
 public class StartAuthenticationCeremonyFilter extends UsernamePasswordAuthenticationFilter implements
         CeremonyFilterInterface {
 
-    private final DefaultIdentifyService defaultIdentifyService;
+    private final DefaultService defaultIdentifyService;
     private final UserService userService;
 
-    public StartAuthenticationCeremonyFilter(DefaultIdentifyService defaultIdentifyService,
+    public StartAuthenticationCeremonyFilter(DefaultService defaultIdentifyService,
                                              UserService userService) {
         this.defaultIdentifyService = defaultIdentifyService;
         this.userService = userService;

@@ -1,12 +1,12 @@
-package com.iwmnetwork.aqtos.internship.identify.config.filters.authentication_ceremony;
+package com.fido2_proof_of_concepts.identify.config.filters.authentication_ceremony;
 
-import com.iwmnetwork.aqtos.internship.identify.api.commands.authentication_ceremony.VerifyTheValueOfStoredSignatureCountCommand;
-import com.iwmnetwork.aqtos.internship.identify.bootstrap.Constants;
-import com.iwmnetwork.aqtos.internship.identify.config.filters.interfaces.CeremonyFilterInterface;
-import com.iwmnetwork.aqtos.internship.identify.model.FidoUser;
-import com.iwmnetwork.aqtos.internship.identify.model.identifiers.AuthenticationCeremonyId;
-import com.iwmnetwork.aqtos.internship.identify.repository.AuthenticationCeremonyInMemoryRepository;
-import com.iwmnetwork.aqtos.internship.identify.service.DefaultIdentifyService;
+import com.fido2_proof_of_concepts.common.service.DefaultService;
+import com.fido2_proof_of_concepts.identify.api.commands.authentication_ceremony.VerifyTheValueOfStoredSignatureCountCommand;
+import com.fido2_proof_of_concepts.identify.bootstrap.Constants;
+import com.fido2_proof_of_concepts.identify.config.filters.interfaces.CeremonyFilterInterface;
+import com.fido2_proof_of_concepts.identify.model.FidoUser;
+import com.fido2_proof_of_concepts.identify.model.identifiers.AuthenticationCeremonyId;
+import com.fido2_proof_of_concepts.identify.repository.AuthenticationCeremonyInMemoryRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
@@ -26,7 +26,7 @@ import java.io.IOException;
 public class VerifyValueOfStoredSignatureFilter extends UsernamePasswordAuthenticationFilter
         implements CeremonyFilterInterface {
 
-    private final DefaultIdentifyService defaultIdentifyService;
+    private final DefaultService defaultIdentifyService;
     private final AuthenticationCeremonyInMemoryRepository repository = new AuthenticationCeremonyInMemoryRepository();
 
     @Override

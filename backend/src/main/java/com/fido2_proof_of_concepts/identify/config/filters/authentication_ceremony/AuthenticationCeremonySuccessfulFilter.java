@@ -1,18 +1,17 @@
-package com.iwmnetwork.aqtos.internship.identify.config.filters.authentication_ceremony;
+package com.fido2_proof_of_concepts.identify.config.filters.authentication_ceremony;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.iwmnetwork.aqtos.internship.identify.bootstrap.Constants;
-import com.iwmnetwork.aqtos.internship.identify.config.authtokens.FidoUserAuthenticatorToken;
-import com.iwmnetwork.aqtos.internship.identify.config.filters.interfaces.CeremonyFilterInterface;
-import com.iwmnetwork.aqtos.internship.identify.model.FidoUser;
-import com.iwmnetwork.aqtos.internship.identify.model.aggregate.User;
-import com.iwmnetwork.aqtos.internship.identify.model.dto.UserDetailsDto;
-import com.iwmnetwork.aqtos.internship.identify.model.enumerations.Role;
-import com.iwmnetwork.aqtos.internship.identify.model.identifiers.AuthenticationCeremonyId;
-import com.iwmnetwork.aqtos.internship.identify.repository.AuthenticationCeremonyInMemoryRepository;
-import com.iwmnetwork.aqtos.internship.identify.service.UserService;
+import com.fido2_proof_of_concepts.identify.bootstrap.Constants;
+import com.fido2_proof_of_concepts.identify.config.authtokens.FidoUserAuthenticatorToken;
+import com.fido2_proof_of_concepts.identify.config.filters.interfaces.CeremonyFilterInterface;
+import com.fido2_proof_of_concepts.identify.model.FidoUser;
+import com.fido2_proof_of_concepts.identify.model.aggregate.User;
+import com.fido2_proof_of_concepts.identify.model.dto.UserDetailsDto;
+import com.fido2_proof_of_concepts.identify.model.enumerations.Role;
+import com.fido2_proof_of_concepts.identify.model.identifiers.AuthenticationCeremonyId;
+import com.fido2_proof_of_concepts.identify.repository.AuthenticationCeremonyInMemoryRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -39,7 +38,6 @@ public class AuthenticationCeremonySuccessfulFilter extends UsernamePasswordAuth
 
     private final AuthenticationCeremonyInMemoryRepository repository = new AuthenticationCeremonyInMemoryRepository();
     private final AuthenticationManager authenticationManager;
-    private final UserService userService;
 
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {

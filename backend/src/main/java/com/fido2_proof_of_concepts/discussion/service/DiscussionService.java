@@ -1,8 +1,8 @@
-package com.iwmnetwork.aqtos.internship.discussion.service;
+package com.fido2_proof_of_concepts.discussion.service;
 
-import com.iwmnetwork.aqtos.internship.discussion.model.aggregates.Discussion;
-import com.iwmnetwork.aqtos.internship.discussion.model.dto.DiscussionViewDto;
-import com.iwmnetwork.aqtos.internship.discussion.model.identifiers.DiscussionId;
+import com.fido2_proof_of_concepts.discussion.model.aggregates.Discussion;
+import com.fido2_proof_of_concepts.discussion.model.dto.DiscussionViewDto;
+import com.fido2_proof_of_concepts.discussion.model.identifiers.DiscussionId;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 

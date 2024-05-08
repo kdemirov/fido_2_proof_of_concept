@@ -1,4 +1,4 @@
-package com.iwmnetwork.aqtos.internship.discussion.api.commands;
+package com.fido2_proof_of_concepts.common.commands;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

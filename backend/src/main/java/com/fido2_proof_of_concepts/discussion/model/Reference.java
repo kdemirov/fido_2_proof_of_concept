@@ -1,4 +1,4 @@
-package com.iwmnetwork.aqtos.internship.discussion.model;
+package com.fido2_proof_of_concepts.discussion.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -1,5 +1,6 @@
-package com.iwmnetwork.aqtos.internship.identify.model.identifiers;
+package com.fido2_proof_of_concepts.identify.model.identifiers;
 
+import com.fido2_proof_of_concepts.common.identifiers.Identifier;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.Embeddable;

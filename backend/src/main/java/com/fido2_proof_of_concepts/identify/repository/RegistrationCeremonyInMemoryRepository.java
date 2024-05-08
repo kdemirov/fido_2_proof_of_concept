@@ -1,12 +1,12 @@
-package com.iwmnetwork.aqtos.internship.identify.repository;
+package com.fido2_proof_of_concepts.identify.repository;
 
-import com.iwmnetwork.aqtos.internship.identify.model.dto.PublicKeyCredentialCreationResponse;
-import com.iwmnetwork.aqtos.internship.identify.model.dto.RegistrationCeremonyInMemory;
-import com.iwmnetwork.aqtos.internship.identify.model.identifiers.RegistrationCeremonyId;
-import com.iwmnetwork.aqtos.internship.identify.repository.webauthn.authenticator_model.AttestedCredentialData;
-import com.iwmnetwork.aqtos.internship.identify.repository.webauthn.authenticator_model.AuthenticatorAttestationResponse;
-import com.iwmnetwork.aqtos.internship.identify.repository.webauthn.authenticator_model.CollectedClientData;
-import com.iwmnetwork.aqtos.internship.identify.repository.webauthn.authenticator_model.PublicKeyCredentialCreationOptions;
+import com.fido2_proof_of_concepts.identify.model.dto.PublicKeyCredentialCreationResponse;
+import com.fido2_proof_of_concepts.identify.model.dto.RegistrationCeremonyInMemory;
+import com.fido2_proof_of_concepts.identify.model.identifiers.RegistrationCeremonyId;
+import com.fido2_proof_of_concepts.identify.repository.webauthn.authenticator_model.AttestedCredentialData;
+import com.fido2_proof_of_concepts.identify.repository.webauthn.authenticator_model.AuthenticatorAttestationResponse;
+import com.fido2_proof_of_concepts.identify.repository.webauthn.authenticator_model.CollectedClientData;
+import com.fido2_proof_of_concepts.identify.repository.webauthn.authenticator_model.PublicKeyCredentialCreationOptions;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 

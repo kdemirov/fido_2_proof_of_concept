@@ -1,5 +1,6 @@
-package com.iwmnetwork.aqtos.internship.identify.api.events;
+package com.fido2_proof_of_concepts.identify.api.events;
 
+import com.fido2_proof_of_concepts.common.events.AbstractEvent;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 

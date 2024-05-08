@@ -1,6 +1,7 @@
-package com.iwmnetwork.aqtos.internship.identify.repository.webauthn.crypto;
+package com.fido2_proof_of_concepts.identify.repository.webauthn.crypto;
 
-import com.iwmnetwork.aqtos.internship.identify.model.exceptions.Fido2Exception;
+
+import com.fido2_proof_of_concepts.identify.model.exceptions.Fido2Exception;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;

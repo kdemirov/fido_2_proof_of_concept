@@ -1,6 +1,6 @@
-package com.iwmnetwork.aqtos.internship.identify.config;
+package com.fido2_proof_of_concepts.identify.config;
 
-import com.iwmnetwork.aqtos.internship.identify.service.UserService;
+import com.fido2_proof_of_concepts.identify.service.UserService;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

@@ -1,4 +1,4 @@
-package com.iwmnetwork.aqtos.internship.identify.config.authtokens;
+package com.fido2_proof_of_concepts.identify.config.authtokens;
 
 import org.springframework.security.authentication.AbstractAuthenticationToken;
 import org.springframework.security.core.GrantedAuthority;

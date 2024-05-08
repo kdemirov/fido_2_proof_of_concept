@@ -1,7 +1,7 @@
-package com.iwmnetwork.aqtos.internship.discussion.model.views;
+package com.fido2_proof_of_concepts.discussion.model.views;
 
-import com.iwmnetwork.aqtos.internship.discussion.model.identifiers.CommentId;
-import com.iwmnetwork.aqtos.internship.discussion.model.identifiers.DiscussionId;
+import com.fido2_proof_of_concepts.discussion.model.identifiers.CommentId;
+import com.fido2_proof_of_concepts.discussion.model.identifiers.DiscussionId;
 import lombok.Data;
 import org.hibernate.annotations.Subselect;
 

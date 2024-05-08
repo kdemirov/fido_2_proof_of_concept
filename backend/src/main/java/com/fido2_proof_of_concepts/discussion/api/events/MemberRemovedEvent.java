@@ -1,7 +1,7 @@
-package com.iwmnetwork.aqtos.internship.discussion.api.events;
+package com.fido2_proof_of_concepts.discussion.api.events;
 
-import com.iwmnetwork.aqtos.internship.discussion.model.identifiers.DiscussionId;
-import com.iwmnetwork.aqtos.internship.discussion.model.identifiers.PersonId;
+import com.fido2_proof_of_concepts.discussion.model.identifiers.DiscussionId;
+import com.fido2_proof_of_concepts.discussion.model.identifiers.PersonId;
 import lombok.Getter;
 
 /**

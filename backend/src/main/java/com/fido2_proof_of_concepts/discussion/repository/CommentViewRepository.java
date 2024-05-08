@@ -1,8 +1,9 @@
-package com.iwmnetwork.aqtos.internship.discussion.repository;
+package com.fido2_proof_of_concepts.discussion.repository;
 
-import com.iwmnetwork.aqtos.internship.discussion.model.identifiers.CommentId;
-import com.iwmnetwork.aqtos.internship.discussion.model.identifiers.DiscussionId;
-import com.iwmnetwork.aqtos.internship.discussion.model.views.CommentView;
+
+import com.fido2_proof_of_concepts.discussion.model.identifiers.CommentId;
+import com.fido2_proof_of_concepts.discussion.model.identifiers.DiscussionId;
+import com.fido2_proof_of_concepts.discussion.model.views.CommentView;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

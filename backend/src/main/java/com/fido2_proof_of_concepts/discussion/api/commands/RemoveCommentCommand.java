@@ -1,7 +1,8 @@
-package com.iwmnetwork.aqtos.internship.discussion.api.commands;
+package com.fido2_proof_of_concepts.discussion.api.commands;
 
-import com.iwmnetwork.aqtos.internship.discussion.model.identifiers.CommentId;
-import com.iwmnetwork.aqtos.internship.discussion.model.identifiers.DiscussionId;
+import com.fido2_proof_of_concepts.common.commands.AbstractCommand;
+import com.fido2_proof_of_concepts.discussion.model.identifiers.CommentId;
+import com.fido2_proof_of_concepts.discussion.model.identifiers.DiscussionId;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import org.axonframework.modelling.command.TargetAggregateIdentifier;

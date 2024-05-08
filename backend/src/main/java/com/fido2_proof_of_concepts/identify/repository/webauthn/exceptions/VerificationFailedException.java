@@ -1,4 +1,4 @@
-package com.iwmnetwork.aqtos.internship.identify.repository.webauthn.exceptions;
+package com.fido2_proof_of_concepts.identify.repository.webauthn.exceptions;
 
 /**
  * Verification failed exception for all steps defined in authentication and registration ceremony.

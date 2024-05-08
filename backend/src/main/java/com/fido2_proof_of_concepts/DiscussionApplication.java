@@ -1,4 +1,4 @@
-package com.iwmnetwork.aqtos.internship;
+package com.fido2_proof_of_concepts;
 
 
 import org.springframework.boot.SpringApplication;

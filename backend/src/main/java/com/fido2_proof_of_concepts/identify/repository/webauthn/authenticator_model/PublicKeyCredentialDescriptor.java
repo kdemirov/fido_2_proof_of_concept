@@ -2,9 +2,9 @@
 this object is part of PublicKeyCredentialCreationObject
 https://w3c.github.io/webauthn/#dictdef-publickeycredentialdescriptor
 * */
-package com.iwmnetwork.aqtos.internship.identify.repository.webauthn.authenticator_model;
+package com.fido2_proof_of_concepts.identify.repository.webauthn.authenticator_model;
 
-import com.iwmnetwork.aqtos.internship.identify.repository.webauthn.enumerations.AuthenticatorTransport;
+import com.fido2_proof_of_concepts.identify.repository.webauthn.enumerations.AuthenticatorTransport;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
