@@ -7,26 +7,24 @@ import com.fido2_proof_of_concepts.identify.model.FidoUser;
 import com.fido2_proof_of_concepts.identify.model.aggregate.User;
 import com.fido2_proof_of_concepts.identify.model.identifiers.AuthenticationCeremonyId;
 import com.fido2_proof_of_concepts.identify.repository.AuthenticationCeremonyInMemoryRepository;
-import com.fido2_proof_of_concepts.identify.repository.FidoUserRepository;
-import com.fido2_proof_of_concepts.identify.repository.webauthn.exceptions.VerificationFailedException;
 import com.fido2_proof_of_concepts.identify.service.UserService;
-import lombok.RequiredArgsConstructor;
 import org.axonframework.modelling.saga.SagaEventHandler;
 import org.axonframework.modelling.saga.StartSaga;
 import org.axonframework.spring.stereotype.Saga;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 /**
  * Signature counter saga.
  */
-@RequiredArgsConstructor
 @Saga
 public class SignatureCounterSaga {
 
-    private final UserService userService;
-    private final FidoUserRepository fidoUserRepository;
-    private final AuthenticationCeremonyInMemoryRepository repository;
-    private final DefaultService defaultIdentifyService;
+    @Autowired
+    private UserService userService;
+    private AuthenticationCeremonyInMemoryRepository repository = new AuthenticationCeremonyInMemoryRepository();
+    @Autowired
+    private DefaultService defaultIdentifyService;
 
     /**
      * Update the value of stored signature for fido user saga.
@@ -36,9 +34,7 @@ public class SignatureCounterSaga {
     @StartSaga
     @SagaEventHandler(associationProperty = "ceremonyId")
     public void handle(ValueOfStoredSignatureCountVerifiedEvent event) {
-        byte[] credentialId = repository.getCredentialId((AuthenticationCeremonyId) event.getCeremonyId());
-        FidoUser fidoUser = fidoUserRepository.findByCredentialId(credentialId)
-                .orElseThrow(VerificationFailedException::new);
+        FidoUser fidoUser = repository.getFidoUser((AuthenticationCeremonyId) event.getCeremonyId());
         User user = userService.findByFidoUser(fidoUser).orElseThrow(() ->
                 new UsernameNotFoundException(fidoUser.getFidoUserId().getId()));
         if (event.isVerified()) {
